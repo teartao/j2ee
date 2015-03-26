@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haycm.dao.UserDao">
+	<insert id="insertUser" parameterType="com.haycm.entity.User"
+		flushCache="true">
+		INSERT INTO user ( longid , username , password ,real_name)
+		VALUES
+		(#{longId},#{username},#{password},#{realName})
+	</insert>
+
+	<select id="findUserList" parameterType="com.haycm.entity.User"
+		resultType="com.haycm.entity.User">
+		select longid AS longId, username AS username , password AS
+		password ,real_name AS realName FROM user limit
+		#{startNum},#{pageSize}
+	</select>
+
+	<select id="findUserByUserName" parameterType="com.haycm.entity.User"
+		resultType="com.haycm.entity.User">
+		SELECT longid AS longId, username AS username , password AS
+		password ,real_name AS realName FROM user WHERE username = #{username}
+	</select>
+	<select id="findUserByUserNameAndPassWord" parameterType="com.haycm.entity.User"
+		resultType="com.haycm.entity.User">
+		SELECT longid AS longId, username AS username , password AS
+		password ,real_name AS realName FROM user WHERE username=#{username}
+		AND
+		password=#{password}
+	</select>
+
+	<update id="updateUserByUserName" parameterType="com.haycm.entity.User">
+		UPDATE user SET
+		longid=#{longId}, username =#{username}, password=#{password},
+		real_name=#{realName}
+		WHERE
+		username=#{username}
+	</update>
+
+	<delete id="deleteUserByUserName" parameterType="com.haycm.entity.User">
+		DELETE FROM user
+		WHERE
+		username = #{username}
+	</delete>
+</mapper>
