@@ -4,6 +4,7 @@ import com.haycm.entity.Good;
 import com.haycm.service.GoodService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AbstractTestExecutionListener;
@@ -21,7 +22,7 @@ import java.util.List;
 @ContextConfiguration({"classpath:spring/applicationContext.xml"})
 public class GoodServiceTest extends AbstractTestExecutionListener {
 
-    @Resource(name = "goodService")
+    @Autowired
     private com.haycm.service.GoodService goodService;
 
     private Good good ;
