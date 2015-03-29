@@ -22,7 +22,7 @@
 	<div class="body-div">
 		<div class="nav-logo"></div>
 	</div>
-<form method="post" action="person">
+<form method="post" action="personPost">
     id:<input type="text" value=""/>
     name:<input type="text" value=""/>
     <input type="submit" value="submit"/>

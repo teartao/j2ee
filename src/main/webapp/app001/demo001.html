@@ -9,7 +9,13 @@
 </head>
 
 <body ng-controller="demo001Controller">
-    <button ng-click="getFunction()">GET</button>
-    <button ng-click="postFunction()">POST</button>
+<button ng-click="getFunction()">GET</button>
+<button ng-click="postFunction()">POST</button>
+<ul>
+    <li ng-repeat="student in studentList"><input type="text" ng-model="student.name"/>
+        <input type="text" ng-model="student.age"/>
+        <input type="text" ng-model="student.number"/>
+    </li>
+</ul>
 </body>
 </html>

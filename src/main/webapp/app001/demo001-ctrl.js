@@ -11,5 +11,11 @@ function demo001Controller($scope, $http, $log) {
         $log.debug("[返回]post person 成功");
         $log.debug(response);
     });
+
+    $http.get("../index").success(function (response) {
+        $log.debug("[返回]index 成功");
+        $log.debug(response);
+        $scope.studentList=response;
+    });
 }
 
