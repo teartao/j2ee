@@ -28,6 +28,7 @@
     <input type="submit" value="submit"/>
     <input type="button" value="button" onclick="addPerson()"/>
     <a href="app001/demo001.html">demo001</a>
+    <a href="/app001/demo001.html"> --/ path</a>
 </form>
 <script>
     var requestParam={
