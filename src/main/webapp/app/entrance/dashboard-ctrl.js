@@ -1,4 +1,4 @@
-define(['diamond'], function (diamond,demo001Service) {
+define(['diamond'], function (diamond) {
     diamond.lazy.controller('dashboardCtrl', function ($rootScope, $scope, $http) {
         loadPage();
 

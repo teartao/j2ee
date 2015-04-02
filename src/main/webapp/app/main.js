@@ -1,6 +1,3 @@
-/**
- * Created by WangFu on 14-12-25.
- */
 var appConfig = {
     appName: 'app',//app文件名
     isServer: true, //数据是否来源服务器

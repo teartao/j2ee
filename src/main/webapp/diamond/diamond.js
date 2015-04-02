@@ -1,9 +1,3 @@
-/**
- * Description:RequireJS diamond定义类
- * User: laibb
- * Version:edc-ui-0.1.0
- * Date: 14-2-17 上午11:31
- */
 var diamondRequirements = (function () {
     var depends = [
         'angular'
