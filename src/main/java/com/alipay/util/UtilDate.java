@@ -5,14 +5,14 @@ import java.util.Random;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 /**
- * Ãû³Æ£º×Ô¶¨Òå¶©µ¥Àà
- * ¹¦ÄÜ£º¹¤¾ßÀà£¬¿ÉÒÔÓÃ×÷»ñÈ¡ÏµÍ³ÈÕÆÚ¡¢¶©µ¥±àºÅµÈ
- * ½Ó¿ÚÃû³Æ£º±ê×¼ÊµÎïË«½Ó¿Ú
- * °æ±¾£º2.0
- * ÈÕÆÚ£º2008-12-25
- * ×÷Õß£ºÖ§¸¶±¦¹«Ë¾ÏúÊÛ²¿¼¼ÊõÖ§³ÖÍÅ¶Ó
- * ÁªÏµ£º0571-26888888
- * °æÈ¨£ºÖ§¸¶±¦¹«Ë¾
+ * åç§°ï¼šè‡ªå®šä¹‰è®¢å•ç±»
+ * åŠŸèƒ½ï¼šå·¥å…·ç±»ï¼Œå¯ä»¥ç”¨ä½œè·å–ç³»ç»Ÿæ—¥æœŸã€è®¢å•ç¼–å·ç­‰
+ * æ¥å£åç§°ï¼šæ ‡å‡†å®ç‰©åŒæ¥å£
+ * ç‰ˆæœ¬ï¼š2.0
+ * æ—¥æœŸï¼š2008-12-25
+ * ä½œè€…ï¼šæ”¯ä»˜å®å…¬å¸é”€å”®éƒ¨æŠ€æœ¯æ”¯æŒå›¢é˜Ÿ
+ * è”ç³»ï¼š0571-26888888
+ * ç‰ˆæƒï¼šæ”¯ä»˜å®å…¬å¸
  * */
 public class UtilDate {
 	public  static String getOrderNum(){
@@ -20,7 +20,7 @@ public class UtilDate {
 		DateFormat df=new SimpleDateFormat("yyyyMMddHHmmss");
 		return df.format(date);
 	}
-	//»ñÈ¡ÈÕÆÚ£¬¸ñÊ½£ºyyyy-MM-dd HH:mm:ss
+	//è·å–æ—¥æœŸï¼Œæ ¼å¼ï¼šyyyy-MM-dd HH:mm:ss
 	public  static String getDateFormatter(){
 		Date date=new Date();
 		DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -34,7 +34,7 @@ public class UtilDate {
 		return df.format(date);
 	}
 	
-	//²úÉúËæ»úµÄÈıÎ»Êı
+	//äº§ç”Ÿéšæœºçš„ä¸‰ä½æ•°
 	public static String getThree(){
 		Random rad=new Random();
 		return rad.nextInt(1000)+"";

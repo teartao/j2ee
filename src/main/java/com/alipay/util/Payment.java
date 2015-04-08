@@ -4,14 +4,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.*;
 /**
- * Ãû³Æ£ºÖ§¸¶Ö÷Àà
- * ¹¦ÄÜ£ºÖ§¸¶±¦Íâ²¿·şÎñ½Ó¿Ú¿ØÖÆ
- * ½Ó¿ÚÃû³Æ£º±ê×¼ÊµÎïË«½Ó¿Ú
- * °æ±¾£º2.0
- * ÈÕÆÚ£º2008-12-25
- * ×÷Õß£ºÖ§¸¶±¦¹«Ë¾ÏúÊÛ²¿¼¼ÊõÖ§³ÖÍÅ¶Ó
- * ÁªÏµ£º0571-26888888
- * °æÈ¨£ºÖ§¸¶±¦¹«Ë¾
+ * åç§°ï¼šæ”¯ä»˜ä¸»ç±»
+ * åŠŸèƒ½ï¼šæ”¯ä»˜å®å¤–éƒ¨æœåŠ¡æ¥å£æ§åˆ¶
+ * æ¥å£åç§°ï¼šæ ‡å‡†å®ç‰©åŒæ¥å£
+ * ç‰ˆæœ¬ï¼š2.0
+ * æ—¥æœŸï¼š2008-12-25
+ * ä½œè€…ï¼šæ”¯ä»˜å®å…¬å¸é”€å”®éƒ¨æŠ€æœ¯æ”¯æŒå›¢é˜Ÿ
+ * è”ç³»ï¼š0571-26888888
+ * ç‰ˆæƒï¼šæ”¯ä»˜å®å…¬å¸
  * */
 public class Payment {
 
@@ -20,7 +20,7 @@ public class Payment {
                   String body,String subject,String price,String quantity,String show_url,String payment_type,
                   String discount,String logistics_type,String logistics_fee,String logistics_payment,
                   String return_url) {
-                   //String notify_url,ĞèÒªµÄÇë°Ñ²ÎÊı¼ÓÈëÒÔÉÏµÄcreateurl
+                   //String notify_url,éœ€è¦çš„è¯·æŠŠå‚æ•°åŠ å…¥ä»¥ä¸Šçš„createurl
         Map params = new HashMap();
         params.put("service", service);
         params.put("out_trade_no", out_trade_no);
