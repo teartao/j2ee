@@ -1,8 +1,137 @@
 <div ng-controller="dashboardCtrl">
     <a>{{testString}}</a>
+
     <p>
         <input type="button" value="demo001" ng-click="openPage('demo001')"/>
     </p>
+
+    <div class="col-md-6">
+        <form role="form" name="myForm" ng-submit="submitForm(myForm.$valid)" class="form-horizontal" novalidate>
+            <div>
+                <div>
+                    <label for="name">1.必填项</label>
+                </div>
+                <div>
+                    <input id="name" name="name" type="text" required ng-model='user.name'/>
+                    <span ng-show="myForm.name.$dirty && myForm.name.$valid"></span>
+                </div>
+                1.必填项:{{user.name}}&nbsp;&nbsp;
+                $pristine 【没修改】：{{myForm.name.$pristine }}&nbsp;&nbsp;
+                $dirty【修改过】：{{myForm.name.$dirty}}&nbsp;&nbsp;
+                $invalid【验证失败】：{{myForm.name.$invalid}}&nbsp;&nbsp;
+                $invalid【验证成功】：{{myForm.name.$valid}}&nbsp;&nbsp;
+                required：{{myForm.name.$error.required}}&nbsp;&nbsp;
+                
+                <br/><br/>
+
+            </div>
+            <div>
+                <div>
+                    <label for="minlength">2.最小长度=5</label>
+                </div>
+                <div>
+                    <input type="text" id="minlength" name="minlength" ng-minlength="5" ng-model="user.minlength"/>
+                    <span ng-show="myForm.minlength.$dirty && myForm.minlength.$valid"></span>
+                </div>
+                2.最小长度=5:{{user.minlength}}
+                $pristine 【没修改】：{{myForm.minlength.$pristine }}&nbsp;&nbsp;
+                $dirty【修改过】：{{myForm.minlength.$dirty}}&nbsp;&nbsp;
+                $invalid【验证失败】：{{myForm.minlength.$invalid}}&nbsp;&nbsp;
+                $invalid【验证成功】：{{myForm.minlength.$valid}}&nbsp;&nbsp;
+                $error【错误详情】：{{myForm.minlength.$error}}&nbsp;&nbsp;
+                <br/><br/>
+            </div>
+            <div>
+                <div>
+                    <label for="maxlength">3.最大长度=20</label>
+                </div>
+                <div>
+                    <input type="text" id="maxlength" name="maxlength" ng-model="user.maxlength" ng-maxlength="20"/>
+                    <span ng-show="myForm.maxlength.$dirty && myForm.maxlength.$valid"></span>
+                </div>
+                3.最大长度=20:{{user.maxlength}}
+                $pristine 【没修改】：{{myForm.maxlength.$pristine }}&nbsp;&nbsp;
+                $dirty【修改过】：{{myForm.maxlength.$dirty}}&nbsp;&nbsp;
+                $invalid【验证失败】：{{myForm.maxlength.$invalid}}&nbsp;&nbsp;
+                $invalid【验证成功】：{{myForm.maxlength.$valid}}&nbsp;&nbsp;
+                $error【错误详情】：{{myForm.maxlength.$error}}&nbsp;&nbsp;
+                <br/><br/>
+            </div>
+            <div>
+                <input  style="font-weight:bold;font-size: 28px;" ng-disabled="myForm.$invalid" type="submit" value="提交"/>
+            </div>
+            <div>
+                <div>
+                    <label for="pattern">4. 模式匹配</label>
+                </div>
+                <div>
+                    <input type="text" id="pattern" name="pattern" ng-model="user.pattern"
+                           ng-pattern="/^[a-zA-Z]*\d$/"/>
+                    <span ng-show="myForm.pattern.$dirty && myForm.pattern.$valid"></span>
+                </div>
+                4.模式匹配:{{user.pattern}}
+                $pristine 【没修改】：{{myForm.pattern.$pristine }}&nbsp;&nbsp;
+                $dirty【修改过】：{{myForm.pattern.$dirty}}&nbsp;&nbsp;
+                $invalid【验证失败】：{{myForm.pattern.$invalid}}&nbsp;&nbsp;
+                $invalid【验证成功】：{{myForm.pattern.$valid}}&nbsp;&nbsp;
+                $error【错误详情】：{{myForm.pattern.$error}}&nbsp;&nbsp;
+                <br/><br/>
+            </div>
+            <div>
+                <div>
+                    <label for="email">5. 电子邮件</label>
+                </div>
+                <div>
+                    <input type="email" id="email" name="email" ng-model="user.email"/>
+                    <span ng-show="myForm.email.$dirty && myForm.email.$valid"></span>
+                </div>
+                5.电子邮件:{{user.email}}
+                $pristine 【没修改】：{{myForm.email.$pristine }}&nbsp;&nbsp;
+                $dirty【修改过】：{{myForm.email.$dirty}}&nbsp;&nbsp;
+                $invalid【验证失败】：{{myForm.email.$invalid}}&nbsp;&nbsp;
+                $invalid【验证成功】：{{myForm.email.$valid}}&nbsp;&nbsp;
+                $error【错误详情】：{{myForm.email.$error}}&nbsp;&nbsp;
+                <br/><br/>
+            </div>
+            <div>
+                <div>
+                    <label for="age">6. 数字</label>
+                </div>
+                <div>
+                    <input type="number" id="age" name="age" ng-model="user.age"/>
+
+                    <span ng-show="myForm.age.$dirty && myForm.age.$valid"></span>
+                </div>
+                6.数字:{{user.age}}
+                $pristine 【没修改】：{{myForm.age.$pristine }}&nbsp;&nbsp;
+                $dirty【修改过】：{{myForm.age.$dirty}}&nbsp;&nbsp;
+                $invalid【验证失败】：{{myForm.age.$invalid}}&nbsp;&nbsp;
+                $invalid【验证成功】：{{myForm.age.$valid}}&nbsp;&nbsp;
+                $error【错误详情】：{{myForm.age.$error}}&nbsp;&nbsp;
+                <br/><br/>
+            </div>
+            <div>
+                <div>
+                    <label for="url"> 7. URL</label>
+                </div>
+                <div>
+                    <input type="url" id="url" name="url" ng-model="user.url"/>
+                    <span ng-show="myForm.url.$dirty && myForm.url.$valid"></span>
+                </div>
+                7.URL:{{user.url}}
+                $pristine 【没修改】：{{myForm.url.$pristine }}&nbsp;&nbsp;
+                $dirty【修改过】：{{myForm.url.$dirty}}&nbsp;&nbsp;
+                $invalid【验证失败】：{{myForm.url.$invalid}}&nbsp;&nbsp;
+                $invalid【验证成功】：{{myForm.url.$valid}}&nbsp;&nbsp;
+                $error【错误详情】：{{myForm.url.$error}}&nbsp;&nbsp;<br/><br/>
+            </div>
+
+        </form>
+    </div>
+    <div>
+
+    </div>
+    </body>
 </div>
 
 

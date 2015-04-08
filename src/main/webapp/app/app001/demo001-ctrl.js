@@ -17,12 +17,15 @@ define(['diamond', './demo001-service'], function (diamond, anyName) {
                 $log.debug(response);
             });
 
-            anyName.indexRequest().success(function (response) {
+            demo001Service.indexRequest().success(function (response) {
                 $log.debug("<<<<<<<<<<<<<<<<");
-                $log.debug("[返回]index 成功");
+                $log.debug("[返回]getJson 成功");
                 $log.debug(response);
                 $scope.studentList = response;
-            })
+            });
+
+
+
         }
     });
 });

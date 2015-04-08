@@ -3,7 +3,13 @@ define(['diamond'], function (diamond) {
         loadPage();
 
         function loadPage() {
-            $scope.testString ="testString sss";
+            $scope.testString ="I'm in dashboard";
+
+            $scope.submitForm = function (isValid) {
+                if (!isValid) {
+                    alert('验证失败');
+                }
+            };
         }
     });
 });

@@ -10,12 +10,21 @@ define(['diamond'], function (diamond) {
                 $log.debug(">>>>>>>>>>>>>>>>>>>>>>");
                 $log.debug("[请求]post person 成功");
                 return $http.post("personPost", personObj);
+            },
+            indexRequest: function () {
+                //!!!!!!!!!!!!!!!!! following is error !!!!!!!!!!!
+                //why cannot use angular global variable here as following
+                //diamond doesn't load the angularJS?
+
+                //$log.debug(">>>>>>>>>>>>>>>>>>>>>>"); //TypeError: Cannot read property 'debug' of undefined
+                $log.debug("[请求]post getJson 成功");
+                return $http.get("getJson");
             }
 
         };
     })
 
-    return {
+    /*return {
         indexRequest: function ($http, $log) {
             //!!!!!!!!!!!!!!!!! following is error !!!!!!!!!!!
             //why cannot use angular global variable here as following
@@ -25,5 +34,5 @@ define(['diamond'], function (diamond) {
             $log.debug("[请求]post person 成功");
             return $http.get("index");
         }
-    }
+    }*/
 });
