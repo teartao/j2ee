@@ -18,7 +18,11 @@ require.config({
         highCharts: '../lib/highcharts/highcharts',
         ol: '../lib/ol/ol',
         highChartsNg: '../lib/highcharts-ng/highcharts-ng.min',
-        bootstrap: '../lib/bootstrap/bootstrap.min'
+        bootstrap: '../lib/bootstrap/bootstrap.min',
+        uEditorAll:'../lib/ueditor-1.4.3/ueditor.all.min',
+        uEditorConfig:'../lib/ueditor-1.4.3/ueditor.config',
+        languageCN:'../lib/ueditor-1.4.3/lang/zh-cn/zh-cn'
+
     },
     shim: {
         angularMock: {
@@ -54,7 +58,10 @@ require(
         'diamond',
         'jquery',
         'highCharts',
-        'highChartsNg'
+        'highChartsNg',
+        'uEditorConfig',
+        'uEditorConfig',
+        'languageCN'
     ]
     , function (context, angular, diamond) {
         diamond.run(function ($rootScope, $http, $log) {
