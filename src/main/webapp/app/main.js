@@ -19,9 +19,8 @@ require.config({
         ol: '../lib/ol/ol',
         highChartsNg: '../lib/highcharts-ng/highcharts-ng.min',
         bootstrap: '../lib/bootstrap/bootstrap.min',
-        uEditorAll:'../lib/ueditor-1.4.3/ueditor.all.min',
-        uEditorConfig:'../lib/ueditor-1.4.3/ueditor.config',
-        languageCN:'../lib/ueditor-1.4.3/lang/zh-cn/zh-cn'
+        uEditorConfig:'../lib/ueditor1_4_3/ueditor.config',//配置文件
+        uEditorAll:'../lib/ueditor1_4_3/ueditor.all.min'//编辑器源码文件
 
     },
     shim: {
@@ -59,9 +58,8 @@ require(
         'jquery',
         'highCharts',
         'highChartsNg',
-        'uEditorConfig',
-        'uEditorConfig',
-        'languageCN'
+        'uEditorAll',
+        'uEditorConfig'
     ]
     , function (context, angular, diamond) {
         diamond.run(function ($rootScope, $http, $log) {
