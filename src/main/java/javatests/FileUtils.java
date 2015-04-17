@@ -20,19 +20,19 @@ import java.io.*;
 public class FileUtils {
 
     public static void main(String[] args) {
-        String PATH = "E:/download/";
-        String FILE_NAME = "test.html";
-        String winNew = PATH + "win-new.docx";
+        String PATH = "E:/download/";//测试文件目录
+        String FILE_NAME = "test.html";//测试的html源文件
+        String template = PATH + "win.docx";//windows创建的docx文件名
         String htmlFullPath = PATH + FILE_NAME;
-        String time = System.currentTimeMillis() + "";
+        String preName = PATH + (System.currentTimeMillis() + "").substring(5);
 
-//        String codeNewDoc = convertHtmlToDOC(htmlFullPath, PATH + time + ".doc");
-        String codeNewDocx = convertHtmlToDOCX(htmlFullPath, PATH + time + ".docx");
+        String codeNewDoc = convertHtmlToDOC(htmlFullPath, preName + "html_DOC.doc");
 
-//        convertHtmlToDOCXFromTemplate(htmlFullPath, PATH + time + ".docx", winNew);
-//        convertDocxToPDF("E:/download/1429235487314.docx", PATH + time + ".pdf");
+        convertHtmlToDOCXFromTemplate(htmlFullPath, preName + "html_temp_DOCX.docx", template);
+        convertDocxToPDF(template, preName + "html_temp_docx.pdf");
 
-//        String newWin = convertDocxToPDF(winNewDocx, PATH + time + "_newWin.pdf");
+        String codeNewDocx = convertHtmlToDOCX(htmlFullPath, preName + "html_DOCX.docx");
+        convertDocxToPDF(codeNewDocx, preName + "html_docx.pdf");
     }
 
     /**
