@@ -34,7 +34,7 @@ CREATE TABLE `good` (
 INSERT INTO `good` VALUES ('1', '阳春面', '5.0', null, null);
 INSERT INTO `good` VALUES ('10', 'hsdf', '5.0', null, null);
 INSERT INTO `good` VALUES ('11', 'hsdddf', '5.0', null, 'description');
-INSERT INTO `good` VALUES ('1426126483430', 'hehe', '12.0', '../css/image/logo.png', '福满多');
+INSERT INTO `good` VALUES ('1426126483430', 'org.hehe', '12.0', '../css/image/logo.png', '福满多');
 INSERT INTO `good` VALUES ('1426127094634', 'name-11', '12.1', '../css/image/logo.png', '福满多');
 
 -- ----------------------------
