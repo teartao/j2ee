@@ -240,9 +240,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.docx4j</groupId>
-            <artifactId>docx4j</artifactId>
-            <version>3.2.0</version>
+            <groupId>org.hehe</groupId>
+            <artifactId>inuyasha</artifactId>
+            <version>0.0.3-RELEASE</version>
         </dependency>
 
     </dependencies>
