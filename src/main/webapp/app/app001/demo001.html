@@ -1,4 +1,10 @@
 <div ng-controller="demo001Controller">
+    <p><input type="submit" value="do GET" ng-click="doGet()"/></p>
+
+    <p><input type="button" value="do POST" ng-click="doPost()"/></p>
+
+    <p><input type="button" value="getStudentList" ng-click="getStudentList()"/></p>
+
     <ul>
         <li ng-repeat="student in studentList">
             <input type="text" ng-model="student.name"/>
@@ -6,16 +12,4 @@
             <input type="text" ng-model="student.number"/>
         </li>
     </ul>
-
-    <!-- 加载编辑器的容器 -->
-    <script id="container" name="content" type="text/plain">
-        这里写你的初始化内容
-    </script>
-
-    <!-- 实例化编辑器 -->
-    <script type="text/javascript">
-        var ue = UE.getEditor('container',{
-            autoHeight: false
-        });
-    </script>
 </div>

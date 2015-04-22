@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>home</title>
     <link type="text/css" href="lib/ol/ol.css"/>
+    <link rel="stylesheet" href="./css/index.css" type="text/css"/>
     <script src="lib/require/require.js" data-main="app/main" type="text/javascript"></script>
 </head>
 <body ng-init="initWelcomePage()">
-
-I'm in!!!!!!!!
+<div class="body-div">
+    <div class="nav-logo"></div>
+</div>
 <div ng-include="appContext.modulePage.viewURL">
 </div>
 
