@@ -7,11 +7,11 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/mvc
-       http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+       http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
     <!-- 启用spring mvc 注解 -->
     <context:annotation-config/>
@@ -124,6 +124,8 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- 输出对象转JSON支持 -->
+
     <bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
@@ -132,9 +134,13 @@
         </property>
     </bean>
 
-    <!-- 输出对象转JSON支持 -->
-    <bean id="jsonConverter"
+    <!--<bean id="jsonConverter"
           class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"></bean>
+    -->
+    <!--spring 4.x用这个class 还需要修改pom.xml依赖-->
+    <bean id="jsonConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+
     <bean
             class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <property name="messageConverters">

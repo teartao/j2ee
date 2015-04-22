@@ -174,10 +174,23 @@
         <!-- log end -->
 
         <!-- 映入JSON -->
-        <dependency>
+        <!--spring3.2以前版本用 codehaus 4.x请替换为下面的依赖-->
+        <!--<dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.13</version>
+        </dependency>-->
+
+        <!--spring 4.x MappingJackson2HttpMessageConverter 对应的依赖-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.5.1</version>
         </dependency>
         <!-- 上传组件包 -->
         <dependency>
