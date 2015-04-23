@@ -17,6 +17,10 @@ define(function () {
         demo003: {
             controller: 'app003/demo003-ctrl',
             templateUrl: 'app003/demo003.html'
+        },
+        treeAnimation: {
+            controller: 'treeAnimation/treeAnimation-ctrl',
+            templateUrl: 'treeAnimation/treeAnimation.html'
         }
     };
 

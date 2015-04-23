@@ -19,8 +19,10 @@ require.config({
         ol: '../lib/ol/ol',
         highChartsNg: '../lib/highcharts-ng/highcharts-ng.min',
         bootstrap: '../lib/bootstrap/bootstrap.min',
-        uEditorConfig:'../lib/ueditor1_4_3/ueditor.config',//配置文件
-        uEditorAll:'../lib/ueditor1_4_3/ueditor.all.min'//编辑器源码文件
+        uEditorConfig: '../lib/ueditor1_4_3/ueditor.config',//配置文件
+        uEditorAll: '../lib/ueditor1_4_3/ueditor.all.min',//编辑器源码文件,
+        jitCore: '../lib/jit/jit',
+        treeAnimationService: '../app/treeAnimation-service'
 
     },
     shim: {
@@ -46,11 +48,17 @@ require.config({
         },
         scroll: {
             deps: ['jquery']
+        },
+        jitCore:{
+            exports:'jit'
+        },
+         treeAnimationService: {
+            deps: ['jitCore']
         }
     }
 });
 
-require(
+require(//如果这里引用了，那么将在所有页面中加载这些定义好的js，如果只是某个页面需要使用，那么只需在哪个页面对应的ctrl头部引入定义好的js即可
     [
         appConfig.appContextPath,
         'angular',
@@ -59,13 +67,13 @@ require(
         'highCharts',
         'highChartsNg',
         'uEditorAll',
-        'uEditorConfig'
+        'uEditorConfig',
+        'jitCore'
     ]
     , function (context, angular, diamond) {
         diamond.run(function ($rootScope, $http, $log) {
                 $rootScope.appContext = {
                     modules: [],
-                    isDashboardPage: false,
                     modulePage: {}//模块页面
                 };
 
@@ -84,7 +92,6 @@ require(
                 };
 
                 $rootScope.openPage = function (pageCode) {
-                    $rootScope.appContext.isDashboardPage = pageCode === 'dashboard';
                     var page = context.pages[pageCode];
                     if (page == null) {
                         return;
