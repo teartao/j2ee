@@ -22,7 +22,8 @@ require.config({
         uEditorConfig: '../lib/ueditor1_4_3/ueditor.config',//配置文件
         uEditorAll: '../lib/ueditor1_4_3/ueditor.all.min',//编辑器源码文件,
         jitCore: '../lib/jit/jit',
-        treeAnimationService: '../app/treeAnimation-service'
+        treeAnimationService: '../app/treeAnimation-service',
+        goJs:'../lib/go-js/release/go-debug'
 
     },
     shim: {
