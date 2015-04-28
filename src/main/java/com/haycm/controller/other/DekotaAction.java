@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * 基于Restful风格架构测试
@@ -111,5 +113,13 @@ public class DekotaAction {
         lstPersons.add(person3);
 
         return lstPersons;
+    }
+
+    @RequestMapping(value = "getGoodList", method = RequestMethod.POST)
+    public String listPage(HttpServletRequest request) {
+        String pageNumber = request.getParameter("pageNumber");
+        String pageSize = request.getParameter("pageSize");
+
+        return null;
     }
 }
