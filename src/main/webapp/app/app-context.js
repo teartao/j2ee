@@ -21,6 +21,10 @@ define(function () {
         treeAnimation: {
             controller: 'treeAnimation/treeAnimation-ctrl',
             templateUrl: 'treeAnimation/treeAnimation.html'
+        },
+        goJSTree: {
+            controller: 'go-js-tree/go-js-tree-ctrl',
+            templateUrl: 'go-js-tree/go-js-tree.html'
         }
     };
 

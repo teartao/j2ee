@@ -1,0 +1,61 @@
+[
+  {
+    "name": "带钢厂",
+    "source": "image/tree-icons/organization.png",
+    "parent": "f21a0349-34ec-11e4-8676-00505689428a",
+    "key": "6685d3b3-9502-49e8-ba9d-6994e9205f66"
+  },
+  {
+    "name": "江苏XXX有限公司",
+    "source": "image/tree-icons/root.png",
+    "key": "f21a0349-34ec-11e4-8676-00505689428a"
+  },
+  {
+    "name": "生产技术科",
+    "source": "image/tree-icons/organization.png",
+    "parent": "6685d3b3-9502-49e8-ba9d-6994e9205f66",
+    "key": "f179ea98-4ad1-4c29-b553-ffc3db711aba"
+  },
+  {
+    "name": "质量技术部",
+    "source": "image/tree-icons/organization.png",
+    "parent": "f21a0349-34ec-11e4-8676-00505689428a",
+    "key": "bc868219-f15c-4be7-a8cd-d24c853cbe9d"
+  },
+  {
+    "name": "B产品生产车间",
+    "source": "image/tree-icons/facility.png",
+    "parent": "f179ea98-4ad1-4c29-b553-ffc3db711aba",
+    "key": "1dca0f0e-ce0b-4f76-b606-ae269543b9c4"
+  },
+  {
+    "name": "公用系统",
+    "source": "image/tree-icons/facility.png",
+    "parent": "f179ea98-4ad1-4c29-b553-ffc3db711aba",
+    "key": "20425d02-4213-4840-9d48-c6d23cfbe08f"
+  },
+  {
+    "name": "A产品生产车间",
+    "source": "image/tree-icons/facility.png",
+    "parent": "f179ea98-4ad1-4c29-b553-ffc3db711aba",
+    "key": "ef36c799-8fb1-497e-90d4-f19eb969fac1"
+  },
+  {
+    "name": "一线",
+    "source": "image/tree-icons/facility.png",
+    "parent": "bc868219-f15c-4be7-a8cd-d24c853cbe9d",
+    "key": "4e0b1572-5900-4688-821c-c2cb0adb22b1"
+  },
+  {
+    "name": "二线",
+    "source": "image/tree-icons/facility.png",
+    "parent": "bc868219-f15c-4be7-a8cd-d24c853cbe9d",
+    "key": "6a86783f-8df3-4385-934c-06e72498498f"
+  },
+  {
+    "name": "三线",
+    "source": "image/tree-icons/facility.png",
+    "parent": "bc868219-f15c-4be7-a8cd-d24c853cbe9d",
+    "key": "8dd4f590-6f4c-46b9-8450-f198b2fc172f"
+  }
+]

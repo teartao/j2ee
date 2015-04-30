@@ -1,0 +1,51 @@
+{
+  "data": [
+    {
+      "facilities": [
+        {
+          "belong_state": 1,
+          "create_time": "2014-09-10 11:29:20",
+          "effective_date": "",
+          "modify_time": "2014-09-10 11:29:20",
+          "name": "1号锅炉",
+          "organization_id": "36081f67-2cca-11e4-8676-00505689428a",
+          "pkid": "15ec2b06-b5cf-4db2-90fa-9005514c8bfa",
+          "purchase_data": "",
+          "remark": "",
+          "sort": 50,
+          "strip_data": ""
+        },
+        {
+          "belong_state": 1,
+          "create_time": "2014-09-10 11:29:32",
+          "effective_date": "",
+          "modify_time": "2014-09-10 11:29:32",
+          "name": "2号锅炉",
+          "organization_id": "36081f67-2cca-11e4-8676-00505689428a",
+          "pkid": "7dbc729c-3cb6-49a8-919f-d5642fecccbe",
+          "purchase_data": "",
+          "remark": "",
+          "sort": 100,
+          "strip_data": ""
+        },
+        {
+          "belong_state": 1,
+          "create_time": "2014-09-10 11:29:41",
+          "effective_date": "",
+          "modify_time": "2014-09-10 11:29:41",
+          "name": "公共系统",
+          "organization_id": "36081f67-2cca-11e4-8676-00505689428a",
+          "pkid": "b9f52e74-e749-47ec-a41d-a9a26d767bb1",
+          "purchase_data": "",
+          "remark": "",
+          "sort": 150,
+          "strip_data": ""
+        }
+      ],
+      "name": "镇江宏顺热电有限公司",
+      "parent_id": "root",
+      "pkid": "36081f67-2cca-11e4-8676-00505689428a"
+    }
+  ],
+  "success": true
+}

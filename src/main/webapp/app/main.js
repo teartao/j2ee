@@ -69,7 +69,8 @@ require(//如果这里引用了，那么将在所有页面中加载这些定义�
         'highChartsNg',
         'uEditorAll',
         'uEditorConfig',
-        'jitCore'
+        'jitCore',
+        'goJs'
     ]
     , function (context, angular, diamond) {
         diamond.run(function ($rootScope, $http, $log) {

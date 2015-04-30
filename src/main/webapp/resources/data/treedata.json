@@ -1,0 +1,62 @@
+[
+  {
+    "name": "带钢厂",
+    "notetype": "organization",
+    "parentid": "f21a0349-34ec-11e4-8676-00505689428a",
+    "id": "6685d3b3-9502-49e8-ba9d-6994e9205f66"
+  },
+  {
+    "name": "江苏XXX有限公司",
+    "notetype": "organization",
+    "parentid": "root",
+    "id": "f21a0349-34ec-11e4-8676-00505689428a"
+  },
+  {
+    "name": "生产技术科",
+    "notetype": "organization",
+    "parentid": "6685d3b3-9502-49e8-ba9d-6994e9205f66",
+    "id": "f179ea98-4ad1-4c29-b553-ffc3db711aba"
+  },
+  {
+    "name": "质量技术部",
+    "notetype": "organization",
+    "parentid": "f21a0349-34ec-11e4-8676-00505689428a",
+    "id": "bc868219-f15c-4be7-a8cd-d24c853cbe9d"
+  },
+  {
+    "name": "B产品生产车间",
+    "notetype": "facility",
+    "parentid": "f179ea98-4ad1-4c29-b553-ffc3db711aba",
+    "id": "1dca0f0e-ce0b-4f76-b606-ae269543b9c4"
+  },
+  {
+    "name": "公用系统",
+    "notetype": "facility",
+    "parentid": "f179ea98-4ad1-4c29-b553-ffc3db711aba",
+    "id": "20425d02-4213-4840-9d48-c6d23cfbe08f"
+  },
+  {
+    "name": "A产品生产车间",
+    "notetype": "facility",
+    "parentid": "f179ea98-4ad1-4c29-b553-ffc3db711aba",
+    "id": "ef36c799-8fb1-497e-90d4-f19eb969fac1"
+  },
+  {
+    "name": "一线",
+    "notetype": "facility",
+    "parentid": "bc868219-f15c-4be7-a8cd-d24c853cbe9d",
+    "id": "4e0b1572-5900-4688-821c-c2cb0adb22b1"
+  },
+  {
+    "name": "二线",
+    "notetype": "facility",
+    "parentid": "bc868219-f15c-4be7-a8cd-d24c853cbe9d",
+    "id": "6a86783f-8df3-4385-934c-06e72498498f"
+  },
+  {
+    "name": "三线",
+    "notetype": "facility",
+    "parentid": "bc868219-f15c-4be7-a8cd-d24c853cbe9d",
+    "id": "8dd4f590-6f4c-46b9-8450-f198b2fc172f"
+  }
+]

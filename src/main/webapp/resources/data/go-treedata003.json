@@ -1,0 +1,78 @@
+[
+  {
+    "name": "带钢厂",
+    "source": "image/tree-icons/organization.png",
+    "parent": "1",
+    "key": "2"
+  },
+  {
+    "name": "江苏XXX有限公司",
+    "source": "image/tree-icons/root.png",
+    "key": "1"
+  },
+  {
+    "name": "生产技术科",
+    "source": "image/tree-icons/organization.png",
+    "parent": "1",
+    "key": "3"
+  },
+  {
+    "name": "质量技术部",
+    "source": "image/tree-icons/organization.png",
+    "parent": "1",
+    "key": "4"
+  },
+  {
+    "name": "B产品生产车间",
+    "source": "image/tree-icons/facility.png",
+    "parent": "2",
+    "key": "5"
+  },
+  {
+    "name": "公用系统",
+    "source": "image/tree-icons/facility.png",
+    "parent": "5",
+    "key": "6"
+  },
+  {
+    "name": "A产品生产车间",
+    "source": "image/tree-icons/facility.png",
+    "parent": "6",
+    "key": "7"
+  },
+  {
+    "name": "一线",
+    "source": "image/tree-icons/facility.png",
+    "parent": "2",
+    "key": "8"
+  },
+  {
+    "name": "二线",
+    "source": "image/tree-icons/facility.png",
+    "parent": "3",
+    "key": "9"
+  },
+  {
+    "name": "三线",
+    "source": "image/tree-icons/facility.png",
+    "parent": "3",
+    "key": "10"
+  },{
+  "name": "一线",
+  "source": "image/tree-icons/facility.png",
+  "parent": "10",
+  "key": "11"
+},
+  {
+    "name": "二线",
+    "source": "image/tree-icons/facility.png",
+    "parent": "11",
+    "key": "12"
+  },
+  {
+    "name": "三线",
+    "source": "image/tree-icons/facility.png",
+    "parent": "2",
+    "key": "13"
+  }
+]
