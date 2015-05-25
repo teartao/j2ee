@@ -1,9 +1,10 @@
 package com.haycm.convert;
 
-import org.hehe.util.FileConvertUtils;
+import org.hehe.converters.Converter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -17,7 +18,8 @@ import javax.annotation.Resource;
 @ContextConfiguration({"classpath:spring/applicationContext.xml"})
 public class FileProcessorTest {
     @Resource
-    private FileConvertUtils fileConvertUtils;
+    @Qualifier("CobConverter")
+    private Converter fileConvertUtils;
 
     @Test
     public void test1() {
