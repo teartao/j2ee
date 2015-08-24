@@ -86,13 +86,6 @@ require(//如果这里引用了，那么将在所有页面中加载这些定义�
 
                 }
 
-                /**
-                 * 初始欢迎页
-                 */
-                $rootScope.initWelcomePage = function () {
-                    $rootScope.openPage('dashboard');
-                };
-
                 $rootScope.openPage = function (pageCode) {
                     var page = context.pages[pageCode];
                     if (page == null) {

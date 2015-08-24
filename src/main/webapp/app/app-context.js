@@ -25,6 +25,14 @@ define(function () {
         goJSTree: {
             controller: 'go-js-tree/go-js-tree-ctrl',
             templateUrl: 'go-js-tree/go-js-tree.html'
+        },
+        bdMap: {
+            controller: 'bd-map/bd-map-ctrl',
+            templateUrl: 'bd-map/bd-map.html'
+        },
+        mMsg: {
+            controller: 'micro-message/msg-ctrl',
+            templateUrl: 'micro-message/msg.html'
         }
     };
 
