@@ -258,6 +258,12 @@
             <version>0.0.3-RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-mail</artifactId>
+            <version>4.1.4.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <!--配置下载依赖的私服-->

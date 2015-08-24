@@ -23,10 +23,10 @@ public class SendEmail
     public static void main(String [] args)
     {
         // 收件人电子邮箱
-        String to = "xxx@126.com";
+        String to = "yyang12581@126.com";
 
         // 发件人电子邮箱
-        String from = "xxx@qq.com";
+        String from = "809210721@qq.com";
 
         // 指定发送邮件的主机为 smtp.qq.com"
         String host = "smtp.qq.com";  //QQ 邮件服务器
@@ -42,7 +42,7 @@ public class SendEmail
         Session session = Session.getDefaultInstance(properties,new Authenticator(){
             public PasswordAuthentication getPasswordAuthentication()
             {
-                return new PasswordAuthentication("xxx@qq.com", "password"); //发件人邮件用户名、密码
+                return new PasswordAuthentication("809210721@qq.com", ".w.w.w.1"); //发件人邮件用户名、密码
             }
         });
 
