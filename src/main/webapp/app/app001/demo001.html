@@ -1,3 +1,8 @@
+<style>
+    .float-li{
+        float: left;
+    }
+</style>
 <div ng-controller="demo001Controller">
     <p><input type="submit" value="do GET" ng-click="doGet()"/></p>
 
@@ -11,5 +16,9 @@
             <input type="text" ng-model="student.age"/>
             <input type="text" ng-model="student.number"/>
         </li>
+    </ul>
+
+    <ul>
+        <li ng-repeat="item in xList" ng-class="$index%2==0?'float-li':''">{{item.name}}</li>
     </ul>
 </div>
