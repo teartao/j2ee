@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>叠加图片图层</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main.css"/>
+    <script src="./amap.js"></script>
+    <style>
+        .marker {
+            color: #ff6600;
+            padding: 4px 10px;
+            border: 1px solid #fff;
+            white-space: nowrap;
+            font-size: 12px;
+            font-family: "";
+            background-color: #0066ff;
+        }
+    </style>
+</head>
+
+<body>
+<div id="mapContainer"></div>
+
+<script>
+    var imageLayer = new AMap.ImageLayer({
+        url: '111.jpg',
+//        url: '../../image/sanguo/world.jpg',
+        bounds: new AMap.Bounds(
+                [116.327911, 39.939229],
+                [116.342659, 39.946275]
+        ),
+        zooms: [15, 18]
+    });
+
+    var map = new AMap.Map('mapContainer', {
+        scrollWheel: true,
+        center: [116.33910, 39.945084],
+        zoom: 18,
+        layers: [
+            new AMap.TileLayer(),
+            imageLayer
+        ]
+    });
+
+    var _onClick = function (e) {
+        new AMap.Marker({
+            position: e.lnglat,
+            map: map
+        });
+        console.log(e.lnglat);
+    };
+    AMap.event.addListener(map, "click", _onClick); //绑定事件，返回监听对象
+
+</script>
+</body>
+
+</html>

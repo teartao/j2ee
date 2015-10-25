@@ -72,4 +72,32 @@ public class IndexController {
 
         return studentList.toJSONString();
     }
+
+
+    @ResponseBody
+    @RequestMapping(value = "getPath",  method = RequestMethod.GET)
+    public String getJson(HttpServletRequest request) {
+        System.out.println(request.getServletPath());
+        System.out.println(System.getProperty("user.dir"));
+        System.out.println(request.getRequestURI());
+        System.out.println(request.getRealPath("/"));
+        System.out.println(request.getRealPath("web.xml"));
+//        System.out.println(request.getRequestURI());
+//        System.out.println(request.getRequestURI());
+
+
+//        方法：request.getRealPath("/")
+//        得到的路径：C:\Program Files\Apache Software Foundation\Tomcat 5.5\webapps\strutsTest\
+//
+//        方法：request.getRealPath(".")
+//        得到的路径：C:\Program Files\Apache Software Foundation\Tomcat 5.5\webapps\strutsTest\.
+//
+//        方法：request.getRealPath("")
+//        得到的路径：C:\Program Files\Apache Software Foundation\Tomcat 5.5\webapps\strutsTest
+//
+//        request.getRealPath("web.xml")
+//        C:\Program Files\Apache Software Foundation\Tomcat 5.5\webapps\strutsTest\web.xml
+
+        return "success";
+    }
 }
