@@ -1,3 +1,4 @@
+/*
 package com.haycm.convert;
 
 import org.hehe.converters.Converter;
@@ -10,10 +11,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
+*/
 /**
  * @Author TaoLei
  * @Date 2015/4/21.
- */
+ *//*
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring/applicationContext.xml"})
 public class FileProcessorTest {
@@ -35,3 +38,4 @@ public class FileProcessorTest {
 
     }
 }
+*/

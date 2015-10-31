@@ -1,7 +1,7 @@
 package com.haycm.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.baidu.ueditor.ActionEnter;
+//import com.baidu.ueditor.ActionEnter;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,7 +24,7 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping(value = "editorServer", method = RequestMethod.GET)
+    /*@RequestMapping(value = "editorServer", method = RequestMethod.GET)
     public void editorServer(HttpServletRequest request, HttpServletResponse response) {
         PrintWriter out = null;
         try {
@@ -43,7 +43,7 @@ public class IndexController {
                 + path + "/";
 
         out.write(new ActionEnter(request, rootPath).exec());
-    }
+    }*/
 
     @ResponseBody
     @RequestMapping(value = "getJson", produces = "text/plain;charset=UTF-8")

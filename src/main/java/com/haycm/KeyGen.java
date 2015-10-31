@@ -1,3 +1,4 @@
+/*
 package com.haycm;
 
 import com.sun.star.i18n.Calendar;
@@ -111,4 +112,4 @@ public class KeyGen {
             System.out.println(username + "\t" + MakeKey(username, 0, r.nextInt(100000)) + "\n");
         }
     }
-}
+}*/

@@ -240,7 +240,7 @@
             <version>1.3.2</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.json.3rd</groupId>
             <artifactId>json</artifactId>
             <version>1.0.0</version>
@@ -256,7 +256,7 @@
             <groupId>org.hehe</groupId>
             <artifactId>inuyasha</artifactId>
             <version>0.0.3-RELEASE</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.integration</groupId>
