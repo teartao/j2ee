@@ -2,11 +2,92 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    <!-- 自动扫描的包路径 -->
+    <context:component-scan base-package="com.haycm"/>
+    <!--自定义json转换类，实现在controller直接返回对象后以json格式转发到前端-->
+    <bean id="jsonHttpMessageConverter" class="net.hehe.web.JsonMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>application/json</value>
+                <value>application/x-www-form-urlencoded</value>
+            </list>
+        </property>
+        <property name="feature">
+            <array>
+                <value>AllowISO8601DateFormat</value>
+                <value>AllowSingleQuotes</value>
+            </array>
+        </property>
+        <property name="serializerFeature">
+            <array>
+                <value>WriteMapNullValue</value>
+                <value>QuoteFieldNames</value>
+                <value>WriteDateUseDateFormat</value>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></bean>
+    <!--
+     视图解析器，根据视图的名称new ModelAndView(name)，在配置文件查找对应的bean配置
+    -->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="1"/>
+    </bean>
+    <!-- 基于json格式的mvc交互 -->
+    <bean name="jsonView" class="net.hehe.web.MappingToJsonView">
+        <property name="contentType" value="application/json;charset=UTF-8"/>
+    </bean>
+    <!-- 系统异常处理器 -->
+    <bean class="net.hehe.web.ExceptionHandler">
+        <!--<property name="viewName" ref="jsonView"/>-->
+        <!--不写1的话，就会被spring的DefaultHandlerExceptionResolver截获，跳过-->
+        <property name="order" value="1"/>
+    </bean>
+
+
+
+
+    <!--SpringMVC 整合json 使@RequestBody支持json对象转换（解决415 unsupported ）-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <ref bean="jsonConverter"/>
+            <ref bean="stringConverter"/>
+            <ref bean="jsonHttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/plain;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/plain;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 视图解析 -->
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <!-- 返回的视图模型数据需要经过jstl来处理 -->
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
 
 
 </beans>

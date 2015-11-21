@@ -24,6 +24,16 @@ public class IndexController {
         return "index";
     }
 
+    @ResponseBody
+    @RequestMapping(value = "json-view", method = RequestMethod.GET)
+    public JSONObject jsonView(ModelMap model) {
+        JSONObject student1 = new JSONObject();
+        student1.put("name", "Jack1");
+        student1.put("age", "11");
+        student1.put("number", "num1111");
+        return student1;
+    }
+
     /*@RequestMapping(value = "editorServer", method = RequestMethod.GET)
     public void editorServer(HttpServletRequest request, HttpServletResponse response) {
         PrintWriter out = null;
@@ -75,7 +85,7 @@ public class IndexController {
 
 
     @ResponseBody
-    @RequestMapping(value = "getPath",  method = RequestMethod.GET)
+    @RequestMapping(value = "getPath", method = RequestMethod.GET)
     public String getJson(HttpServletRequest request) {
         System.out.println(request.getServletPath());
         System.out.println(System.getProperty("user.dir"));

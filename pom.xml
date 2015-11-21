@@ -264,6 +264,11 @@
             <version>4.1.4.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>net.hehe</groupId>
+            <artifactId>jarvis</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <!--配置下载依赖的私服-->
