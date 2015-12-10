@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.haycm</groupId>
-    <artifactId>haycm</artifactId>
+    <groupId>com.hehe</groupId>
+    <artifactId>javaee</artifactId>
     <!--这里SNAPSHOTS和RELEASED不能写错，否则maven将不知道发布到哪个仓库-->
     <version>1.0.0-SNAPSHOTS</version>
     <packaging>war</packaging>
