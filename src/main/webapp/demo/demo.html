@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>表单样式</title>
+    <link type="text/css" rel="stylesheet" href="demo.css"/>
+    <link type="text/css" rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css"/>
+
+    <script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="demo.js"></script>
+    <!--<script type="text/javascript" src="editable-text.js"></script>-->
+</head>
+<body ng-controller="demoCtrl">
+<div class="main-cont">
+    <h1>demo样式</h1>
+
+    <div style="width: 200px;">
+        <input type="text" ng-model="someText" class="t-input"
+               ng-readonly="!showIcon.editable"
+                ng-focus="toEdit()" />
+
+        <div class="edit-bar" ng-show="showIcon.editable">
+            <span class="glyphicon glyphicon-ok input-icon"
+                  ng-click="saveEdit()"></span>
+        <span class="glyphicon glyphicon-remove input-icon"
+              ng-click="cancelEdit()"></span>
+        </div>
+
+    </div>
+    <div ng-show="showIcon.loading" style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.5);">
+        <h1 style="text-align: center">loading</h1>
+    </div>
+</div>
+</body>
+</html>

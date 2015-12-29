@@ -1,0 +1,8 @@
+<div title="双击修改内容" ng-controller="editableTextCtrl">
+    <input type="text" ng-model="someText" class="t-input" ng-readonly="!editable"
+           ng-dblclick="toEdit()" ng-blur="saveEdit()" maxlength="5"/>
+    <span class="glyphicon glyphicon-edit input-icon" ng-click="toEdit()" ng-show="!editable"></span>
+    <span class="glyphicon glyphicon-ok input-icon" ng-click="saveEdit()" ng-show="editable"></span>
+</div>
+
+
