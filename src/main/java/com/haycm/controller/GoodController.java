@@ -1,6 +1,9 @@
 package com.haycm.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,7 +59,7 @@ public class GoodController {
 
 	@RequestMapping("/manage/deleteGood")
 	public String deleteGood(@RequestParam(value = "name") String name,
-			@RequestParam(value = "price") double price) {
+							 @RequestParam(value = "price") double price, HttpServletRequest request, HttpSession session) {
 		/* 测试删除商品 */
 		goodService.deleteGoodByName(name);
 		return "index";
