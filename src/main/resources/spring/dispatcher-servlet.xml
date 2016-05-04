@@ -36,7 +36,7 @@
     </bean>
 
     <bean id="multipartResolver"
-          class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></bean>
+          class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
     <!--
      视图解析器，根据视图的名称new ModelAndView(name)，在配置文件查找对应的bean配置
     -->
@@ -55,23 +55,15 @@
     </bean>
 
 
-
-
+    <!--mvc 静态资源处理-->
+    <mvc:default-servlet-handler/>
     <!--SpringMVC 整合json 使@RequestBody支持json对象转换（解决415 unsupported ）-->
     <mvc:annotation-driven>
         <mvc:message-converters>
             <ref bean="jsonConverter"/>
-            <ref bean="stringConverter"/>
-            <ref bean="jsonHttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
-    <bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
-        <property name="supportedMediaTypes">
-            <list>
-                <value>text/plain;charset=UTF-8</value>
-            </list>
-        </property>
-    </bean>
+
     <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>

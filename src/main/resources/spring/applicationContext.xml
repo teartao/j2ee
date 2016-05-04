@@ -42,33 +42,33 @@
         <property name="url" value="${url}"/>
         <property name="username" value="${username}"/>
         <property name="password" value="${password}"/>
-        <property name="initialSize" value="${initialSize}"></property>
-        <property name="maxActive" value="${maxActive}"></property>
-        <property name="maxIdle" value="${maxIdle}"></property>
-        <property name="minIdle" value="${minIdle}"></property>
-        <property name="maxWait" value="${maxWait}"></property>
+        <property name="initialSize" value="${initialSize}"/>
+        <property name="maxActive" value="${maxActive}"/>
+        <property name="maxIdle" value="${maxIdle}"/>
+        <property name="minIdle" value="${minIdle}"/>
+        <property name="maxWait" value="${maxWait}"/>
     </bean>
 
     <!-- spring和MyBatis整合 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!-- 自动扫描mapping.xml文件 -->
-        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
 
     <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.haycm.dao.UserDao"></property>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="mapperInterface" value="com.haycm.dao.UserDao"/>
     </bean>
 
     <bean id="goodDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.haycm.dao.GoodDao"></property>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="mapperInterface" value="com.haycm.dao.GoodDao"/>
     </bean>
 
     <bean id="newsDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.haycm.dao.NewsDao"></property>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="mapperInterface" value="com.haycm.dao.NewsDao"/>
     </bean>
 
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
