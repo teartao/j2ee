@@ -26,6 +26,13 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!--javaee-->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+        </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -59,12 +66,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!--javaee-->
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
-        </dependency>
 
         <!--json转换-->
         <!--spring 4.x MappingJackson2HttpMessageConverter 对应的依赖 ，已被fastJson替代-->
@@ -78,22 +79,11 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.5.1</version>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.1.41</version>
-        </dependency>
-        <dependency>
-            <groupId>com.skytech.ark</groupId>
-            <artifactId>com.skytech.ark.arp</artifactId>
-            <version>1.2.2</version>
-        </dependency>
 
-        <!--基于fastJson的Json转换工具-->
         <dependency>
             <groupId>net.hehe</groupId>
-            <artifactId>jarvis</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>jarvis-web</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
 
