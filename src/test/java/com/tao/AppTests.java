@@ -1,9 +1,11 @@
 package com.tao;
 
+import com.tao.dao.GuestDao;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -16,9 +18,13 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration("classpath:dispatcher-servlet.xml")
+@ContextConfiguration("classpath:applicationContext.xml")
 public class AppTests {
     private MockMvc mockMvc;
+
+    @Autowired
+    @Qualifier("guestDao")
+    private GuestDao guestDao;
 
     @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
@@ -34,5 +40,10 @@ public class AppTests {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("hello"));
+    }
+
+    @Test
+    public void testQuery() {
+        guestDao.findGuest(1);
     }
 }
