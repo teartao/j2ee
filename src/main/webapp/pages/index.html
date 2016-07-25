@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="hello">
+<html ng-app="index">
 <head lang="en">
     <meta charset="UTF-8">
     <title>主页</title>
@@ -7,9 +7,9 @@
     <script type="text/javascript" src="jquery/jquery-3.0.0.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="angular/angular.min.js"></script>
-    <script type="text/javascript" src="pages/hello-ctrl.js"></script>
+    <script type="text/javascript" src="pages/index-ctrl.js"></script>
 </head>
-<body ng-controller="helloCtrl">
+<body ng-controller="indexCtrl">
 <div class="container-fluid">
     <div class="page-header text-center">
         <h1>呵呵收账系统</h1>
@@ -23,7 +23,9 @@
                     <label class="sr-only" for="guestName">姓名</label>
                     <div class="input-group">
                         <div class="input-group-addon">姓名</div>
-                        <input type="text" class="form-control" id="guestName" placeholder="张三" ng-change="findGuest()">
+                        <input type="text" class="form-control" id="guestName" placeholder="张三"
+                               ng-model="keyword"
+                               ng-change="findGuest()">
                     </div>
                 </div>
                 <div class="form-group">
@@ -33,7 +35,7 @@
                         <input type="text" class="form-control" id="amount" placeholder="200">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">OK</button>
+                <button type="submit" class="btn btn-primary" ng-click="findGuest()">OK</button>
                 <button type="button" class="btn btn-success glyphicon glyphicon-plus"></button>
             </form>
         </div>

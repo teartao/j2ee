@@ -1,9 +1,13 @@
 package com.tao;
 
+import com.alibaba.fastjson.JSONObject;
 import com.tao.dao.GuestDao;
+import com.tao.service.GuestService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
@@ -11,6 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
+
+import javax.validation.constraints.AssertTrue;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -23,8 +29,8 @@ public class AppTests {
     private MockMvc mockMvc;
 
     @Autowired
-    @Qualifier("guestDao")
-    private GuestDao guestDao;
+    @Qualifier("guestServiceImpl")
+    private GuestService guestService;
 
     @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
@@ -43,7 +49,12 @@ public class AppTests {
     }
 
     @Test
-    public void testQuery() {
-        guestDao.findGuest(1);
+    public void testFindGuest() {
+        System.out.println(guestService.findGuest(1));
+    }
+
+    @Test
+    public void testFindGuests() {
+        System.out.println(guestService.findGuests("zs"));
     }
 }
