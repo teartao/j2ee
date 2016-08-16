@@ -12,12 +12,6 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/")
 public class HelloController {
-    @RequestMapping(method = RequestMethod.GET)
-    public String printWelcome(ModelMap model) {
-        model.addAttribute("message", "Hello world!");
-        return "index";
-    }
-
     @ResponseBody
     @RequestMapping(value = "getJsonObj", method = RequestMethod.GET)
     public JSONObject getJsonObj() throws IOException {
