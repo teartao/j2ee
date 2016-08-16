@@ -1,13 +1,14 @@
 package com.tao;
 
-import com.alibaba.fastjson.JSONObject;
-import com.tao.dao.GuestDao;
-import com.tao.service.GuestService;
-import org.junit.Assert;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
+
+import com.tao.entity.Guest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,11 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.validation.constraints.AssertTrue;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
+import com.tao.service.GuestService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -50,7 +47,10 @@ public class AppTests {
 
     @Test
     public void testFindGuest() {
-        System.out.println(guestService.findGuest(1));
+        Guest guest = guestService.findGuest(1);
+        System.out.println(guest.getId());
+        System.out.println(guest.getName());
+        System.out.println(guest.getPrice());
     }
 
     @Test

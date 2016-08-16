@@ -19,7 +19,6 @@ import java.util.Map;
 @Service("guestServiceImpl")
 public class GuestServiceImpl implements GuestService {
     @Autowired
-    @Qualifier("guestDao")
     private GuestDao guestDao;
 
     @Override
