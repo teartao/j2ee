@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>主页</title>
-    <!--<link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.css">-->
+    <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <script type="text/javascript" src="jquery/jquery-3.0.0.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="angular/angular.min.js"></script>
@@ -21,22 +21,28 @@
             <form class="form-inline">
                 <div class="form-group">
                     <label class="sr-only" for="guestName">姓名</label>
-                    <div class="input-group">
+                    <div class="input-group dropdown">
                         <div class="input-group-addon">姓名</div>
                         <input type="text" class="form-control" id="guestName" placeholder="张三"
-                               ng-model="keyword"
-                               ng-change="findGuest()">
+                               ng-model="userName"
+                               ng-change="findGuest()" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="true">
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-hide="guestList.length==0">
+                            <li ng-repeat="guest in guestList" ng-click="selectGuest(guest.name)"><a href="#">{{guest.name}}</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="amount">金额</label>
                     <div class="input-group">
                         <div class="input-group-addon">￥</div>
-                        <input type="text" class="form-control" id="amount" placeholder="200">
+                        <input type="text" class="form-control" id="amount" placeholder="200" ng-model="amount">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary" ng-click="findGuest()">OK</button>
-                <button type="button" class="btn btn-success glyphicon glyphicon-plus"></button>
+                <button type="button" class="btn btn-success glyphicon glyphicon-plus" ng-click="addMoney()"></button>
             </form>
         </div>
         <div class="col-md-6">
