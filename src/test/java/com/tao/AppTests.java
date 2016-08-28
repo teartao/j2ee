@@ -47,7 +47,7 @@ public class AppTests {
 
     @Test
     public void testFindGuest() {
-        Guest guest = guestService.findGuest(1);
+        Guest guest = guestService.findGuestById(1);
         System.out.println(guest.getId());
         System.out.println(guest.getName());
         System.out.println(guest.getPrice());

@@ -38,11 +38,12 @@
                     <label class="sr-only" for="amount">金额</label>
                     <div class="input-group">
                         <div class="input-group-addon">￥</div>
-                        <input type="text" class="form-control" id="amount" placeholder="200" ng-model="amount">
+                        <input type="text" class="form-control" id="amount" placeholder="200" ng-model="amount"
+                               ng-keypress="enter($event)">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" ng-click="findGuest()">OK</button>
-                <button type="button" class="btn btn-success glyphicon glyphicon-plus" ng-click="addMoney()"></button>
+                <button type="button" class="btn btn-primary" ng-click="addMoney()">OK</button>
+                <button type="button" class="btn btn-success glyphicon glyphicon-plus" ng-click="addGuest()"></button>
             </form>
         </div>
         <div class="col-md-6">

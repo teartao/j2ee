@@ -12,9 +12,14 @@ import com.tao.entity.Guest;
  * @Desc
  */
 public interface GuestDao {
-    Guest findGuest(Integer guestId);
 
-    List<Guest> findGuests(String keyword);
+    Guest findGuestById(Integer id);
 
-    List<Guest> findGuests(Map param);
+    List<Guest> findGuestByName(String name);
+
+    List<Guest> findGuestsByKeyword(String keyword);
+
+    int updateGuest(Guest guest);
+
+    int addGuest(Guest guest);
 }

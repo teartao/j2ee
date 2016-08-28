@@ -1,9 +1,10 @@
 package com.tao.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.tao.entity.Guest;
+
 import java.util.List;
 import java.util.Map;
-
-import com.tao.entity.Guest;
 
 /**
  * @Author TaoLei
@@ -12,9 +13,15 @@ import com.tao.entity.Guest;
  * @Desc
  */
 public interface GuestService {
-    Guest findGuest(Integer id);
+
+    Guest findGuestById(Integer id);
+
+    Guest findGuestByName(String name);
 
     List<Guest> findGuests(String keyword);
 
-    List<Guest> findGuests(Map param);
+    int addMoney(String name, double price);
+
+    int addGuest(String name, Double price);
+
 }
