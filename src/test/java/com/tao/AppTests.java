@@ -57,4 +57,9 @@ public class AppTests {
     public void testFindGuests() {
         System.out.println(guestService.findGuests("zs"));
     }
+
+    @Test
+    public void testMerger(){
+        System.out.println("this is commit ahead");
+    }
 }
