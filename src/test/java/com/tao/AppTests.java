@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 import com.tao.entity.Guest;
-import net.sourceforge.pinyin4j.PinyinHelper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,9 +56,5 @@ public class AppTests {
     @Test
     public void testFindGuests() {
         System.out.println(guestService.findGuests("zs"));
-    }
-    @Test
-    public void testPinYin(){
-        System.out.println(PinyinHelper.toHanyuPinyinStringArray('t'));
     }
 }
