@@ -57,4 +57,8 @@ public class AppTests {
     public void testFindGuests() {
         System.out.println(guestService.findGuests("zs"));
     }
+    @Test
+    public void testMergeGit(){
+        System.out.println("this is test for git merge request");
+    }
 }
