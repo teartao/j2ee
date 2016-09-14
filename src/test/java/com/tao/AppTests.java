@@ -62,4 +62,5 @@ public class AppTests {
     public void testMerger(){
         System.out.println("this is commit ahead");
     }
+    // this is a test for git merge
 }
