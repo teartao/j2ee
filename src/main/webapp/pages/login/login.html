@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="login" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link type="text/css" rel="stylesheet" href="/cm/bootstrap/css/bootstrap.css">
+    <script type="text/javascript" src="/cm/jquery/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="/cm/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/cm/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/cm/pages/login/login-ctrl.js"></script>
+</head>
+<body ng-controller="loginCtrl">
+<div class="container-fluid">
+    <div class="page-header text-center">
+        <form method="post" action="">
+            <input type="text" ng-model="userName" />
+            <input type="password" ng-model="password"/>
+            <input type="button" value="登录" ng-click="login()" class="btn-primary"/>
+            <input type="reset" value="重置" class="btn-primary"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>
