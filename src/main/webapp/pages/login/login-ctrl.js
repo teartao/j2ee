@@ -10,7 +10,7 @@ app.controller('loginCtrl', function ($scope, $http,$log) {
             userName: $scope.password
         };
         $http.post("/cm/login" ,param).success(function (response) {
-            $log.debug(response);
+            $log.debug(response.data);
         });
     };
 });
