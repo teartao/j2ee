@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Jack",
+    "age": "22",
+    "class": "Software"
+  },
+  {
+    "name": "Tom",
+    "age": "21",
+    "class": "Electronics"
+  },
+  {
+    "name": "Lily",
+    "age": "21",
+    "class": "Arts"
+  }
+]
