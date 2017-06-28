@@ -266,8 +266,8 @@
 
         <dependency>
             <groupId>net.hehe</groupId>
-            <artifactId>jarvis</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>jarvis-web</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
