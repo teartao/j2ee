@@ -1,6 +1,7 @@
 div{
     border:1px solid black;
     float: left;
+    background: #fff;
 }
 .top-menu-ad{
     width: 100%;
