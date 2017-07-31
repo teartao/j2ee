@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>南京泰斯特</title>
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.css">
+    <link href="http://www.b.easyxue.cn/INS/css/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="../../lib/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="../../lib/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <script src='moment.js' type="text/javascript"></script>
+    <script src="http://www.b.easyxue.cn/INS/js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+    <style>
+
+        body {
+            margin: 40px 10px;
+            padding: 0;
+            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        #calendar table table td {
+               cursor: pointer;
+           }
+        .infos a:hover{
+            color: #3c763d;
+        }
+        .fc-toolbar h2{font-size: 18px;margin-top: 5px;}
+
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            var h = {};
+            if ($('#calendar').width() <= 400) {
+                $('#calendar').addClass("mobile");
+                h = {
+                    left: ' prev, next',
+                    center: 'title',
+                    right: 'today'
+                };
+            } else {
+                h = {
+                    left: ' prev, next',
+                    center: 'title',
+                    right: 'today'
+                };
+                $('#calendar').removeClass("mobile");
+            }
+            $('#calendar').fullCalendar({ // re-initialize the calendar
+                disableDragging: false,
+                header: h,
+                editable: false,
+                today: ["今天"],
+                monthNames: ["1月 ", "2月 ", "3月 ", "4月 ", "5月 ", "6月 ", "7月 ", "8月 ", "9月 ", "10月 ", "11月 ", "12月 "],
+                monthNamesShort: ["1月 ", "2月 ", "3月 ", "4月 ", "5月 ", "6月 ", "7月 ", "8月 ", "9月 ", "10月 ", "11月 ", "12月 "],
+                dayNames: ["日", "一", "二", "三", "四", "五", "六"],
+                dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
+                buttonText: {
+                    today: '回到本月',
+                },
+                viewRender: function (view) {//动态把数据查出，按照月份动态查询   例子：http://www.cnblogs.com/xiaobaiczc/archive/2013/01/19/2867242.html
+//                        var year = moment(view.start).format("YYYY");
+//                        var month = moment(view.start).format("MM");
+//                        $("#calendar").fullCalendar('removeEvents');
+//                         $.ajax({
+//                             type: "post",
+//                             url: urls.getCalendar,
+//                             data: {"year": year, "month": month * 1 },
+//                             async:true,
+//                             dataType: 'json',
+//                             success: function (json) {
+//                             	 d=json;
+//                                  $.each(d.calendarList, function (index, term) {//cecece 灰掉的样式
+//                                      $("#calendar").fullCalendar('renderEvent', term, true);
+//                                  });
+//                             }
+//                         });
+//                         $.post(urls.getCalendar, {"year": year, "month": month * 1}, function (data) {
+//                             eval("d=" + data);
+//                             $.each(d.calendarList, function (index, term) {//cecece 灰掉的样式
+//                                 $("#calendar").fullCalendar('renderEvent', term, true);
+//                             });
+//                         }); //把从后台取出的数据进行封装以后在页面上以fullCalendar的方式进行显示
+                    //显示今天的事项
+//                        var myDate = new Date();
+//                        var startTime = moment(date).format("YYYY-MM-DD");
+//                        var startDate = moment(date).format("YYYY年MM月DD日");
+//                        var ddTime = moment(date).format("DD");
+//                        var weekDay = " 星期" + "日一二三四五六".split("")[myDate.getDay()];
+//                        getCalendarList(startTime, startDate, weekDay, ddTime);
+                },
+                dayClick: function (date, allDay, jsEvent, view) {//日期点击后弹出的jq ui的框，添加日程记录
+                    var date1 = new Date(date);
+                    var startTime = moment(date).format("YYYY-MM-DD");
+                    var startDate = moment(date).format("YYYY年MM月DD日");
+                    var ddTime = moment(date).format("DD");
+                    var weekDay = " 星期" + "日一二三四五六".split("")[date1.getDay()];
+                    getCalendarList(startTime, startDate, weekDay, ddTime);
+                    var day_date = $(this).data("date");
+//                        $(this).parents('.fc-day-grid.fc-unselectable').find('td').removeClass("text-white");
+//                        $(this).parents('.fc-bg').siblings('.fc-content-skeleton').find("td[data-date='" + day_date + "']").addClass("text-white");
+                },
+                eventAfterRender: function (event, element, view) {//数据绑定上去后添加相应信息在页面上
+                },
+                eventMouseover: function (calEvent, jsEvent, view) {
+                },
+                eventClick: function (event) {
+                },
+                events: function (start, end, timezone, callback) {
+                    var year = this.getDate().format('YYYY');
+                    var month = this.getDate().format('MM');
+                    $("#calendar").fullCalendar('removeEvents');
+                    $.ajax({
+                        type: "post",
+                        url: "../../data/getCalendar.json",
+                        data: {"year": year, "month": month * 1},
+                        async: true,
+                        dataType: 'json',
+                        success: function (json) {
+                            d = json;
+                            callback(d.calendarList);
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-default menu">
+        <div class="container">
+            <div class="navbar-header" style="margin-top: 18px;">
+                <a href="#">
+                    <img alt="TEST" src="img/logo.png"  class="img-rounded" style="vertical-align:middle;width: 40px; height: 40px;display: inline-block">
+                </a>
+                <span class="text-white">泰斯特南京总公司</span>
+                <i class="header-icon"><img src="img/icon-vip-header.png"></i>
+                <button class="btn btn-primary">
+                    <i class="glyphicon glyphicon-menu-down"></i>
+                </button>
+                <button type="button" class="navbar-toggle btn1" data-toggle="collapse" data-target="#menu">
+                    <span class="icon-bar" style="background-color: #fff"></span>
+                    <span class="icon-bar" style="background-color: #fff"></span>
+                    <span class="icon-bar" style="background-color: #fff"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="label-success"><a href="#" ><i class="glyphicon glyphicon-gift"></i><br>商城</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-comment"></i><br>消息</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-circle-arrow-down"></i><br>下载</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-user"></i><br>帮助</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-circle-arrow-right"></i><br>退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="ad ">
+        <div class="container alert alert-success infos" role="alert">
+            <i class="glyphicon glyphicon-volume-down"></i>
+            <strong>企业公告：</strong><span>正式环境发布企业公告测试629</span>
+        </div>
+    </div>
+`   <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-mm-12 col-xm-12" style="margin-left: -15px;">
+                <div class="container-fluid">
+                    <!--轮播大图-->
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active"><img src="img/001.jpg" alt="001"></div>
+                            <div class="item"><img src="img/002.jpg" alt="002"></div>
+                            <div class="item"><img src="img/003.jpg" alt="003"></div>
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <h5 class="text-h4">待办事项</h5>
+                            <span class="text-span">今天有<a href="" class="text-warning">1</a>个任务</span>
+                        </div>
+                        <div class="project-list">
+                            <table class="table table-hover footable border-top">
+                                <tbody class="index-backlog">
+                                    <tr class="cursor_pointer">
+                                        <td><i class="index-backlog-icon mission-icon"></i></td>
+                                        <td>
+                                            <div class="">111111</div>
+                                            <div class="">
+                                                <span class="m-r-md">剩余时间:162天</span>
+                                                <span >已学习：</span>
+                                                <span class="text-navy">10%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="ibox ">
+                        <h5>我的成就</h5>
+                        <div class="row">
+                            <section class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="achievement-block">
+                                    <div class="achievement-content  col-sm-offset-2">
+                                        <span class="font-eaxm font-span">48</span><span>场</span>
+                                        <span class="text-item">超过<strong>1%</strong>的人</span>
+                                        <i class="achievement-icon icon-exam"></i>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="achievement-block">
+                                    <div class="achievement-content col-sm-offset-2">
+                                        <span class="font-exercise font-span">557</span><span>题</span>
+                                        <span class="text-item">超过<strong>99.7%</strong>的人</span>
+                                        <i class="achievement-icon icon-exercise "></i>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="achievement-block">
+                                    <div class="achievement-content col-sm-offset-2">
+                                        <span class="font-course font-span">17</span><span>门</span>
+                                        <span class="text-item">超过<strong>99.5%</strong>的人</span>
+                                        <i class="achievement-icon icon-course"></i>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="achievement-block">
+                                    <div class="achievement-content col-sm-offset-2">
+                                        <span class="font-share font-span">2</span><span>次</span>
+                                        <span class="text-item">超过<strong>99.7%</strong>的人</span>
+                                        <i class="achievement-icon icon-share"></i>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="ibox">
+                        <div class="">
+                            <h5 class="inline">我的课程</h5>
+                            <span class="inline pull-right text-muted f12">
+                                <span><a href="#" class="text-success">我的浏览</a></span>
+                                <span class="text-navy"><a href="#">我的收藏</a></span>
+                                <span><a href="#">我的上传</a></span>
+                            </span>
+                            <i class="course-border-left"></i>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <a href="#" class="thumbnail">
+                                    <img src="img/0001.png" alt="...">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="#" class="thumbnail">
+                                    <img src="img/0002.png" alt="...">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="#" class="thumbnail">
+                                    <img src="img/0003.jpg" alt="...">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="#" class="thumbnail">
+                                    <img src="img/0003.jpg" alt="...">
+                                </a>
+                            </div>
+                        </div>
+                        <h5 class="inline">企业课程</h5>
+                        <i class="course-border-left"></i>
+                        <div class="relative">
+                            <div class="row">
+                                <div class="col-xs-6 col-md-3">
+                                    <a href="#" class="thumbnail">
+                                        <img src="img/qy01.jpg" height="210" width="280"/>
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-md-3">
+                                    <a href="#" class="thumbnail">
+                                        <img src="img/qy02.jpg" alt="...">
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-md-3">
+                                    <a href="#" class="thumbnail">
+                                        <img src="img/qy03.jpg" alt="...">
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-md-3">
+                                    <a href="#" class="thumbnail">
+                                        <img src="img/qy04.jpg" alt="...">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-mm-12 col-xm-12 ">
+                <div class="container-fluid">
+                <div class="ibox ibox-right  ">
+                    <h5 class="inline margin-bottom">练习排行榜</h5>
+                </div>
+                <div class="phb">
+                    <div class="phb-tit">
+                        <div class=" clearfix text-center">
+                            <div class="col-xs-6 lib border-right">
+                                <span class="on">月度</span>
+                            </div>
+                            <div class="col-xs-6 lib">
+                                <span class="">年度</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="php-content">
+                        <div class="user-box clearfix">
+                            <span class="tx">
+                                <a href="#"><img src="img/logo.jpg" class="img-circle" width="48" height="48"></a>
+                            </span>
+                            <div class="user-info">
+                                <h5 class="margin-bottom">
+                                    陆萍
+                                    <div class="pull-right text-right">
+                                       <span>共答0题</span>
+                                        <br>
+                                        <span class="text-lightgray fontnomal"><i class="glyphicon glyphicon-ok-circle" style="color:#35ceaf;"></i>0%</span>
+                                    </div>
+                                </h5>
+                                <p class="text-success font12 m-b-none"><span>本月排名</span></p>
+                                <p class="text-lightgray font12"><span>开发组</span></p>
+                                <span>刷新排行榜，提高名次</span>
+                                <button type="button" class="btn btn-primary">马上练习</button>
+                            </div>
+                        </div>
+                        <div class="userbox clearfix">
+                            <i class="php-icon one"></i>
+                            <span class="tx">
+                                <a href="#"><img src="img/logo.jpg" class="img-circle" width="48" height="48"></a>
+                            </span>
+                            <div class="user-info border-bottom" style="margin: 12px 0px 12px 102px;">
+                                <h5 class="margin-bottom">
+                                    陆萍
+                                    <div class="pull-right text-right">
+                                        <span>共答0题</span>
+                                        <br>
+                                        <span class="text-lightgray fontnomal"><i class="glyphicon glyphicon-ok-circle" style="color:#35ceaf;"></i>0%</span>
+                                    </div>
+                                </h5>
+                                <p class="text-lightgray font12"><span>开发组</span></p>
+                            </div>
+                        </div>
+                        <div class="userbox clearfix">
+                            <i class="php-icon two"></i>
+                            <span class="tx">
+                                <a href="#"><img src="img/logo.jpg" class="img-circle" width="48" height="48"></a>
+                            </span>
+                            <div class="user-info border-bottom" style="margin: 12px 0px 12px 102px;">
+                                <h5 class="margin-bottom">
+                                    shk还是
+                                    <div class="pull-right text-right">
+                                        <span>共答0题</span>
+                                        <br>
+                                        <span class="text-lightgray fontnomal"><i class="glyphicon glyphicon-ok-circle" style="color:#35ceaf;"></i>0%</span>
+                                    </div>
+                                </h5>
+                                <p class="text-lightgray font12"><span>红松！谨慎选择</span></p>
+                            </div>
+                        </div>
+                        <div class="userbox clearfix">
+                            <i class="php-icon three"></i>
+                            <span class="tx">
+                                <a href="#"><img src="img/logo.jpg" class="img-circle" width="48" height="48"></a>
+                            </span>
+                            <div class="user-info border-bottom" style="margin: 12px 0px 12px 102px;">
+                                <h5 class="margin-bottom">
+                                    王琴
+                                    <div class="pull-right text-right">
+                                        <span>共答10题</span>
+                                        <br>
+                                        <span class="text-lightgray fontnomal"><i class="glyphicon glyphicon-ok-circle" style="color:#35ceaf;"></i>6%</span>
+                                    </div>
+                                </h5>
+                                <p class="text-lightgray font12"><span>研发部</span></p>
+                            </div>
+                        </div>
+                        <div class="userbox clearfix">
+                            <i class="php-icon">4</i>
+                            <span class="tx">
+                                <a href="#"><img src="img/logo.jpg" class="img-circle" width="48" height="48"></a>
+                            </span>
+                            <div class="user-info border-bottom" style="margin: 12px 0px 12px 102px;">
+                                <h5 class="margin-bottom">
+                                    陆萍
+                                    <div class="pull-right text-right">
+                                        <span>共答3题</span>
+                                        <br>
+                                        <span class="text-lightgray fontnomal"><i class="glyphicon glyphicon-ok-circle" style="color:#35ceaf;"></i>5%</span>
+                                    </div>
+                                </h5>
+                                <p class="text-lightgray font12"><span>开发组</span></p>
+                            </div>
+                        </div>
+                        <div class="ibox" style="margin-top: 0px">
+                            <h5>我的学习日程</h5>
+                            <div class="calendar">
+                                 <div class="calendar-box p-w-m">
+                                     <div id="calendar" class="m-b-sm mobile fc fc-unthemed fc-ltr"></div>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="ibox" style="margin-top: 0px">
+                            <h5 class="inline">e企学商城</h5>
+                            <span class="inline pull-right font12"><a href="#" class="text-success">更多</a></span>
+                            <div class="shopbox clearfix">
+                                <a href="#" class="shop-img"><img src="img/pic1.jpg"></a>
+                                <div>
+                                    <h2><a href="#">LTE物理层详解</a></h2>
+                                    <p><span>免费</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
