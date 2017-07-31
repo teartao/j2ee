@@ -28,8 +28,8 @@ div{
     margin-right: 20px;
 }
 .menu-detail{
-    width: 0;
-    height: 0;
+    width: 600px;
+    height: 600px;
     position: absolute;
     left:20%;
     top:0;
