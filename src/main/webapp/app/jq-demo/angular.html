@@ -1,13 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="htd">
 <head>
     <meta charset="UTF-8">
     <title>htd商城angular版</title>
+    <link type="text/css" rel="stylesheet" href="jq-static.css"/>
     <script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="../../lib/angular/angular.min.js"></script>
     <script type="text/javascript" src="htd-ctrl.js"></script>
 </head>
 <body ng-controller="htdCtrl">
+<div class="top-menu-ad">
+    <div class="left-menu">
+        <ul id="menuItem">
+            <li class="memu-item" ng-repeat="menuItem in menus">
+                <div class="memu-title">{{menuItem.menuTitle}}</div>
+                <div class="menu-third">
+                    <span class="keyword-span" ng-repeat="someMenuItem in menuItem.someMenu">{{someMenuItem}}</span>
+                </div>
+                <div class="menu-detail" ng-class="showDetail==0?'menu-detail-act':''">
+                    <div class="menu-d-item" ng-repeat="detailItem in menuItem.detailMenu">
+                        <h3>{{detailItem.itemTitle}}</h3>
+                        <hr>
+                        <div class="menu-d-keyword">
+                            <span class="keyword-span" ng-repeat="aDetailItem in detailItem.itemDetail track by $index">
+                                {{aDetailItem}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="main-ad">
+        <div class="big-ad">
+            <img src="https://static.htd.cn/2017419/img/a35d1fb4bdaf412e873ce105bfd95adc.png"
+                 title="这是大广告">
+        </div>
+        <div class="sm-ad">
+            <div class="ad-cont ad-1">
+                <img src="https://static.htd.cn/2017531/img/18e32ed5fa6a4a53b49f5d187c016d11.png" title="这是小广告">
+            </div>
+            <div class="ad-cont ad-2">
+                <img src="https://static.htd.cn/2017531/img/18e32ed5fa6a4a53b49f5d187c016d11.png" title="这是小广告">
+            </div>
+            <div class="ad-cont ad-3">
+                <img src="https://static.htd.cn/2017531/img/18e32ed5fa6a4a53b49f5d187c016d11.png" title="这是小广告">
+            </div>
+            <div class="ad-cont ad-4">
+                <img src="https://static.htd.cn/2017531/img/18e32ed5fa6a4a53b49f5d187c016d11.png" title="这是小广告">
+            </div>
+        </div>
+    </div>
+    <div class="right-info">
+        个人信息略
+    </div>
+</div>
+
+<div id="floor" class="floor">
+    <div class="floor-cont" ng-repeat="floor in floors">
+        <div class="floor-name">{{floor.floorTitle}}</div>
+        <div class="floor-tab">
+            <div class="tabs tab1" ng-class="'tab'+$index" ng-repeat="tab in floor.tabs">{{tab.tabTitle}}</div>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="floor-left-ad">
+            <img ng-src="{{floor.leftPic}}">
+        </div>
+        <div class="floor-sm-ad">
+            <div class="ad-cont ad-cont-1" ng-repeat="tabPic in floor.tabs[0].tabPics track by $index">
+                <img ng-src="{{tabPic}}">
+            </div>
+        </div>
+        <div class="floor-foot-brand">
+            <div class="brands" ng-repeat="brand in floor.brandPics  track by $index">
+                <img ng-src="{{brand}}">
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
