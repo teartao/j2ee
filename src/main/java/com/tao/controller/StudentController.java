@@ -1,14 +1,17 @@
 package com.tao.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.tao.dao.StudentDao;
+import com.tao.entity.ExeResult;
 import com.tao.entity.Student;
+import com.tao.service.StudentService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,17 +23,18 @@ public class StudentController {
     private static final Logger logger = Logger.getLogger(StudentController.class);
 
     @Autowired
-    private StudentDao studentDao;
+    private StudentService studentService;
+
     @ResponseBody
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<Student> studentList() {
-        return studentDao.findList();
+    public ExeResult<List<Student>> studentList() {
+        return studentService.findList();
     }
 
     @ResponseBody
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public JSONObject editStudent(@RequestBody JSONObject student) {
-        return student;
+    public ExeResult<Integer> editStudent(@RequestBody JSONObject student) {
+        return studentService.addStudent(new Student());
     }
 
     @ResponseBody
@@ -44,7 +48,7 @@ public class StudentController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public JSONObject deleteStudent() {
         JSONObject student = new JSONObject();
-        student.put("status","fail");
+        student.put("status", "fail");
         return student;
     }
 }
