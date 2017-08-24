@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TMall Demo</title>
+    <script type="text/javascript" src="/cm/jquery/jquery-3.0.0.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="/cm/ch01/eg02.css">
+</head>
+<body>
+<div class="floors floor">
+    <div class="f-title">进口酒饮粮油</div>
+    <div class="f-t-keyword">进口橄榄油 | 进口大米 | 进口厨房调料 | 进口啤酒</div>
+    <div class="f-left">
+        <div class="f-l-top">
+            <div class="f-l-keywork">水</div>
+            <div class="f-l-keywork">水</div>
+            <div class="f-l-keywork">水</div>
+
+            <div class="f-l-keywork">水</div>
+            <div class="f-l-keywork">水</div>
+            <div class="f-l-keywork">水</div>
+
+            <div class="f-l-keywork">水</div>
+            <div class="f-l-keywork">水</div>
+            <div class="f-l-keywork">水</div>
+        </div>
+        <div class="f-l-bottom"></div>
+    </div>
+    <div class="f-main">
+        <div class="f-prod"></div>
+        <div class="f-prod"></div>
+        <div class="f-prod"></div>
+        <div class="f-prod"></div>
+        <div class="f-prod"></div>
+        <div class="f-prod"></div>
+        <div class="f-prod"></div>
+        <div class="f-prod"></div>
+    </div>
+    <div class="f-right">
+        <div class="f-r-top"></div>
+        <div class="f-r-bottom"></div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $.get("/cm/ch01/eg02.json", function (data) {
+        console.log(data);
+
+    });
+</script>
+</html>
