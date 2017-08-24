@@ -9,8 +9,9 @@ $(function () {
                 stu = response.data;
             }
 
+            var studentHtml = '';
             for (var i in stu) {
-                var studentHtml = '<tr>' +
+                studentHtml = studentHtml + '<tr>' +
                     '<td>' + stu[i].id + '</td>' +
                     '<td>' + stu[i].name + '</td>' +
                     '<td>' + stu[i].birth + '</td>' +

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tao.dao.StudentDao">
+    <sql id="allColumn">
+        id,`name`,age,birth,photo,description
+    </sql>
+
+    <resultMap id="colMap" type="com.tao.entity.Student">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="birth" column="birth"/>
+        <result property="photo" column="photo"/>
+        <result property="description" column="description"/>
+    </resultMap>
+
+    <select id="findById" parameterType="java.lang.Integer" resultMap="colMap">
+        SELECT
+        <include refid="allColumn"/>
+        FROM student WHERE
+        id = #{studentId,jdbcType=INTEGER}
+    </select>
+
+    <select id="findList" parameterType="java.lang.Integer"
+            resultMap="colMap">
+        SELECT
+        <include refid="allColumn"/>
+        FROM student
+    </select>
+
+    <update id="editStudent" parameterType="com.tao.entity.Student">
+        UPDATE student
+        SET
+        `name`=#{student.name},age=#{student.age},
+        birth=#{student.birth},photo=#{student.photo},
+        description=#{student.description}
+        WHERE id=#{student.id}
+    </update>
+
+    <insert id="addStudent" parameterType="com.tao.entity.Student">
+        INSERT INTO student (
+          `name`,age,birth,photo,description
+        )VALUES (
+            #{student.name},#{student.age},#{student.birth},
+            #{student.photo},#{student.description}
+        )
+    </insert>
+</mapper>

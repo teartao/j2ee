@@ -1,7 +1,10 @@
 package com.tao.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.tao.dao.StudentDao;
+import com.tao.entity.Student;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,19 +19,12 @@ import java.util.List;
 public class StudentController {
     private static final Logger logger = Logger.getLogger(StudentController.class);
 
+    @Autowired
+    private StudentDao studentDao;
     @ResponseBody
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<JSONObject> studentList() {
-        List<JSONObject> students = new ArrayList<>();
-        JSONObject student = new JSONObject();
-        student.put("id","001");
-        student.put("name","luXX");
-        student.put("age","25");
-        student.put("birth","1992-07-06");
-        student.put("photo","https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png");
-        student.put("sex","1");
-        students.add(student);
-        return students;
+    public List<Student> studentList() {
+        return studentDao.findList();
     }
 
     @ResponseBody
