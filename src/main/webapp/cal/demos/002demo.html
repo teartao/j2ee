@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='../dist/fullcalendar.css' rel='stylesheet' />
+<link href='../dist/fullcalendar.print.css' rel='stylesheet' media='print' />
+	<style>
+		#calendar table table td {
+			cursor: pointer;
+		}
+		.infos a:hover{
+			color: #3c763d;
+		}
+	</style>
+	
+<script src='../node_modules/moment/moment.js'></script>
+<script src='../node_modules/jquery/dist/jquery.js'></script>
+<script src='../dist/fullcalendar.js'></script>
+<script>
+
+	$(document).ready(function() {
+
+		var h = {};
+		if ($('#calendar').width() <= 400) {
+			$('#calendar').addClass("mobile");
+			h = {
+				left: ' prev, next',
+				center: 'title',
+				right: 'today'
+			};
+		} else {
+			h = {
+				left: ' prev, next',
+				center: 'title',
+				right: 'today'
+			};
+			$('#calendar').removeClass("mobile");
+		}
+	    
+		 $('#calendar').fullCalendar({ // re-initialize the calendar
+                    disableDragging: false,
+                    header: h,
+                    editable: false,
+                    today: ["今天"],
+                    monthNames: ["1月 ", "2月 ", "3月 ", "4月 ", "5月 ", "6月 ", "7月 ", "8月 ", "9月 ", "10月 ", "11月 ", "12月 "],
+                    monthNamesShort: ["1月 ", "2月 ", "3月 ", "4月 ", "5月 ", "6月 ", "7月 ", "8月 ", "9月 ", "10月 ", "11月 ", "12月 "],
+                    dayNames: ["日", "一", "二", "三", "四", "五", "六"],
+                    dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
+                    buttonText: {
+                        today: '回到本月'
+                    },
+                    viewRender: function (view) {//动态把数据查出，按照月份动态查询   例子：http://www.cnblogs.com/xiaobaiczc/archive/2013/01/19/2867242.html
+                    },
+                    dayClick: function (date, allDay, jsEvent, view) {//日期点击后弹出的jq ui的框，添加日程记录
+                        var date1 = new Date(date);
+                        var startTime = moment(date).format("YYYY-MM-DD");
+                        var startDate = moment(date).format("YYYY年MM月DD日");
+                        var ddTime = moment(date).format("DD");
+                        var weekDay = " 星期" + "日一二三四五六".split("")[date1.getDay()];
+                        getCalendarList(startTime, startDate, weekDay, ddTime);
+                        var day_date = $(this).data("date");
+                    },
+                    eventAfterRender: function (event, element, view) {//数据绑定上去后添加相应信息在页面上
+                    },
+                    eventMouseover: function (calEvent, jsEvent, view) {
+                    },
+                    eventClick: function (event) {
+                    },
+                    events: function (start, end, timezone, callback) {
+                        var year = this.getDate().format('YYYY');
+                        var month = this.getDate().format('MM');
+                        $("#calendar").fullCalendar('removeEvents');
+                        $.ajax({
+                            type: "post",
+                            url: "getCalendar.json",
+                            data: {"year": year, "month": month * 1},
+                            async: true,
+                            dataType: 'json',
+                            success: function (json) {
+                                d = json;
+                                callback(d.calendarList);
+                            }
+                        });
+                    }
+                });
+		
+	});
+
+</script>
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+</style>
+</head>
+<body>
+
+	<div id='calendar'></div>
+
+</body>
+</html>
