@@ -5,30 +5,32 @@ $(function () {
     $.ajax({
         type: "GET",
         url: "menu.json",
-        context: document.body,
-        success: function (menu) {
-            for (i = 0; i < menu.length; i++) {
+        success: function (menus) {
+            for(var i in menus){
+                var menuItem = menus[i];
                 var jq = '<li class="memu-item">' +
                     '<div class="memu-title">' +
-                    menu[i].menuTitle +
+                    menuItem.menuTitle +
                     '</div>'
-                    + '<div class="menu-third">';
-                for (j = 0; j < menu[i].someMenu.length; j++) {
+                    + '<div class="menus-third">';
+                for(var j in menuItem.someMenu){
+                    var someMenuItem = menuItem.someMenu[j];
                     jq = jq + '<span class="keyword-span">' +
-                        menu[i].someMenu[j] +
+                        someMenuItem +
                         '</span>'
                 }
                 jq = jq + '</div>'
-                    + '<div class="menu-detail">';
-                for (m = 0; m < menu[i].detailMenu.length; m++) {
-                    jq = jq + '<div class="menu-d-item">'
-                    +'<h3>' + menu[i].detailMenu[m].itemTitle + '</h3><hr>' +
-                    '<div class="menu-d-keyword">';
-                    for (j = 0; j < menu[i].detailMenu[m].itemDetail.length; j++) {
+                    + '<div class="menus-detail">';
+                    for (var m in menuItem.detailMenu ) {
+                        var aDetailMenu=menuItem.detailMenu[m];
+                    jq = jq + '<div class="menus-d-item">'
+                    +'<h3>' + aDetailMenu.itemTitle + '</h3><hr>' +
+                    '<div class="menus-d-keyword">';
+                        for (var j in aDetailMenu.itemDetail) {
                         jq = jq + '<span class="keyword-span">' +
-                            menu[i].detailMenu[m].itemDetail[j] +
+                            aDetailMenu.itemDetail[j] +
                             '</span>'
-                    }
+                        }
                     jq = jq + '</div></div>';
                 }
                 jq = jq + '</div>' +
@@ -42,6 +44,7 @@ $(function () {
         url: "floor.json",
         context: document.body,
         success: function (floor) {
+
             for (i = 0; i < floor.length; i++) {
                 var jq = '<div class="floor-cont">' +
                     '<div class="floor-name">' +

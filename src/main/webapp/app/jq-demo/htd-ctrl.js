@@ -13,3 +13,4 @@ htdModule.controller('htdCtrl', function ($scope, $http, $log) {
         $scope.floors = floorData;
     });
 });
+

@@ -34,10 +34,11 @@ public class StudentController {
     public List<JSONObject> studentList() {
         List<JSONObject> students = new ArrayList<>();
         JSONObject student = new JSONObject();
+        student.put("id","001");
         student.put("name","luXX");
         student.put("age","25");
         student.put("birth","1992-07-06");
-        student.put("photo","http://xxx.png");
+        student.put("photo","https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png");
         student.put("sex","1");
         students.add(student);
         return students;
@@ -52,6 +53,14 @@ public class StudentController {
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public JSONObject addStudent(@RequestBody JSONObject student) {
+        return student;
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public JSONObject deleteStudent(@RequestBody JSONObject student) {
+        student.put("status","fail");
         return student;
     }
 }

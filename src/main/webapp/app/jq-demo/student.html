@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "student.json",
+                success: function (data) {
+                    for (var index in data) {
+                        var scores = data[index].scores;
+                        var studentHtml = '<tr> <td>' + data[index].name + '</td> ' +
+                                '<td>' + data[index].age + '</td> ' +
+                                '<td>' + data[index].birth + '</td>' +
+                                '<td>';
+                        for (var i in scores) {
+                            studentHtml += (scores[i] + '<br>');
+                        }
+                        studentHtml += '</td>' + '</tr>';
+                        $('#studentList').append(studentHtml);
+                    }
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+<table id="studentList" border="1" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>生日</td>
+        <td>成绩</td>
+    </tr>
+</table>
+</body>
+</html>
