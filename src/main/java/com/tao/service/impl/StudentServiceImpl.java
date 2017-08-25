@@ -71,7 +71,7 @@ public class StudentServiceImpl implements StudentService {
         ExeResult<Integer> result = new ExeResult<>();
         try {
             result.setData(studentDao.deleteStudent(studentId));
-            result.setMsg("保存成功");
+            result.setMsg("删除成功");
             result.setStatus(ResponseStatus.SUCCESS);
         } catch (Exception e) {
             result.setMsg(e.getMessage());

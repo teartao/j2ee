@@ -36,6 +36,6 @@ CREATE TABLE `student` (
   `age` int(11) DEFAULT NULL,
   `birth` varchar(255) DEFAULT NULL,
   `photo` varchar(255) DEFAULT NULL,
-  `desc` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
