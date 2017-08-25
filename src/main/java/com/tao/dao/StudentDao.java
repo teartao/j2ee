@@ -10,11 +10,11 @@ import java.util.List;
  */
 public interface StudentDao {
     List<Student> findList();
-    List<Student> findById();
+    List<Student> findById(@Param("studentId") Integer studentId);
 
-    int addStudent(Student student);
+    int addStudent(@Param("student")Student student);
 
-    int editStudent(Student student);
+    int editStudent(@Param("student")Student student);
 
     int deleteStudent(@Param("studentId") Integer studentId);
 }

@@ -34,20 +34,20 @@ public class StudentController {
 
     @ResponseBody
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ExeResult<Integer> editStudent(@RequestBody JSONObject student) {
-        return studentService.addStudent(new Student());
+    public ExeResult<Integer> editStudent(@RequestBody Student student) {
+        return studentService.addStudent(student);
     }
 
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Student addStudent(@RequestBody Student student) {
-        return student;
+    public ExeResult<Integer> addStudent(@RequestBody Student student) {
+        return studentService.addStudent(student);
     }
 
 
     @ResponseBody
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public ExeResult<Integer> deleteStudent(Integer id, HttpServletRequest request) {
-        return studentService.deleteStudent(1);
+    public ExeResult<Integer> deleteStudent(@RequestBody Student student, HttpServletRequest request) {
+        return studentService.deleteStudent(student.getId());
     }
 }

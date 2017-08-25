@@ -26,14 +26,13 @@ function deleteStudent(studentId) {
         url: "/lp/student/delete",
         contentType: "application/json;charset=UTF-8",
         data: {
-            id: studentId+''
+            id: studentId
         },
         success: function (response) {
             if (response.status == 'success') {
                 alert("删除成功");
             } else {
                 alert("删除失败");
-
             }
         }
     });
@@ -45,7 +44,18 @@ function addStudent() {
         url:"/lp/student/add",
         contentType: "application/json;charset=UTF-8",
         data:{
-            name:$('#studentName').val()
+            name:$('#studentName').val(),
+            age:$('#studentAge').val(),
+            birth:$('#studentBirth').val(),
+            sex:$("input[name='sex']:checked").val(),
+            photo:$('#studentPhoto').val()
+        },
+        success: function (response) {
+            if (response.status == 'success') {
+                alert("添加成功");
+            } else {
+                alert("添加失败");
+            }
         }
     })
 }
