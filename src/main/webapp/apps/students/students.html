@@ -24,14 +24,17 @@
 </table>
 <button onclick="addStudent()">添加学生</button>
 <div id="addForm">
-    <lable>姓名：</lable>
-    <input id="studentName" type="text" value=""><br>
-    <lable>生日：</lable>
-    <input id="studentBirth" type="date" value=""><br>
-    <lable>性别：</lable>
-    <input name="sex" type="radio" value="0">男
-    <input name="sex" type="radio" value="1">女<br>
-    <lable>照片：</lable>
+    <label for="studentName">姓名：</label><input id="studentName" type="text" value=""><br>
+
+    <label for="studentBirth">生日：</label><input id="studentBirth" type="date" value=""><br>
+
+    <label>性别：</label>
+    <label>
+        <input name="sex" type="radio" value="0">男
+        <input name="sex" type="radio" value="1">女<br>
+    </label>
+
+    <lable for="studentPhoto">照片：</lable>
     <input id="studentPhoto" type="file" value=""><br>
 </div>
 
