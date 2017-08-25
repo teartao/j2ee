@@ -21,6 +21,7 @@
     <!--mvc静态资源处理-->
     <mvc:default-servlet-handler/>
 
+    <!--todo 第一种方式-->
     <!--整合jackson 使@RequestBody支持json对象转换，已被自定义类库取代-->
     <!--  <mvc:annotation-driven>
           <mvc:message-converters>
@@ -36,8 +37,7 @@
           </property>
       </bean>-->
 
-    <!--自定义json转换类，实现在controller直接返回对象后以json格式转发到前端-->
-
+    <!-- todo 第二种方式 ：自定义json转换类，实现在controller直接返回对象后以json格式转发到前端-->
     <!-- 基于注解的mvc控制 -->
     <mvc:annotation-driven>
         <mvc:message-converters>
@@ -65,6 +65,22 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
+    <!--todo 第三种方式转换请求参数-->
+<!--    <mvc:annotation-driven>
+    <mvc:message-converters register-defaults="true">
+        <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+            <property name="supportedMediaTypes">
+                <list>
+                    <value>application/json</value>
+                </list>
+            </property>
+        </bean>
+        <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+            <property name="supportedMediaTypes" value="text/html;charset=UTF-8"/>
+        </bean>
+    </mvc:message-converters>
+</mvc:annotation-driven>-->
 
 
     <!-- 视图解析器，根据视图的名称new ModelAndView(name)，在配置文件查找对应的bean配置 -->
