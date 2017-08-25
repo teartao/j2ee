@@ -46,4 +46,7 @@
             #{student.photo},#{student.description}
         )
     </insert>
+    <delete id="deleteStudent" parameterType="java.lang.Integer">
+       DELETE  FROM student WHERE id=#{studentId}
+    </delete>
 </mapper>

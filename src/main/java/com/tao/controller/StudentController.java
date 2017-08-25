@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -39,16 +40,14 @@ public class StudentController {
 
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public JSONObject addStudent(@RequestBody JSONObject student) {
+    public Student addStudent(@RequestBody Student student) {
         return student;
     }
 
 
     @ResponseBody
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public JSONObject deleteStudent() {
-        JSONObject student = new JSONObject();
-        student.put("status", "fail");
-        return student;
+    public ExeResult<Integer> deleteStudent(Integer id, HttpServletRequest request) {
+        return studentService.deleteStudent(1);
     }
 }

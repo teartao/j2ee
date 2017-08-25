@@ -1,5 +1,6 @@
 package com.tao.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.tao.dao.StudentDao;
 import com.tao.entity.ExeResult;
 import com.tao.entity.Student;
@@ -37,6 +38,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public ExeResult<Integer> addStudent(Student student) {
+        ExeResult<Integer> result = new ExeResult<Integer>();
+        result.setData(1);
+        result.setMsg("删除成功");
         return null;
     }
 
@@ -47,6 +51,14 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public ExeResult<Integer> deleteStudent(Integer studentId) {
-        return null;
+        ExeResult<Integer> result = new ExeResult<Integer>();
+       Integer rs;
+        try {
+            rs = studentDao.deleteStudent(studentId);
+            result.setData(rs);
+        } catch (Exception e) {
+            result.setMsg(e.getMessage());
+        }
+        return result;
     }
 }

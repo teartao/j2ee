@@ -1,14 +1,10 @@
 $(function () {
     $.ajax({
         type: "GET",
-        url: "/cm/student/list",
+        url: "/lp/student/list",
         dataType: 'json',
         success: function (response) {
-            var stu = [];
-            if (response.success == true) {
-                stu = response.data;
-            }
-
+            var stu = response.data;
             var studentHtml = '';
             for (var i in stu) {
                 studentHtml = studentHtml + '<tr>' +
@@ -27,13 +23,10 @@ $(function () {
 function deleteStudent(studentId) {
     $.ajax({
         type: "POST",
-        url: "/cm/student/delete",
+        url: "/lp/student/delete",
         contentType: "application/json;charset=UTF-8",
         data: {
-            age: 23,
-            id: 1,
-            name: "张三",
-            sex: "男"
+            id: studentId+''
         },
         success: function (response) {
             if (response.success == true) {
@@ -46,3 +39,13 @@ function deleteStudent(studentId) {
     });
 }
 
+function addStudent() {
+    $.ajax({
+        type:"POST",
+        url:"/lp/student/add",
+        contentType: "application/json;charset=UTF-8",
+        data:{
+            name:$('#studentName').val()
+        }
+    })
+}
