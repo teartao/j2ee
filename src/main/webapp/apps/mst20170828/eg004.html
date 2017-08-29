@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时打印</title>
+</head>
+<body>
+<script>
+    var arr = ['xx', 'aa', 'bb', '541', 'asd'];
+    var index = 0;
+    var timer = setInterval(printObj, 1000);
+    function printObj() {
+        console.log(arr[index]);
+        index++;
+        if(index==arr.length){
+            clearInterval(timer);
+        }
+    }
+</script>
+</body>
+</html>
