@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>定时打印</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 </head>
 <body>
 <script>
@@ -16,10 +17,42 @@
     function printObj() {
         console.log(arr[index]);//打印
         index++;//打印完后索引+1  用来准备下一次打印
-        if(index==arr.length){//判断是否超出arr数组的范围，如果超过则结束定时任务不再打印
+        if (index == arr.length) {//判断是否超出arr数组的范围，如果超过则结束定时任务不再打印
             clearInterval(timer);//调用clearInterval 结束timer定时器对应的定时任务
         }
     }
+</script>
+
+一个定时任务的场景样例：发送短信验证码倒计时
+<div>
+    <button id="getMsgBtn" onclick="sendMsg()">获取验证码</button>
+</div>
+<script>
+
+    function sendMsg() {
+        //1、发送短信
+        //2、开始倒计时
+        countDownTime();
+    }
+    /**
+     * 倒计时定时任务
+     */
+    function countDownTime() {
+        var getMsgBtn = $('#getMsgBtn');
+        var timeIndex=60;//默认倒计时60s
+        var timer=setInterval(setBtnTxt,1000);
+        function setBtnTxt(){
+            getMsgBtn.text(timeIndex+'后重新获取');
+            timeIndex--;
+            if(timeIndex<0){
+                clearInterval(timer);
+                getMsgBtn.text('获取验证码');
+            }
+
+        }
+
+    }
+
 </script>
 </body>
 </html>
