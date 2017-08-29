@@ -30,9 +30,8 @@
 <script>
 
     function sendMsg() {
-        //1、发送短信
-        //2、开始倒计时
-        countDownTime();
+        //1、发送短信 略
+        countDownTime();//2、开始倒计时
     }
     /**
      * 倒计时定时任务
@@ -42,11 +41,11 @@
         var timeIndex=60;//默认倒计时60s
         var timer=setInterval(setBtnTxt,1000);
         function setBtnTxt(){
-            getMsgBtn.text(timeIndex+'后重新获取');
+            getMsgBtn.text(timeIndex+'s后重新获取');
             timeIndex--;
             if(timeIndex<0){
                 clearInterval(timer);
-                getMsgBtn.text('获取验证码');
+                getMsgBtn.text('获取验证码');//停止计时后重置按钮提示信息，变成获取短信的提示，否则将一直显示  '1s后重新获取'
             }
 
         }
