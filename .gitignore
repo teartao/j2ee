@@ -1,0 +1,8 @@
+*.war
+*.ear
+.idea/
+.settings/
+.classpath
+.projects
+*.iml
+target/
