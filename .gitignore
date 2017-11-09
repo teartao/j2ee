@@ -6,3 +6,4 @@
 .projects
 *.iml
 target/
+.gitignore
