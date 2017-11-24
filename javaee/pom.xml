@@ -264,6 +264,7 @@
             <version>4.1.4.RELEASE</version>
         </dependency>
 
+        <!--download source code from https://github.com/teartao/jarvis.git and build it with maven -->
         <dependency>
             <groupId>net.hehe</groupId>
             <artifactId>jarvis-web</artifactId>

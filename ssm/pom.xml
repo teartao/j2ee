@@ -85,6 +85,7 @@
         </dependency>
 
         <!--基于fastJson的Json转换工具-->
+        <!--download source code from https://github.com/teartao/jarvis.git and build it with maven -->
         <dependency>
             <groupId>net.hehe</groupId>
             <version>0.0.1-SNAPSHOT</version>
