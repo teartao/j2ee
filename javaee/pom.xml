@@ -338,10 +338,10 @@
                     <exclude>properties/env/*</exclude>
                 </excludes>
             </resource>
-            <!-- 使用deploy下不同环境下的配置文件，存放在properties目录下 -->
+            <!-- 使用 environment 下不同的配置文件，存放在 env 目录下 -->
             <resource>
                 <filtering>true</filtering>
-                <directory>env/${env.name}</directory>
+                <directory>environment/${env.name}</directory>
                 <targetPath>properties/env</targetPath>
             </resource>
         </resources>
