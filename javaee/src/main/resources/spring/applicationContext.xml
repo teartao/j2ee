@@ -17,9 +17,9 @@
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:properties/database.properties</value>
+                <value>classpath:properties/env-database.properties</value>
                 <value>classpath:properties/application.properties</value>
-                <value>classpath:properties/log4j.properties</value>
+                <value>classpath:properties/env-log4j.properties</value>
             </list>
         </property>
         <property name="fileEncoding" value="utf-8" />
