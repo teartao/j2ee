@@ -3,6 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc
@@ -12,30 +13,10 @@
 
     <context:component-scan base-package="com.tao"/>
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/pages/"/>
-        <property name="suffix" value=".html"/>
-    </bean>
-
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/pages/" p:suffix=".html"/>
     <!--mvc静态资源处理-->
     <mvc:default-servlet-handler/>
-
-    <!--整合jackson 使@RequestBody支持json对象转换，已被自定义类库取代-->
-    <!--  <mvc:annotation-driven>
-          <mvc:message-converters>
-              <ref bean="jsonConverter"/>
-          </mvc:message-converters>
-      </mvc:annotation-driven>
-
-      <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-          <property name="supportedMediaTypes">
-              <list>
-                  <value>text/json;charset=UTF-8</value>
-              </list>
-          </property>
-      </bean>-->
-
-    <!--自定义json转换类，实现在controller直接返回对象后以json格式转发到前端-->
 
     <!-- 基于注解的mvc控制 -->
     <mvc:annotation-driven>
@@ -67,18 +48,11 @@
 
 
     <!-- 视图解析器，根据视图的名称new ModelAndView(name)，在配置文件查找对应的bean配置 -->
-    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-        <property name="order" value="1"/>
-    </bean>
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
 
     <!--系统异常处理器-->
     <!--不写1的话，就会被spring的DefaultHandlerExceptionResolver截获，跳过-->
-    <bean class="net.hehe.web.ExceptionHandler">
-        <property name="viewName" ref="jsonView"/>
-        <property name="order" value="1"/>
-    </bean>
+    <bean class="net.hehe.web.ExceptionHandler" p:viewName="jsonView" p:order="1"/>
     <!--基于json格式的mvc交互-->
-    <bean name="jsonView" class="net.hehe.web.MappingToJsonView">
-        <property name="contentType" value="application/json;charset=UTF-8"/>
-    </bean>
+    <bean name="jsonView" class="net.hehe.web.MappingToJsonView" p:contentType="application/json;charset=UTF-8"/>
 </beans>
