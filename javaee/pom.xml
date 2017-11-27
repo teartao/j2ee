@@ -307,17 +307,11 @@
         <profile>
             <id>dev</id>
             <properties>
-                <env.name>dev</env.name>
+                <env.name>develop</env.name>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-        </profile>
-        <profile>
-            <id>test</id>
-            <properties>
-                <env.name>test</env.name>
-            </properties>
         </profile>
         <profile>
             <id>prod</id>
@@ -328,6 +322,30 @@
     </profiles>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/xml/*.xml</include>
+                </includes>
+            </resource>
+
+            <resource>
+                <!-- 排除 resources.path 路径下 properties/*规则的文件 -->
+                <filtering>true</filtering>
+                <directory>${resources.path}</directory>
+                <excludes>
+                    <exclude>properties/env/*</exclude>
+                </excludes>
+            </resource>
+            <!-- 使用deploy下不同环境下的配置文件，存放在properties目录下 -->
+            <resource>
+                <filtering>true</filtering>
+                <directory>env/${env.name}</directory>
+                <targetPath>properties/env</targetPath>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -347,29 +365,5 @@
             </plugin>
 
         </plugins>
-
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/xml/*.xml</include>
-                </includes>
-            </resource>
-
-            <resource>
-                <!-- 排除 resources.path 路径下 properties/*规则的文件 -->
-                <filtering>true</filtering>
-                <directory>${resources.path}</directory>
-                <excludes>
-                    <exclude>properties/*</exclude>
-                </excludes>
-            </resource>
-            <!-- 使用deploy下不同环境下的配置文件，存放在properties目录下 -->
-            <resource>
-                <filtering>true</filtering>
-                <directory>env/${env.name}</directory>
-                <targetPath>properties</targetPath>
-            </resource>
-        </resources>
     </build>
 </project>
