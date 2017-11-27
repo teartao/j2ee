@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans default-lazy-init="true"
-       xmlns:p="http://www.springframework.org/schema/p"
        xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
@@ -33,18 +33,17 @@
 
     <!-- spring和MyBatis整合 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
-          p:dataSource="dataSource"
+          p:dataSource-ref="dataSource"
           p:mapperLocations="classpath:mapper/*.xml"/>
 
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer"
           p:basePackage="com.haycm.dao"
           p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
 
-    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.qq.com"/>
-        <property name="port" value="587"/>
-        <property name="username" value="775311684@qq.com"/>
-        <property name="password" value="p@ssw0rd"/>
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"
+          p:host="smtp.qq.com" p:port="587"
+          p:username="775311684@qq.com"
+          p:password="p@ssw0rd">
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.smtp.auth">true</prop>
