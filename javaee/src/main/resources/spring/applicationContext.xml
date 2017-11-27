@@ -15,7 +15,14 @@
     <!-- 引入配置文件配置数据源 -->
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:properties/**/*.properties"/>
+        <property name="locations">
+            <list>
+                <value>classpath:properties/database.properties</value>
+                <value>classpath:properties/application.properties</value>
+                <value>classpath:properties/log4j.properties</value>
+            </list>
+        </property>
+        <property name="fileEncoding" value="utf-8" />
     </bean>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"

@@ -324,14 +324,14 @@
                 <filtering>true</filtering>
                 <directory>${resources.path}</directory>
                 <excludes>
-                    <exclude>properties/env/*</exclude>
+                    <exclude>properties/env-*.properties</exclude>
                 </excludes>
             </resource>
-            <!-- 使用 environment 下不同的配置文件，存放在 env 目录下 -->
+            <!-- 使用 environment 下不同的配置文件，存放在 properties 目录下 -->
             <resource>
                 <filtering>true</filtering>
                 <directory>environment/${env.name}</directory>
-                <targetPath>properties/env</targetPath>
+                <targetPath>properties</targetPath>
             </resource>
         </resources>
 
