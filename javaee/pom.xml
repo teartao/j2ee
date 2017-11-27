@@ -9,7 +9,7 @@
 
     <properties>
         <!-- spring版本号 -->
-        <spring.version>4.0.2.RELEASE</spring.version>
+        <spring.version>4.2.2.RELEASE</spring.version>
         <!-- mybatis版本号 -->
         <mybatis.version>3.2.7</mybatis.version>
         <mybatis-spring.version>1.2.2</mybatis-spring.version>
@@ -261,7 +261,7 @@
         <dependency>
             <groupId>org.springframework.integration</groupId>
             <artifactId>spring-integration-mail</artifactId>
-            <version>4.1.4.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <!--download source code from https://github.com/teartao/jarvis.git and build it with maven -->
