@@ -24,7 +24,7 @@ GROUP BY c.id
 
 -- 3年2班所有学生年龄
 select s.*,(YEAR(now())-YEAR(s.birth)) '年龄',c.* from db_student s
-INNER JOIN db_class c on c.id=s.class_id
+LEFT JOIN db_class c on c.id=s.class_id
 WHERE c.grade_no=3 AND c.classno=2;
 
 select s.*,(YEAR(now())-YEAR(s.birth)) '年龄',c.* from db_student s
