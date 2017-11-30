@@ -5,6 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.smart</groupId>
     <artifactId>chapter17</artifactId>
+    <!-- set package as webapp -->
+    <packaging>war</packaging>
     <version>1.0</version>
     <name>Spring4.x第十七章实例</name>
 
