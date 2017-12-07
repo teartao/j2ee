@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>student</title>
+    <script src="../../jquery/jquery-3.0.0.min.js" type="text/javascript"></script>
+    <script src="st.js" type="text/javascript"></script>
+    <style>
+        .view-pic {
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<table id="student" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>ID</td>
+        <td>姓名</td>
+        <td>生日</td>
+        <td>性别</td>
+        <td>照片预览</td>
+        <td>操作</td>
+    </tr>
+</table>
+<button onclick="addStudent()">添加学生</button>
+<div id="addForm">
+    <label for="studentName">姓名：</label><input id="studentName" type="text" value=""><br>
+
+    <label for="studentBirth">生日：</label><input id="studentBirth" type="date" value=""><br>
+
+    <label>性别：</label>
+    <label>
+        <input name="sex" type="radio" value="0">男
+        <input name="sex" type="radio" value="1">女<br>
+    </label>
+
+    <lable for="studentPhoto">照片：</lable>
+    <input id="studentPhoto" type="file" value=""><br>
+</div>
+
+</body>
+</html>

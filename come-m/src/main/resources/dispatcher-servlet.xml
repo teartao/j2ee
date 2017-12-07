@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+    <!--扫描controller-->
+    <context:component-scan base-package="com.tao.controller"/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/pages/"/>
+        <property name="suffix" value=".html"/>
+    </bean>
+
+    <!--mvc静态资源处理-->
+    <mvc:default-servlet-handler/>
+
+    <!--todo 第一种方式-->
+    <!--整合jackson 使@RequestBody支持json对象转换，已被自定义类库取代-->
+    <!--  <mvc:annotation-driven>
+          <mvc:message-converters>
+              <ref bean="jsonConverter"/>
+          </mvc:message-converters>
+      </mvc:annotation-driven>
+
+      <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+          <property name="supportedMediaTypes">
+              <list>
+                  <value>text/json;charset=UTF-8</value>
+              </list>
+          </property>
+      </bean>-->
+
+    <!-- todo 第二种方式 ：自定义json转换类，实现在controller直接返回对象后以json格式转发到前端-->
+    <!-- 基于注解的mvc控制 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean id="jsonHttpMessageConverter" class="net.hehe.web.JsonMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json</value>
+                        <value>application/x-www-form-urlencoded</value>
+                    </list>
+                </property>
+                <property name="feature">
+                    <array>
+                        <value>AllowISO8601DateFormat</value>
+                        <value>AllowSingleQuotes</value>
+                    </array>
+                </property>
+                <property name="serializerFeature">
+                    <array>
+                        <value>WriteMapNullValue</value>
+                        <value>QuoteFieldNames</value>
+                        <value>WriteDateUseDateFormat</value>
+                        <value>DisableCircularReferenceDetect</value>
+                    </array>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--todo 第三种方式转换请求参数-->
+<!--    <mvc:annotation-driven>
+    <mvc:message-converters register-defaults="true">
+        <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+            <property name="supportedMediaTypes">
+                <list>
+                    <value>application/json</value>
+                </list>
+            </property>
+        </bean>
+        <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+            <property name="supportedMediaTypes" value="text/html;charset=UTF-8"/>
+        </bean>
+    </mvc:message-converters>
+</mvc:annotation-driven>-->
+
+
+    <!-- 视图解析器，根据视图的名称new ModelAndView(name)，在配置文件查找对应的bean配置 -->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="1"/>
+    </bean>
+
+    <!--系统异常处理器-->
+    <!--不写1的话，就会被spring的DefaultHandlerExceptionResolver截获，跳过-->
+    <bean class="net.hehe.web.ExceptionHandler">
+        <property name="viewName" ref="jsonView"/>
+        <property name="order" value="1"/>
+    </bean>
+    <!--基于json格式的mvc交互-->
+    <bean name="jsonView" class="net.hehe.web.MappingToJsonView">
+        <property name="contentType" value="application/json;charset=UTF-8"/>
+    </bean>
+</beans>

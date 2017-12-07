@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="index">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <script type="text/javascript" src="jquery/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="angular/angular.min.js"></script>
+    <script type="text/javascript" src="pages/index-ctrl.js"></script>
+</head>
+<body ng-controller="indexCtrl">
+<div class="container-fluid">
+    <div class="page-header text-center">
+        <!--<h1>呵呵收账系统</h1>-->
+        <!--<h5>by:陶呵呵</h5>-->
+    </div>
+    <div class="row">
+
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label class="sr-only" for="guestName">姓名</label>
+                    <div class="input-group dropdown">
+                        <div class="input-group-addon">姓名</div>
+                        <input type="text" class="form-control" id="guestName" placeholder="张三"
+                               ng-model="userName"
+                               ng-change="findGuest()" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="true">
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-hide="guestList.length==0">
+                            <li ng-repeat="guest in guestList" ng-click="selectGuest(guest.name)"><a href="#">{{guest.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="amount">金额</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">￥</div>
+                        <input type="text" class="form-control" id="amount" placeholder="200" ng-model="amount"
+                               ng-keypress="enter($event)">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" ng-click="addMoney()">OK</button>
+                <button type="button" class="btn btn-success glyphicon glyphicon-plus" ng-click="addGuest()"></button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h1>统计:</h1>
+            <h4>
+                <a id="modal-431118" href="#modal-container-431118" role="button" class="btn"
+                   data-toggle="modal">面额占比</a>
+            </h4>
+            <h4>
+                <a id="modal-431119" href="#modal-container-431118" role="button" class="btn"
+                   data-toggle="modal">面额分布</a>
+            </h4>
+        </div>
+
+
+        <div class="modal fade" id="modal-container-431118" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            标题
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        内容...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>

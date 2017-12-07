@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tao.dao.GuestDao">
+    <select id="findGuestById" parameterType="java.lang.Integer"
+            resultType="com.tao.entity.Guest">
+        SELECT
+        id , name , price
+        FROM guest WHERE
+        id = #{guestId}
+    </select>
+    <select id="findGuestByName" parameterType="java.lang.String"
+            resultType="com.tao.entity.Guest">
+        SELECT
+        id , `name` , price
+        FROM guest WHERE
+        `name` = #{name}
+    </select>
+
+    <select id="findGuestsByKeyword" parameterType="java.lang.String"
+            resultType="com.tao.entity.Guest">
+        SELECT DISTINCT
+        g.id, g.`name` , g.price
+        FROM guest g
+        LEFT  JOIN keyword kw ON  kw.guest_id = g.id
+        WHERE
+        kw.`name` LIKE concat('%',#{keyword},'%')
+    </select>
+
+    <update id="updateGuest" parameterType="com.tao.entity.Guest">
+        UPDATE guest
+        SET `name`=#{name}, `price`=#{price}
+        WHERE id=#{id}
+    </update>
+    <insert id="addGuest" parameterType="com.tao.entity.Guest">
+        INSERT INTO  guest (`name`,`price`)VALUES (#{name},#{price})
+    </insert>
+</mapper>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+//    var arr = [
+//        {name: 'tom', age: 22},
+//        {name: 'lily', age: 23}
+//    ];
+//
+//    var arr1 = {
+//        0: {name: 'tom', age: 22},
+//        1: {name: 'lily', age: 23}
+//    };
+//
+//
+//    var obj = {
+//        name: "jack",
+//        age: '22',
+//        birth:'1992-04-08'
+//    };
+////    for (var i = 0; i < arr.length; i++) {
+////        console.log("name : " + arr[i].name + '\t age:' + arr[i].age);
+////    }
+//
+//    for (var index in obj) {
+//        console.log("name : " + obj[index].name + '\t age:' + obj[index].age);
+//    }
+    var students = [
+        {
+            name: 'tom',
+            age: 22
+        },
+        {
+            name: 'Jack',
+            age: 23
+        },
+        {
+            name: 'Lily',
+            age: 24
+        }
+    ]
+
+    for(i=0;i<students.length;i++){
+        console.log("name:"+students[i].name+'\n age:' +students[i].age);
+    }
+    for(index in students ){
+        console.log("name:" + students[index].name+ '\t age:' +students[index].age);
+    }
+</script>
+
+</body>
+</html>
