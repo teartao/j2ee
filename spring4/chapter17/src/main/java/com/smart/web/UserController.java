@@ -47,6 +47,18 @@ public class UserController {
 		this.userService = userService;
 	}
 
+	/**
+	 *  example user?userId=222&userName=tom&password=12345&realName=tomson&birthday=1992-07-06&salary=2000
+	 *  &dept.deptId=111&dept.deptNo=001&dept.deptName=develop
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/register", method = RequestMethod.GET, params = "!myParam")
+	//将参数user存入model中,相当于 model.addAttribute("user",user);
+	public String register(@ModelAttribute("user") User user) {
+		return "user/register";
+	}
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView createUser(User user) {
 		userService.createUser(user);
@@ -54,11 +66,6 @@ public class UserController {
 		mav.setViewName("user/createSuccess");
 		mav.addObject("user", user);
 		return mav;
-	}
-
-	@RequestMapping(value = "/register", method = RequestMethod.GET, params = "!myParam")
-	public String register(@ModelAttribute("user") User user) {
-		return "user/register";
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST, params = "userId")
