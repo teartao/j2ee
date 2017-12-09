@@ -56,7 +56,7 @@ public class HelloController {
         file.createNewFile();
         JSONObject data = new JSONObject();
         data.put("path", path);
-        data.put("verifyCode", verifyCode);
+//        data.put("verifyCode", verifyCode);
         result.setResult(data, "0000", "生成成功");
         return result;
     }
@@ -81,12 +81,12 @@ public class HelloController {
     @RequestMapping(value = "user/create", method = RequestMethod.GET)
     public Result<Map> userRegister(HttpServletRequest request) {
         Result<Map> result = new Result<>();
-        String userName = request.getParameter("userName");
+        String userName = request.getParameter("username");
         String password = request.getParameter("password");
         String verifyCode = request.getParameter("verifyCode");
-        String sql = "SELECT * FROM sysuser t WHERE t.username=? AND t.password=?";
-        List<Map<String, Object>> queryRs = jdbcTemplate.queryForList(sql, new Object[]{userName, password});
-        if (queryRs != null && queryRs.size() > 0) {
+        String sql = "INSERT INTO sysuser (username,password,state) values(?,?,?)";
+        int exeRs = jdbcTemplate.update(sql, new Object[]{userName, password,1});
+        if (exeRs > 0) {
             result.setCode("0000");
             result.setMessage("注册成功");
         } else {
@@ -99,7 +99,7 @@ public class HelloController {
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public Result<Map> userLogin(HttpServletRequest request) {
         Result<Map> result = new Result<>();
-        String userName = request.getParameter("userName");
+        String userName = request.getParameter("username");
         String password = request.getParameter("password");
         String sql = "SELECT * FROM sysuser t WHERE t.username=? AND t.password=?";
         List<Map<String, Object>> queryRs = jdbcTemplate.queryForList(sql, new Object[]{userName, password});
