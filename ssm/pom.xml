@@ -84,15 +84,12 @@
             <version>1.1.41</version>
         </dependency>
 
-        <!--基于fastJson的Json转换工具-->
-        <!--download source code from https://github.com/teartao/jarvis.git and build it with maven -->
         <dependency>
-            <groupId>net.hehe</groupId>
-            <version>0.0.1-SNAPSHOT</version>
-            <artifactId>jarvis-web</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.9</version>
         </dependency>
-
-
+        
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

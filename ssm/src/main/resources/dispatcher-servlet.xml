@@ -10,6 +10,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
+    <mvc:annotation-driven/>
 
     <context:component-scan base-package="com.tao"/>
 
@@ -18,41 +19,19 @@
     <!--mvc静态资源处理-->
     <mvc:default-servlet-handler/>
 
-    <!-- 基于注解的mvc控制 -->
-    <mvc:annotation-driven>
-        <mvc:message-converters>
-            <bean id="jsonHttpMessageConverter" class="net.hehe.web.JsonMessageConverter">
-                <property name="supportedMediaTypes">
-                    <list>
-                        <value>application/json</value>
-                        <value>application/x-www-form-urlencoded</value>
-                    </list>
-                </property>
-                <property name="feature">
-                    <array>
-                        <value>AllowISO8601DateFormat</value>
-                        <value>AllowSingleQuotes</value>
-                    </array>
-                </property>
-                <property name="serializerFeature">
-                    <array>
-                        <value>WriteMapNullValue</value>
-                        <value>QuoteFieldNames</value>
-                        <value>WriteDateUseDateFormat</value>
-                        <value>DisableCircularReferenceDetect</value>
-                    </array>
-                </property>
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
-
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
 
     <!-- 视图解析器，根据视图的名称new ModelAndView(name)，在配置文件查找对应的bean配置 -->
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
 
-    <!--系统异常处理器-->
-    <!--不写1的话，就会被spring的DefaultHandlerExceptionResolver截获，跳过-->
-    <bean class="net.hehe.web.ExceptionHandler" p:viewName="jsonView" p:order="1"/>
-    <!--基于json格式的mvc交互-->
-    <bean name="jsonView" class="net.hehe.web.MappingToJsonView" p:contentType="application/json;charset=UTF-8"/>
 </beans>
