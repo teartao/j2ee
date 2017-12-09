@@ -56,7 +56,7 @@ public class HelloController {
         file.createNewFile();
         JSONObject data = new JSONObject();
         data.put("path", path);
-//        data.put("verifyCode", verifyCode);
+        data.put("verifyCode", verifyCode);
         result.setResult(data, "0000", "生成成功");
         return result;
     }
@@ -84,11 +84,20 @@ public class HelloController {
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
         String verifyCode = request.getParameter("verifyCode");
+
+        HttpSession session = request.getSession(true);
+        if (verifyCode != null && !verifyCode.equalsIgnoreCase(String.valueOf(session.getAttribute("rand")))) {
+            result.setCode("9999");
+            result.setMessage("验证码错误");
+            return result;
+        }
+
         String sql = "INSERT INTO sysuser (username,password,state) values(?,?,?)";
-        int exeRs = jdbcTemplate.update(sql, new Object[]{userName, password,1});
+        int exeRs = jdbcTemplate.update(sql, new Object[]{userName, password, 1});
         if (exeRs > 0) {
             result.setCode("0000");
             result.setMessage("注册成功");
+            session.removeAttribute("rand");
         } else {
             result.setCode("9999");
             result.setMessage("注册失败");
