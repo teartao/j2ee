@@ -2,14 +2,14 @@ package com.tao.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.tao.entity.Result;
-import com.tao.utils.AuthImage;
 import com.tao.utils.VerifyCodeUtil;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -18,20 +18,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/")
 public class HelloController {
     @Resource
     private JdbcTemplate jdbcTemplate;
-
-    @RequestMapping(method = RequestMethod.GET)
-    public String printWelcome(ModelMap model) {
-        model.addAttribute("message", "Hello world!");
-        return "hello";
-    }
 
     @RequestMapping(value = "json", method = RequestMethod.GET)
     public JSONObject getJsonObj() throws IOException {
@@ -120,5 +115,34 @@ public class HelloController {
             result.setMessage("登陆失败");
         }
         return result;
+    }
+
+    @Value("${fileupload.temppath}")
+    private String fileUploadTempPath;
+
+    @RequestMapping(value = "upload")
+    public String fileUpload(String name, MultipartFile file,HttpServletResponse response,OutputStream os, HttpServletRequest request) throws IOException {
+        //如果 file ！=null  表示文件上传成功
+
+        //接下来是文件加载，为了方便我们直接将上传的文件发送给客户端下载
+        if (!file.isEmpty()) {
+            File jFile = new File(fileUploadTempPath + file.getOriginalFilename());
+            file.transferTo(jFile);
+            String fileName =  URLEncoder.encode(name+".xlsx", "UTF-8");
+
+            //禁用缓存，防止IE下下载问题
+            response.setHeader("Pragma", "No-cache");
+            response.setHeader("Cache-Control", "No-cache");
+            response.setDateHeader("Expires", 0);
+
+            //设置文件以附件方式下载而不是在线浏览
+            response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+            //设置文件类型
+            response.setContentType("application/x-xls;charset=UTF-8");
+            FileCopyUtils.copy(file.getInputStream(), os);
+            return "success";
+        } else {
+            return "failed";
+        }
     }
 }

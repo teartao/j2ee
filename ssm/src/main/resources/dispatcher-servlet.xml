@@ -34,4 +34,10 @@
     <!-- 视图解析器，根据视图的名称new ModelAndView(name)，在配置文件查找对应的bean配置 -->
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
 
+    <!--添加文件上传resolver-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+          p:defaultEncoding="UTF-8"
+          p:maxUploadSize="5000000"
+          p:uploadTempDir="${fileupload.temppath}"/>
 </beans>
