@@ -7,7 +7,25 @@
 </head>
 <body>
 用户名<input type="text" id="username"><br>
-密  码<input type="password" id="password"><br>
-<button type="button">登录</button>
+密 码<input type="password" id="password"><br>
+<button type="button" id="loginBtn">登录</button>
+<script>
+    $(function () {
+        $('#loginBtn').click(function () {
+            $.ajax({
+                url:'/ssm/login/doLogin',
+                type: 'POST',
+                // dataType:'jsonp',
+                data: {
+                    username: $('#username').val(),
+                    password: $('#password').val()
+                },
+                success: function (response) {
+
+                }
+            });
+        });
+    })
+</script>
 </body>
 </html>
