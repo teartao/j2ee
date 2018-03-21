@@ -103,7 +103,7 @@ public class HelloController {
         return result;
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+    @RequestMapping(value = "login1", method = RequestMethod.GET)
     public Result<Map> userLogin(HttpServletRequest request) {
         Result<Map> result = new Result<>();
         String userName = request.getParameter("username");
