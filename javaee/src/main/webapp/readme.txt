@@ -36,7 +36,7 @@ webcontent文件夹下，web-inf文件夹下的web.xml文件。
   例如：
   <filter>
 		<filter-name>Set Character Encoding</filter-name>
-		<filter-class>filters.SetCharacterEncodingFilter</filter-class>
+		<filter-class>com.alipay.util.SetCharacterEncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>GBK</param-value>

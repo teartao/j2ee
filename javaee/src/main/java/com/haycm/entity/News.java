@@ -1,6 +1,6 @@
 package com.haycm.entity;
 
-import util.NowDateUtil;
+import com.utils.NowDateUtil;
 
 public class News {
 	private String longId;

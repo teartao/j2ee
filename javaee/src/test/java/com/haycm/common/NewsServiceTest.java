@@ -1,7 +1,7 @@
 package com.haycm.common;
 
 import com.haycm.entity.News;
-import util.NowDateUtil;
+import com.utils.NowDateUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

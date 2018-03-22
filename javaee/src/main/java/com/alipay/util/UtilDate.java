@@ -1,9 +1,10 @@
 package com.alipay.util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
-import java.text.SimpleDateFormat;
-import java.text.DateFormat;
+
 /**
  * 名称：自定义订单类
  * 功能：工具类，可以用作获取系统日期、订单编号等
@@ -26,14 +27,14 @@ public class UtilDate {
 		DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return df.format(date);
 	}
-	
-	
+
+
 	public static String getDate(){
 		Date date=new Date();
 		DateFormat df=new SimpleDateFormat("yyyyMMdd");
 		return df.format(date);
 	}
-	
+
 	//产生随机的三位数
 	public static String getThree(){
 		Random rad=new Random();
@@ -46,5 +47,5 @@ public class UtilDate {
 		System.out.println(date.getDateFormatter());
 		System.out.println(date.getThree());
 	}
-	
+
 }

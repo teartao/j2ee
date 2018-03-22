@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package filters;
+package com.alipay.util;
 
 import javax.servlet.*;
 import java.io.IOException;
