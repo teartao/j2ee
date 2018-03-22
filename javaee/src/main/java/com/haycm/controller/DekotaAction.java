@@ -1,16 +1,12 @@
-package com.haycm.controller.other;
-
-import java.util.ArrayList;
-import java.util.List;
-
+package com.haycm.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.haycm.entity.Person;
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -21,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * @history 2014-2-15 下午3:00:12 dekota 新建
  * @since JDK1.5
  */
-@Controller
+@RestController
 public class DekotaAction {
 
     /**
@@ -29,19 +25,16 @@ public class DekotaAction {
      */
     private static final Logger logger = Logger.getLogger(DekotaAction.class);
 
-    @ResponseBody
     @RequestMapping(value = "/hello", produces = "text/plain;charset=UTF-8")
     public String hello() {
         return "你好！hello";
     }
 
-    @ResponseBody
     @RequestMapping(value = "/say/{msg}", produces = "application/json;charset=UTF-8")
     public String say(@PathVariable(value = "msg") String msg) {
         return "{\"msg\":\"you say:'" + msg + "'\"}";
     }
 
-    @ResponseBody
     @RequestMapping(value = "/personGet/{id:\\d+}", method = RequestMethod.GET)
     public Person getPerson(@PathVariable("id") int id) {
         logger.info("获取人员信息id = " + id);
@@ -53,7 +46,6 @@ public class DekotaAction {
         return person;
     }
 
-    @ResponseBody
     @RequestMapping(value = "/personPost", method = RequestMethod.POST)
     public JSONObject addPerson(@RequestBody JSONObject person) {
 //        logger.info("注册人员信息成功id=" + person.getId());
@@ -62,7 +54,6 @@ public class DekotaAction {
         return person;
     }
 
-    @ResponseBody
     @RequestMapping(value = "/personDel/{id:\\d+}", method = RequestMethod.DELETE)
     public Object deletePerson(@PathVariable("id") int id) {
         logger.info("删除人员信息id=" + id);
@@ -71,7 +62,6 @@ public class DekotaAction {
         return jsonObject;
     }
 
-    @ResponseBody
     @RequestMapping(value = "/personPut", method = RequestMethod.PUT)
     public Object updatePerson(Person person) {
         logger.info("更新人员信息id=" + person.getId());
@@ -80,7 +70,6 @@ public class DekotaAction {
         return jsonObject;
     }
 
-    @ResponseBody
     @RequestMapping(value = "/personPatch", method = RequestMethod.PATCH)
     public List<Person> listPerson(@RequestParam(value = "name", required = false, defaultValue = "") String name) {
 
@@ -109,13 +98,5 @@ public class DekotaAction {
         lstPersons.add(person3);
 
         return lstPersons;
-    }
-
-    @RequestMapping(value = "getGoodList", method = RequestMethod.POST)
-    public String listPage(HttpServletRequest request) {
-        String pageNumber = request.getParameter("pageNumber");
-        String pageSize = request.getParameter("pageSize");
-
-        return null;
     }
 }

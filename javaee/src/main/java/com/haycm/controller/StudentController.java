@@ -3,7 +3,6 @@ package com.haycm.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.haycm.entity.Person;
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -12,12 +11,11 @@ import java.util.List;
 /**
  * Created by taolei on 2017/8/15.
  */
-@Controller
+@RestController
 @RequestMapping(value = "student")
 public class StudentController {
     private static final Logger logger = Logger.getLogger(StudentController.class);
 
-    @ResponseBody
     @RequestMapping(value = "view/{studentId}", method = RequestMethod.GET)
     public Person getStudent(@PathVariable("studentId") int studentId) {
         logger.info("获取学生信息id = " + studentId);
@@ -29,7 +27,6 @@ public class StudentController {
         return person;
     }
 
-    @ResponseBody
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<JSONObject> studentList() {
         List<JSONObject> students = new ArrayList<>();
@@ -44,20 +41,17 @@ public class StudentController {
         return students;
     }
 
-    @ResponseBody
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public JSONObject editStudent(@RequestBody JSONObject student) {
         return student;
     }
 
-    @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public JSONObject addStudent(@RequestBody JSONObject student) {
         return student;
     }
 
 
-    @ResponseBody
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public JSONObject deleteStudent(@RequestBody JSONObject student) {
         student.put("status","fail");
