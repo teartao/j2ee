@@ -14,7 +14,7 @@ import java.util.UUID;
 @Service
 public class EditorHelper {
 
-    @Value("${apphome}")
+//    @Value("${apphome}")
     private String apphome;
 
     private static Logger log = LoggerFactory.getLogger(EditorHelper.class);

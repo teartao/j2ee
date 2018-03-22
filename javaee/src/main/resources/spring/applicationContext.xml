@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans default-lazy-init="true"
-       xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
-    <!-- 自动扫描的包路径 -->
     <context:component-scan base-package="com.haycm"/>
-
-    <!-- 引入配置文件配置数据源 -->
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
@@ -22,9 +17,8 @@
                 <value>classpath:properties/env-log4j.properties</value>
             </list>
         </property>
-        <property name="fileEncoding" value="utf-8" />
+        <property name="fileEncoding" value="utf-8"/>
     </bean>
-
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="${driver}"/>
@@ -37,16 +31,12 @@
         <property name="minIdle" value="${minIdle}"/>
         <property name="maxWait" value="${maxWait}"/>
     </bean>
-
-    <!-- spring和MyBatis整合 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
           p:dataSource-ref="dataSource"
           p:mapperLocations="classpath:mapper/*.xml"/>
-
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer"
           p:basePackage="com.haycm.dao"
           p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
-
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"
           p:host="smtp.qq.com" p:port="587"
           p:username="775311684@qq.com"
@@ -57,6 +47,4 @@
             </props>
         </property>
     </bean>
-
-
 </beans>
