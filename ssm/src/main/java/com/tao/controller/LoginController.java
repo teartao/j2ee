@@ -19,7 +19,7 @@ public class LoginController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "doLogin", method = RequestMethod.POST)
+    @RequestMapping(value = "doLogin")
     public ResultDTO<JSONObject> doLogin(String username, String password) {
         ResultDTO<JSONObject> result = new ResultDTO<>();
         if (username != null && !"".equals(username) && password != null && !"".equals(password)) {
@@ -30,6 +30,7 @@ public class LoginController {
                 data.put("riderId", "92");
                 data.put("token", "EkQpvLZZRbG1GB44pSuluw==");
                 result.setData(data);
+                return result;
             }
         }
         result.setCode(401);
