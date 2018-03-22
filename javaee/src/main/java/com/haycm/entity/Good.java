@@ -1,6 +1,6 @@
 package com.haycm.entity;
 
-import com.haycm.util.NowDateUtil;
+import util.NowDateUtil;
 
 public class Good {
 	private String longId;// 商品id
