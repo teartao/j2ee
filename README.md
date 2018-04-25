@@ -5,5 +5,8 @@
 ###概览
 后端：基于maven spring springMVC mybatis mysql搭建，其他类库框架有log4j poi fastjson；
 
-前端：含各种框架类库主要有angularJS requireJS GoJS-tree 百度地图 highcharts jquery easyui  ueditor 等等 
+前端：含各种框架类库主要有angularJS requireJS GoJS-tree 百度地图 highcharts jquery easyui  ueditor 等等
+
+##【peggy.txt】
+小猪佩琪字符画注释 
 
