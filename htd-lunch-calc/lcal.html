@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./lib/lib.js"></script>
+
+</head>
+<body>
+<p>菜单</p>
+<textarea id="menu" style="width: 200px;height: 150px"></textarea>
+<pre>
+    5月16日    //第一行日期 默认忽略不作为菜单，如果没有日期，第一行可用换行代替
+    土豆肉圆 12  //  文字为菜单  数字为单价
+    土豆    // 没有数字默认10元
+</pre>
+<br>============================
+<p>点餐</p>
+<textarea id="order" style="width: 200px;height: 150px" onblur="calcPrice()"></textarea>
+
+<pre>
+    土豆肉圆 12  //  文字为菜单  数字为数量
+    土豆         // 没有数字默认点1份
+</pre>
+<br>============================
+<p>总价:</p>
+<h2 id="price"></h2>
+<script src="calc.js"></script>
+</body>
+</html>
