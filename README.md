@@ -33,6 +33,6 @@
 ```
 
 HTD食堂点餐demo
- [demo](https://github.com/teartao/universe/blob/master/htd-lunch-calc/lcal.html) 
+ [demo](http://htmlpreview.github.io/?https://github.com/teartao/universe/blob/master/htd-lunch-calc/lcal.html) 
 
 
