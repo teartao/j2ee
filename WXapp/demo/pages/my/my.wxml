@@ -1,0 +1,29 @@
+<!--index.wxml-->
+<view class="wrap">
+  <view class="userinfo">
+      <image src="{{userInfo.avatarUrl}}"></image>
+      <view class='white'>{{userInfo.nickName}}</view>
+  </view>
+  <view class='must-lists'>
+    <view class='must-list-title'>
+      必看清单
+    </view>
+    <view class='must-list'>
+      <view class='my-img'>
+          <navigator><image src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507361925.jpg" class='cover-img'></image></navigator>
+          <view class='my-text'>
+            <text class='my-text-title'>芳华</text>
+            <view>
+              <image src="../../imgs/star-open.png"></image>
+              <image src="../../imgs/star-open.png"></image>
+              <image src="../../imgs/star-open.png"></image>
+              <image src="../../imgs/star-open.png"></image>
+              <image src="../../imgs/star-close.png"></image>
+              <text class='my-text-comment'>7.9</text>
+            </view>
+          </view>
+          <button class='btnDelete' >删除</button>
+      </view>
+    </view>
+  </view>   
+</view>

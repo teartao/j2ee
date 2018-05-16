@@ -1,0 +1,24 @@
+
+  <view class="page-body">
+    <view class="page-section">
+      <view class="page-section-title">下方输入菜单</view>
+      <view class="textarea-wrp">
+        <textarea bindblur="bindTextAreaBlur" style="height: 15em"/>
+      </view>
+    </view>
+  </view>
+
+  <radio-group bindchange="selectRecipt" wx:if="{{menus!=null && menus.length>0}}">
+    <view class="danger">请确认菜单是否有误:确认无误后点击【发布】按钮</view>
+    <label class="weui-cell weui-check__label" wx:for="{{menus}}" wx:key="{{item.name}}">
+      <view class="weui-cell__hd">
+        <radio value="{{item.name}}"/>{{item.name}} {{item.price}}
+      </view>
+    </label>
+  </radio-group>
+
+  <view class="operations" wx:if="{{menus!=null && menus.length>0}}">
+      <button type="warn" class="operation-btn"
+      bindtap="submitMenu"
+      >发布</button>
+  </view>

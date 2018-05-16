@@ -1,0 +1,17 @@
+<view class="wrap">
+  <view class='comments-list'>
+    <view class='comments-time'>2017-12-17</view>
+      <view class='comments-img'>
+      <image src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507361925.jpg"></image>
+    </view>  
+    <view class='comments-text'>
+      <view class='comments-text-title'>抱歉，我无法赞美《芳华》抱歉，我无法赞美《芳华》抱歉，我无法赞美《芳华》</view>
+      <text class='comments-text-text'>《芳华》说是要怀缅青春，但冯小刚真正要怀缅的只是那些青春靓丽的女性，这是他当年可望而不可及的美好。所以这部电影中的女性几乎没有什么坏人，但凡有一些遭人诟病的行为，比如林丁丁对刘峰的伤害，便马上以穗子这个第三者角度的旁白补充道：“后来，我终于理解（明白）了……”。一切行为都被理解、原谅了，剩下的只有泳池和舞蹈室中摇曳生姿的曼妙身影，风华正茂自不待言。</text>
+      <view>
+        <text class='comments-text-text1'>by:</text>
+        <text class='douban-time'>豆瓣时间</text>
+      </view>
+    </view>
+  </view>
+  
+</view>
