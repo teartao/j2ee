@@ -8,17 +8,14 @@
     </view>
   </view>
 
-  <radio-group bindchange="selectRecipt" wx:if="{{menus!=null && menus.length>0}}">
-    <view class="danger">请确认菜单是否有误:确认无误后点击【发布】按钮</view>
-    <label class="weui-cell weui-check__label" wx:for="{{menus}}" wx:key="{{item.name}}">
-      <view class="weui-cell__hd">
-        <radio value="{{item.name}}"/>{{item.name}} {{item.price}}
-      </view>
-    </label>
-  </radio-group>
+  <view wx:if="{{menus!=null && menus.length>0}}">
+    <view class="danger">确认菜单无误后点击【发布】按钮</view>
+    <view wx:for="{{menus}}" wx:key="{{item.name}}">
+      {{item.name}}     【￥{{item.price}}】
+    </view>
+  </view>
 
   <view class="operations" wx:if="{{menus!=null && menus.length>0}}">
       <button type="warn" class="operation-btn"
-      bindtap="submitMenu"
-      >发布</button>
+      bindtap="submitMenu">发布</button>
   </view>

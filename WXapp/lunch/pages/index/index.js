@@ -4,7 +4,6 @@ const app = getApp()
 
 Page({
   data: {
-    motto: '今天，你点饭了吗？',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -49,14 +48,6 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
-    })
-  },
-  showMenu:function(e){
-    console.log(e);
-    app.globalData.menuInfo = e.detail.menuInfo
-    this.setData({
-      menuInfo: e.detail.menuInfo,
-      hasMenuInfo: true
     })
   }
 })

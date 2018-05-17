@@ -108,9 +108,6 @@ Page({
   },
   submitMenu:function(e){
 
-  }, 
-  selectRecipt:function(e){
-
   }
 })
 
