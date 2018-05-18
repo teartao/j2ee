@@ -12,6 +12,10 @@ File Encoding         : 65001
 
 Date: 2018-05-18 23:38:29
 */
+DROP SCHEMA IF EXISTS `htd_lunch`;
+create database `htd_lunch`;
+
+use htd_lunch;
 
 SET FOREIGN_KEY_CHECKS=0;
 
