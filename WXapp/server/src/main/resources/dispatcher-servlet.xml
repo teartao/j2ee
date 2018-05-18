@@ -31,4 +31,16 @@
     <!-- 视图解析器，根据视图的名称new ModelAndView(name)，在配置文件查找对应的bean配置 -->
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
 
+    <!--配置拦截器, 多个拦截器,顺序执行 -->
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller -->
+            <mvc:mapping path="/"/>
+            <mvc:mapping path="/user/**"/>
+            <mvc:mapping path="/test/**"/>
+            <bean class="com.tao.interceptor.ParameterInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
