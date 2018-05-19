@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 public abstract class BaseDao<T> {
-    private String tableName;
 
     protected abstract String getTableName();
 
