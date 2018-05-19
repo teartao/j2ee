@@ -115,7 +115,8 @@ Page({
     //   "nickName":"陶呵呵",
     //  "gender":1, 
     //  "language":"zh_CN", 
-    //  "city":"", "province":"Firenze", 
+    //  "city":"",
+    // "province":"Firenze",
     //  "country":"Italy", 
     //  "avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/PiajxSqBRaEJrjrX8xptUibYibicn4dvplVIWBrRhTyDIIPTar7uHl86KMjX92HMIxIGZV92PCcTiaqy0gTP4jKxOWQ/132" 
     //  }

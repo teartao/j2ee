@@ -91,7 +91,9 @@ CREATE TABLE `user_wx` (
   `gender` varchar(255) DEFAULT NULL,
   `language` varchar(255) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
+  `province` varchar(255) DEFAULT NULL,
   `country` varchar(255) DEFAULT NULL,
+  `avatar_url` varchar(255) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
