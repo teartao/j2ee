@@ -1,7 +1,6 @@
 package com.tao.dao;
 
-import org.springframework.stereotype.Component;
+import com.tao.dto.Order;
 
-@Component
-public class OrderDao {
+public interface OrderDao extends BaseDao<Order> {
 }

@@ -1,7 +1,6 @@
 package com.tao.dao;
 
-import org.springframework.stereotype.Component;
+import com.tao.dto.MenuSelection;
 
-@Component
-public class MenuSelectionDao {
+public interface MenuSelectionDao extends BaseDao<MenuSelection> {
 }

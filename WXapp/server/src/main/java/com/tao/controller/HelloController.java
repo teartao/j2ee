@@ -2,7 +2,6 @@ package com.tao.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.tao.dto.Menu;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,8 +15,6 @@ import java.io.IOException;
 public class HelloController {
     @Resource
     private MenuService menuService;
-    @Resource
-    private JdbcTemplate jdbcTemplate;
 
     @RequestMapping(value = "json", method = RequestMethod.GET)
     public JSONObject getJsonObj() throws IOException {
@@ -35,7 +32,6 @@ public class HelloController {
     public JSONObject addMenu(@RequestBody Menu menu) {
         menuService.publishMenu(menu);
 
-//        jdbcTemplate.batchUpdate();
         return new JSONObject();
     }
 }

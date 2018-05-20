@@ -1,7 +1,6 @@
 package com.tao.dao;
 
-import org.springframework.stereotype.Component;
+import com.tao.dto.WxUser;
 
-@Component
-public class UserWxDao {
+public interface UserWxDao extends BaseDao<WxUser> {
 }

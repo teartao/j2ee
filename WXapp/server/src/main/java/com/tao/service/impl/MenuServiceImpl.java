@@ -1,10 +1,11 @@
 package com.tao.service.impl;
 
+import com.tao.dao.MenuDao;
+import com.tao.dao.MenuSelectionDao;
 import com.tao.dao.UserDao;
 import com.tao.dto.Menu;
 import com.tao.dto.MenuSelection;
 import com.tao.dto.User;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import com.tao.service.MenuService;
 
@@ -22,31 +23,20 @@ import java.util.List;
 public class MenuServiceImpl implements MenuService {
 
     @Resource
-    private JdbcTemplate jdbcTemplate;
-    @Resource
     private UserDao userDao;
+    @Resource
+    private MenuDao menuDao;
+
+    @Resource
+    private MenuSelectionDao menuSelectionDao;
 
     @Override
     public Menu publishMenu(Menu menu) {
-        User user = userDao.findOne(new User());
-        if (user == null) {
-            userDao.add(menu.getCreater());
-        } else {
-
+        menuDao.add(menu);
+        for (MenuSelection selection : menu.getSelectionList()) {
+            menuSelectionDao.add(selection);
         }
-
-        List<MenuSelection> selections = new ArrayList();
-
-        MenuSelection selection = new MenuSelection();
-        selection.setName("土豆烧鸡");
-        selection.setPrice(12);
-        selections.add(selection);
-        menu.setSelectionList(selections);
-
-        String sql = "insert into menu(`title`,`create_time`,`creater_id`) values(?,?,?)";
-        jdbcTemplate.update(sql,
-                new Object[]{menu.getTitle(), menu.getCreateTime(), menu.getCreaterId()});
-        return null;
+        return menu;
     }
 
     @Override
