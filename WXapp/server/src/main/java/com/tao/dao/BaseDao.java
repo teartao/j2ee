@@ -2,7 +2,9 @@ package com.tao.dao;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public abstract class BaseDao<T> {
@@ -28,5 +30,16 @@ public abstract class BaseDao<T> {
 
         System.out.println(sqlBuilder.toString());
         return wrapToObject(columnsJSON);
+    }
+
+    public List<T> findList(T param) {
+        return new ArrayList<T>();
+    }
+
+    public int add(T param) {
+        if (param != null) {
+            return 1;
+        }
+        return -1;
     }
 }

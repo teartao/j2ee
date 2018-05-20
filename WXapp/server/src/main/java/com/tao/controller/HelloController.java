@@ -33,9 +33,9 @@ public class HelloController {
 
     @RequestMapping(value = "menu", method = RequestMethod.POST)
     public JSONObject addMenu(@RequestBody Menu menu) {
-//        menuService.publishMenu(menu);
+        menuService.publishMenu(menu);
 
-        jdbcTemplate.batchUpdate();
+//        jdbcTemplate.batchUpdate();
         return new JSONObject();
     }
 }

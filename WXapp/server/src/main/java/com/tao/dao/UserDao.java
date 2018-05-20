@@ -2,7 +2,9 @@ package com.tao.dao;
 
 import com.tao.dto.User;
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserDao extends BaseDao<User> {
     @Override
     protected String getTableName() {
