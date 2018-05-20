@@ -17,7 +17,7 @@
         = #{name}
     </select>
 
-    <select id="findList" parameterType="com.haycm.entity.Page"
+    <select id="findList" parameterType="net.hehe.common.Page"
             resultType="com.tao.dto.Menu">
         select longid AS longId, name AS name , price AS price,
         image_url AS imageUrl ,
