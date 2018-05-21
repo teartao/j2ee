@@ -1,4 +1,4 @@
-package com.tao.dto;
+package com.tao.entity;
 
 public class Result<T> {
     private String code;

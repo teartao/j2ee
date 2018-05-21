@@ -1,7 +1,6 @@
 package com.tao.interceptor;
 
-import com.alibaba.fastjson.JSONObject;
-import com.tao.dto.Result;
+import com.tao.entity.Result;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

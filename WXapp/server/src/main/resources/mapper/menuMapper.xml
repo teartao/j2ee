@@ -1,31 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tao.dto.Menu">
-    <insert id="add" parameterType="com.tao.dto.Menu"
+<mapper namespace="com.tao.entity.Menu">
+    <insert id="add" parameterType="com.tao.entity.Menu"
             flushCache="true">
         INSERT INTO menu INSERT INTO menu (`title`)VALUES
         (#{title})
     </insert>
 
-    <select id="find" parameterType="com.tao.dto.Menu"
-            resultType="com.tao.dto.Menu">
-        SELECT
-        longid AS longId, name AS name , price AS price,
-        image_url AS imageUrl ,
-        description AS description FROM good WHERE name
-        = #{name}
+    <select id="find" parameterType="com.tao.entity.Menu"
+            resultType="com.tao.entity.Menu">
+        SELECT m.* FROM menu m
+        WHERE 1=1
+        <if test="id !=null">
+            AND m.id=#{id}
+        </if>
+        <if test="id !=null">
+            AND m.title=#{title}
+        </if>
+        <if test="id !=null">
+            AND m.create_time=#{createTime}
+        </if>
+        <if test="id !=null">
+            AND m.creater_id=#{createrId}
+        </if>
     </select>
 
     <select id="findList" parameterType="net.hehe.common.Page"
-            resultType="com.tao.dto.Menu">
-        select longid AS longId, name AS name , price AS price,
-        image_url AS imageUrl ,
-        description AS description FROM good limit
-        #{startNum},#{pageSize}
+            resultType="com.tao.entity.Menu">
+        SELECT m.* FROM menu m
+        WHERE 1=1
+        <if test="id !=null">
+            AND m.id=#{id}
+        </if>
+        <if test="id !=null">
+            AND m.title=#{title}
+        </if>
+        <if test="id !=null">
+            AND m.create_time=#{createTime}
+        </if>
+        <if test="id !=null">
+            AND m.creater_id=#{createrId}
+        </if>
+        <if test="startNum !=null and pageSize!=null">
+            limit #{startNum},#{pageSize}
+        </if>
     </select>
 
-    <update id="update" parameterType="com.tao.dto.Menu">
+    <update id="update" parameterType="com.tao.entity.Menu">
         UPDATE good SET
         name=#{name},
         price=#{price}, image_url=#{imageUrl},
@@ -34,7 +56,7 @@
         #{longId}
     </update>
 
-    <delete id="delete" parameterType="com.tao.dto.Menu">
+    <delete id="delete" parameterType="com.tao.entity.Menu">
         DELETE FROM good
         WHERE name = #{name}
     </delete>

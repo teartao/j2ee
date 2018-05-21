@@ -1,7 +1,9 @@
 package com.tao.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.tao.dto.Menu;
+import com.tao.entity.Menu;
+import com.tao.entity.User;
+import com.tao.service.UserService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +17,8 @@ import java.io.IOException;
 public class HelloController {
     @Resource
     private MenuService menuService;
+    @Resource
+    private UserService userService;
 
     @RequestMapping(value = "json", method = RequestMethod.GET)
     public JSONObject getJsonObj() throws IOException {
@@ -31,6 +35,12 @@ public class HelloController {
     @RequestMapping(value = "menu", method = RequestMethod.POST)
     public JSONObject addMenu(@RequestBody Menu menu) {
         menuService.publishMenu(menu);
+
+        return new JSONObject();
+    }
+    @RequestMapping(value = "user", method = RequestMethod.POST)
+    public JSONObject addMenu(@RequestBody User user) {
+        userService.createUser(user);
 
         return new JSONObject();
     }

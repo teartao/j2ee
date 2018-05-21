@@ -1,6 +1,6 @@
 package com.tao.dao;
 
-import com.tao.dto.Order;
+import com.tao.entity.Order;
 
 public interface OrderDao extends BaseDao<Order> {
 }

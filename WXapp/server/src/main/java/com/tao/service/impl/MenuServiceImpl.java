@@ -3,15 +3,12 @@ package com.tao.service.impl;
 import com.tao.dao.MenuDao;
 import com.tao.dao.MenuSelectionDao;
 import com.tao.dao.UserDao;
-import com.tao.dto.Menu;
-import com.tao.dto.MenuSelection;
-import com.tao.dto.User;
+import com.tao.entity.Menu;
+import com.tao.entity.MenuSelection;
 import org.springframework.stereotype.Service;
 import com.tao.service.MenuService;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Author neotao
@@ -26,7 +23,6 @@ public class MenuServiceImpl implements MenuService {
     private UserDao userDao;
     @Resource
     private MenuDao menuDao;
-
     @Resource
     private MenuSelectionDao menuSelectionDao;
 

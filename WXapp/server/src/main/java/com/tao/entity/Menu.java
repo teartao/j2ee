@@ -1,4 +1,4 @@
-package com.tao.dto;
+package com.tao.entity;
 
 import java.util.Date;
 import java.util.List;

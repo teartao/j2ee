@@ -1,6 +1,6 @@
 package com.tao.service;
 
-import com.tao.dto.Menu;
+import com.tao.entity.Menu;
 
 /**
  * @Author neotao

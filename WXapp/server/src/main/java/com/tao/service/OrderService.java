@@ -1,7 +1,7 @@
 package com.tao.service;
 
-import com.tao.dto.Order;
-import com.tao.dto.User;
+import com.tao.entity.Order;
+import com.tao.entity.User;
 
 /**
  * @Author neotao
