@@ -1,26 +1,27 @@
-package com.tao.entity;
+package com.tao.dto;
+
+import java.io.Serializable;
 
 /**
  * @Author neotao
- * @Date 2018/5/18
+ * @Date 2018/5/21
  * @Version V0.0.1
  * @Desc
  */
-public class WxUser {
-    private long id;
+public class UserDTO implements Serializable {
+    private int id;
     private String nickName;
     private String gender;
     private String language;
     private String city;
     private String country;
-    private String avatarUrl;
-    private long userId;
+    private String avatarUrl;;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -70,13 +71,5 @@ public class WxUser {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
     }
 }

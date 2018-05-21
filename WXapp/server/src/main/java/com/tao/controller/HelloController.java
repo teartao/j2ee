@@ -1,8 +1,10 @@
 package com.tao.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.tao.dto.UserDTO;
 import com.tao.entity.Menu;
 import com.tao.entity.User;
+import com.tao.entity.WxUser;
 import com.tao.service.UserService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +41,21 @@ public class HelloController {
         return new JSONObject();
     }
     @RequestMapping(value = "user", method = RequestMethod.POST)
-    public JSONObject addMenu(@RequestBody User user) {
+    public JSONObject addMenu(@RequestBody UserDTO userDTO) {
+        User user = new User();
+        user.setId(userDTO.getId());
+        user.setName(userDTO.getNickName());
+
+        WxUser wxUser = new WxUser();
+        wxUser.setCity(userDTO.getCity());
+        wxUser.setCountry(userDTO.getCountry());
+        wxUser.setGender(userDTO.getGender());
+        wxUser.setLanguage(userDTO.getLanguage());
+        wxUser.setNickName(userDTO.getNickName());
+        wxUser.setLanguage(userDTO.getLanguage());
+        wxUser.setAvatarUrl(userDTO.getAvatarUrl());
+
+        user.setWxUser(wxUser);
         userService.createUser(user);
 
         return new JSONObject();

@@ -5,6 +5,7 @@ import com.tao.dao.UserWxDao;
 import com.tao.entity.User;
 import com.tao.entity.WxUser;
 import com.tao.service.UserService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
  * @Version V0.0.1
  * @Desc
  */
+@Service
 public class UserServiceImpl implements UserService {
 
     @Resource

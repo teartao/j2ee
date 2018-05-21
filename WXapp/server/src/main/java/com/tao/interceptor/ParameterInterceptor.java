@@ -1,5 +1,6 @@
 package com.tao.interceptor;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,11 +22,11 @@ public class ParameterInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object object, ModelAndView modelAndView) throws Exception {
-        System.out.println("postHandle");
+        System.out.println("postHandle：" + JSON.toJSONString(object));
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object object, Exception e) throws Exception {
-        System.out.println("afterCompletion");
+        System.out.println("afterCompletion："+ JSON.toJSONString(object));
     }
 }
