@@ -36,13 +36,20 @@ public class UserServiceImpl implements UserService {
     public User createUser(User user) {
         WxUser wxUser = user.getWxUser();
 
-        userDao.add(user);
         User rsUser = userDao.find(user);
+        if (rsUser == null) {
+            userDao.add(user);
+            rsUser = userDao.find(user);
+        }
 
         wxUser.setUserId(rsUser.getId());
-        userWxDao.add(wxUser);
+        WxUser rsWxUser = userWxDao.find(wxUser);
+        if (rsWxUser == null) {
+            userWxDao.add(wxUser);
+            rsWxUser = userWxDao.find(wxUser);
+        }
 
-        rsUser.setWxUser(userWxDao.find(wxUser));
+        rsUser.setWxUser(rsWxUser);
         return rsUser;
     }
 }
