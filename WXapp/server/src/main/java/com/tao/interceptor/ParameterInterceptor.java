@@ -16,17 +16,17 @@ import javax.servlet.http.HttpServletResponse;
 public class ParameterInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
-        System.out.println("preHandle");
+        System.out.println("===============\npreHandle");
         return true;
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object object, ModelAndView modelAndView) throws Exception {
-        System.out.println("postHandle：" + JSON.toJSONString(object));
+        System.out.println("\n\n===============\npostHandle：" + JSON.toJSONString(object));
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object object, Exception e) throws Exception {
-        System.out.println("afterCompletion："+ JSON.toJSONString(object));
+        System.out.println("\n\n===============\nafterCompletion："+ JSON.toJSONString(object));
     }
 }

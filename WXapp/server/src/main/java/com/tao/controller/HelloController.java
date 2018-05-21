@@ -55,6 +55,8 @@ public class HelloController {
         user.setWxUser(wxUser);
         userService.createUser(user);
 
-        return new JSONObject();
+        JSONObject json = new JSONObject();
+        json.put("xxx","asd");
+        return json;
     }
 }
