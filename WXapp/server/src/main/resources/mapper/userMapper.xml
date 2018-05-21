@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tao.entity.UserDao">
+<mapper namespace="com.tao.dao.UserDao">
+    <insert id="add" parameterType="com.tao.entity.User"
+            flushCache="true">
+        INSERT INTO `user` (`name`)VALUES
+        (#{entity.name})
+    </insert>
     <select id="find" parameterType="com.tao.entity.User"
             resultType="com.tao.entity.User">
         SELECT u.* FROM `user` u
         WHERE 1=1
-        <if test="id !=null">
-            AND u.id=#{id}
+        <if test="entity.id !=null">
+            AND u.id=#{entity.id}
         </if>
-        <if test="id !=null">
-            AND u.name=#{name}
+        <if test="entity.name !=null">
+            AND u.name=#{entity.name}
         </if>
     </select>
 </mapper>

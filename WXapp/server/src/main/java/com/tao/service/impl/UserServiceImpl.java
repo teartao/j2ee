@@ -34,14 +34,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        userDao.add(user);
-        user = userDao.find(user);
-
         WxUser wxUser = user.getWxUser();
-        wxUser.setUserId(user.getId());
+
+        userDao.add(user);
+        User rsUser = userDao.find(user);
+
+        wxUser.setUserId(rsUser.getId());
         userWxDao.add(wxUser);
 
-        user.setWxUser(userWxDao.find(wxUser));
-        return user;
+        rsUser.setWxUser(userWxDao.find(wxUser));
+        return rsUser;
     }
 }

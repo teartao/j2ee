@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @Desc
  */
 public class UserDTO implements Serializable {
-    private int id;
+    private Integer id;
     private String nickName;
     private String gender;
     private String language;

@@ -9,26 +9,26 @@ import java.util.Date;
  * @Desc
  */
 public class Order {
-    private long userId;
-    private long selection_id;
+    private Long userId;
+    private Long selection_id;
     private Date createTime;
 
     private User creater;
     private MenuSelection selection;
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public long getSelection_id() {
+    public Long getSelection_id() {
         return selection_id;
     }
 
-    public void setSelection_id(long selection_id) {
+    public void setSelection_id(Long selection_id) {
         this.selection_id = selection_id;
     }
 

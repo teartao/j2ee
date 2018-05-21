@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tao.entity.WxUserDao">
+<mapper namespace="com.tao.dao.UserWxDao">
+    <insert id="add" parameterType="com.tao.entity.WxUser"
+            flushCache="true">
+        INSERT INTO `user_wx` (
+          `nick_name`,`gender`,`language`,`city`,`province`,`country`,`avatar_url`,`user_id`
+        )VALUES (
+          #{entity.nickName},#{entity.gender},#{entity.language},#{entity.city},
+          #{entity.province},#{entity.country},#{entity.avatarUrl},#{entity.userId}
+        )
+    </insert>
 
+    <select id="find" parameterType="com.tao.entity.WxUser"
+            resultMap="columnMap">
+        SELECT u.* FROM `user_wx` u
+        WHERE 1=1
+        <if test="entity.nickName !=null">
+            AND u.nick_name=#{entity.nickName}
+        </if>
+        <if test="entity.gender !=null">
+            AND u.gender=#{entity.gender}
+        </if>
+        <if test="entity.language !=null">
+            AND u.language=#{entity.language}
+        </if>
+        <if test="entity.city !=null">
+            AND u.city=#{entity.city}
+        </if>
+        <if test="entity.province !=null">
+            AND u.province=#{entity.province}
+        </if>
+        <if test="entity.country !=null">
+            AND u.country=#{entity.country}
+        </if>
+        <if test="entity.avatarUrl !=null">
+            AND u.avatar_url=#{entity.avatarUrl}
+        </if>
+        <if test="entity.userId !=null">
+            AND u.user_id=#{entity.userId}
+        </if>
+    </select>
+
+
+    <resultMap id="columnMap" type="com.tao.entity.WxUser" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="gender" property="gender" jdbcType="VARCHAR" />
+        <result column="language" property="language" jdbcType="VARCHAR" />
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="province" property="province" jdbcType="VARCHAR" />
+        <result column="country" property="country" jdbcType="VARCHAR" />
+        <result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+    </resultMap>
 </mapper>

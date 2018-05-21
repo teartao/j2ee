@@ -28,9 +28,6 @@ public class HelloController {
         result.put("aaa", "呵呵额");
         result.put("bbb", "222");
         result.put("ccc", "333");
-        if (result.getString("xxx") == null) {
-            throw new RuntimeException("xxxx");
-        }
         return result;
     }
 
@@ -43,7 +40,7 @@ public class HelloController {
     @RequestMapping(value = "user", method = RequestMethod.POST)
     public JSONObject addMenu(@RequestBody UserDTO userDTO) {
         User user = new User();
-        user.setId(userDTO.getId());
+//        user.setId(userDTO.getId());
         user.setName(userDTO.getNickName());
 
         WxUser wxUser = new WxUser();

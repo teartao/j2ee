@@ -7,20 +7,21 @@ package com.tao.entity;
  * @Desc
  */
 public class WxUser {
-    private long id;
+    private Long id;
     private String nickName;
     private String gender;
     private String language;
     private String city;
+    private String province;
     private String country;
     private String avatarUrl;
-    private long userId;
+    private Long userId;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -56,6 +57,14 @@ public class WxUser {
         this.city = city;
     }
 
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
     public String getCountry() {
         return country;
     }
@@ -72,11 +81,11 @@ public class WxUser {
         this.avatarUrl = avatarUrl;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 }
