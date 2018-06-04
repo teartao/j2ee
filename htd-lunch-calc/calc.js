@@ -61,6 +61,6 @@ function calcPrice() {
                 }
             }
         }
+        priceDom.innerText = price;
     }
-    priceDom.innerText = price;
 }
