@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: gray;
+    font-family: Consolas, serif;
+}
+
+.blackboard {
+    background-color: #000000;
+    width: 100%;
+    height: 35%;
+    position: absolute;
+    top: 0;
+    overflow-y: auto;
+}
+
+.button-area {
+    width: 100%;
+    height: 65%;
+    position: absolute;
+    bottom: 0;
+}
+
+div.inline-div {
+    display: inline-block;
+}
+
+.his-row{
+    display: inline-block;
+    width: 100%;
+    height: 14%;
+    font-size: 4rem;
+    color: #eeeeee;
+    text-align: right;
+    line-height: 7rem;
+}
+.input-area{
+    font-size: 5rem;
+}
+
+.buttons-tb {
+    width: 100%;height: 100%;
+}
+
+.buttons-tb tr{
+    height: 20%;
+}
+.buttons-tb td {
+    width: 25%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 4rem;
+}
+
+td.num-btn {
+    background-color: #cccccc;
+}
+
+td.danger-btn {
+    background-color: indianred;
+}
+
+td.calc-btn {
+    background-color: #41e8a9;
+}
+
+td.warn-btn {
+    background-color: orange;
+}
