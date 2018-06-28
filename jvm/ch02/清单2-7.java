@@ -1,3 +1,6 @@
+/**
+ * 清单2-7.txt
+ */
 public class RuntimeConstantPoolOOM {
 
 	public static void main(String[] args) {
