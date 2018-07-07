@@ -1,3 +1,9 @@
+package ch02.eg2code9;
+
+import sun.misc.Unsafe;
+
+import java.lang.reflect.Field;
+
 /**
  * 清单2-9.txt
  * VM Args：-Xmx20M -XX:MaxDirectMemorySize=10M

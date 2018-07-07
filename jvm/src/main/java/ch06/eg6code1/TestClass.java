@@ -1,4 +1,4 @@
-package org.fenixsoft.clazz;
+package ch06.eg6code1;
 
 public class TestClass {
 
