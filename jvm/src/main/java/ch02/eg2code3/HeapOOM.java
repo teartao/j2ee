@@ -1,3 +1,5 @@
+package ch02.eg2code3;
+
 import java.util.ArrayList;
 import java.util.List;
 

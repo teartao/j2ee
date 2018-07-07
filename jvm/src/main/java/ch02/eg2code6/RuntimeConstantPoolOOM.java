@@ -1,3 +1,8 @@
+package ch02.eg2code6;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 清单2-6.txt
  * VM Args：-XX:PermSize=10M -XX:MaxPermSize=10M

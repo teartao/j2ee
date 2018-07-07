@@ -1,3 +1,5 @@
+package ch02.eg2code4;
+
 /**
  * 清单2-4.txt
  * VM Args：-Xss128k

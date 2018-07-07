@@ -1,3 +1,5 @@
+package ch02.eg2code5;
+
 /**
  * 清单2-5.txt
  * VM Args：-Xss2M （这时候不妨设大些）
