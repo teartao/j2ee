@@ -50,6 +50,21 @@ function calcPrice() {
     } else if (orders == null || orders.length <= 0) {
         alert('不点吃个P啊');
     } else {
+
+        console.log("菜单列表：");
+        console.log(menus);
+        let menuHtml = '';
+        for (let i = 0; i < menus; i++) {
+            menuHtml += (menus[i].name + '--' + menus[i].name);
+        }
+        for (let i = 0; i < menus; i++) {
+            menuHtml += (menus[i].name + '--' + menus[i].name);
+        }
+        let orderHtml = '';
+        $('#orderDetail').html(menuHtml);
+
+        console.log("点餐明细：");
+        console.log(orders);
         let price = 0;
         for (let i = 0; i < orders.length; i++) {
             const order = orders[i];

@@ -11,12 +11,12 @@
 <textarea id="menu" style="width: 200px;height: 150px"></textarea>
 <pre>
     5月16日    //第一行日期 默认忽略不作为菜单，如果没有日期，第一行可用换行代替
-    土豆肉圆 12  //  文字为菜单  数字为单价
-    土豆    // 没有数字默认10元
+    土豆肉圆 12  //  文字为菜单  数字为单价（没有数字默认10元）
 </pre>
 <br>============================
 <p>点餐</p>
 <textarea id="order" style="width: 200px;height: 150px" onblur="calcPrice()"></textarea>
+<pre id="orderDetail" style="width: 200px;height: 150px"></pre>
 
 <pre>
     土豆肉圆 12  //  文字为菜单  数字为数量
