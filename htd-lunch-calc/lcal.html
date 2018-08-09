@@ -4,19 +4,33 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="./lib/lib.js"></script>
-
+    <style>
+        textarea.txt-area{
+            float: left;
+        }
+        .txt-area {
+            width: 200px;
+            height: 150px;
+        }
+        .container{
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
 <p>菜单</p>
-<textarea id="menu" style="width: 200px;height: 150px"></textarea>
+<textarea id="menu"  class="txt-area"></textarea>
+<div id="menuContainer" class="container txt-area">111</div>
 <pre>
     5月16日    //第一行日期 默认忽略不作为菜单，如果没有日期，第一行可用换行代替
     土豆肉圆 12  //  文字为菜单  数字为单价（没有数字默认10元）
 </pre>
 <br>============================
 <p>点餐</p>
-<textarea id="order" style="width: 200px;height: 150px" onblur="calcPrice()"></textarea>
-<pre id="orderDetail" style="width: 200px;height: 150px"></pre>
+<textarea id="order" class="txt-area" onblur="calcPrice()"></textarea>
+<div id="orderContainer" class="container txt-area">222</div>
+
+<div id="orderDetail" class="txt-area"></div>
 
 <pre>
     土豆肉圆 12  //  文字为菜单  数字为数量

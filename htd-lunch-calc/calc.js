@@ -50,19 +50,8 @@ function calcPrice() {
     } else if (orders == null || orders.length <= 0) {
         alert('不点吃个P啊');
     } else {
-
-        console.log("菜单列表：");
+        console.log("菜单明细：");
         console.log(menus);
-        let menuHtml = '';
-        for (let i = 0; i < menus; i++) {
-            menuHtml += (menus[i].name + '--' + menus[i].name);
-        }
-        for (let i = 0; i < menus; i++) {
-            menuHtml += (menus[i].name + '--' + menus[i].name);
-        }
-        let orderHtml = '';
-        $('#orderDetail').html(menuHtml);
-
         console.log("点餐明细：");
         console.log(orders);
         let price = 0;
@@ -77,5 +66,28 @@ function calcPrice() {
             }
         }
         priceDom.innerText = price;
+
+        printMenu(menus);
+        printOrder(orders);
     }
+}
+
+function printOrder(orders) {
+    const orderContainer = document.getElementById('orderContainer');
+    let html = '';
+    for (let i = 0; i < orders.length; i++) {
+        const order = orders[i];
+        html += (order.name + '  ' + order.count+'\n');
+    }
+    orderContainer.innerText = html;
+}
+
+function printMenu(menus) {
+    const menuContainer = document.getElementById('menuContainer');
+    let html = '';
+    for (let i = 0; i < menus.length; i++) {
+        const menu = menus[i];
+        html += (menu.name + '  ' + menu.price+'\n');
+    }
+    menuContainer.innerText = html;
 }
