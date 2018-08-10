@@ -16,12 +16,12 @@ import javax.servlet.http.HttpServletResponse;
  * @Desc
  */
 @Controller
-@RequestMapping("/action1")
+@RequestMapping("/act1")
 public class FirstAction {
     @Autowired
     private DemoService demoService;
 
-    @RequestMapping("/queryJSON")
+    @RequestMapping("/query")
     public void query(HttpServletRequest request, HttpServletResponse response, @RequestParam("sName") String name) {
         String result = demoService.getByName(name);
         try {

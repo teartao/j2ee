@@ -1,5 +1,6 @@
 package neo.tao.service.impl;
 
+import neo.tao.mvc.annotation.Service;
 import neo.tao.service.DemoService;
 
 /**
@@ -8,6 +9,7 @@ import neo.tao.service.DemoService;
  * @Version V0.0.1
  * @Desc
  */
+@Service
 public class DemoServiceImpl implements DemoService {
     @Override
     public String getByName(String name) {
