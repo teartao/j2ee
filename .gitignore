@@ -8,3 +8,5 @@
 target/
 .gitignore
 temp/
+*.class
+target/*

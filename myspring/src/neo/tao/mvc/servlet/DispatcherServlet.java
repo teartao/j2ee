@@ -16,8 +16,11 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.net.URL;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @Author neotao
@@ -30,7 +33,9 @@ public class DispatcherServlet extends HttpServlet {
     private Properties contextConfig = new Properties();
     private List<String> classNames = new ArrayList<>();
     private Map<String, Object> ioc = new HashMap<>();
+
     private Map<String, Method> handlerMapping = new HashMap<>();
+    private List<Handler> handlerMappingList = new ArrayList<Handler>();
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -50,13 +55,13 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        super.doGet(req, resp);
+        this.doPost(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        super.doPost(req, resp);
+//        super.doPost(req, resp);
         try {
             doDispatcher(req, resp);
         } catch (Exception e) {
@@ -64,24 +69,95 @@ public class DispatcherServlet extends HttpServlet {
         }
     }
 
+    /**
+     * 改造前
+     * @param req
+     * @param resp
+     * @throws IOException
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
+//    private void doDispatcher(HttpServletRequest req, HttpServletResponse resp) throws IOException, InvocationTargetException, IllegalAccessException {
+//        String uri = req.getRequestURI();
+//        String contextPath = req.getContextPath();
+//        uri = uri.replace(contextPath, "").replaceAll("/+", "/");
+//        if (!handlerMapping.containsKey(uri)) {
+//            resp.getWriter().write(" 404 not found ");
+//        }
+//        Method method = this.handlerMapping.get(uri);
+//        Map<String, String[]> params = req.getParameterMap();
+//        method.invoke(ioc.get("1"));
+//        System.out.println(method);
+//    }
+
+    /**
+     * 改造后
+     *
+     * @param
+     */
     private void doDispatcher(HttpServletRequest req, HttpServletResponse resp) throws IOException, InvocationTargetException, IllegalAccessException {
-        String uri = req.getRequestURI();
-        String contextPath = req.getContextPath();
-        uri = uri.replace(contextPath, "").replaceAll("/+", "/");
-        if (!handlerMapping.containsKey(uri)) {
-            resp.getWriter().write(" 404 not found ");
+        try {
+            Handler handler = getHandler(req);
+            if (handler == null) {
+                resp.getWriter().write("404 not found ! ");
+                return;
+            }
+
+            Class<?>[] paramTypes = handler.method.getParameterTypes();
+            Object[] paramValues = new Object[paramTypes.length];
+
+            Map<String, String[]> params = req.getParameterMap();
+
+            for (Map.Entry<String, String[]> param : params.entrySet()) {
+                String value = Arrays.toString(param.getValue()).replaceAll("\\[|\\]", "");
+
+                if (!handler.paramIndexMapping.containsKey(param.getKey())) {
+                    continue;
+                }
+                int index = handler.paramIndexMapping.get(param.getKey());
+                paramValues[index] = convert(paramTypes[index], value);
+            }
+
+
+            //设置方法中request  response对象
+            int reqIndex = handler.paramIndexMapping.get(HttpServletRequest.class.getName());
+            paramValues[reqIndex] = req;
+
+            int respIndex = handler.paramIndexMapping.get(HttpServletResponse.class.getName());
+            paramValues[respIndex] = resp;
+
+
+            handler.method.invoke(handler.controller, paramValues);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        Method method = this.handlerMapping.get(uri);
-        Map<String, String[]> params = req.getParameterMap();
-        method.invoke(ioc.get( "1"));
-        System.out.println(method);
     }
 
-    @Override
-    public void destroy() {
-        super.destroy();
+    private Object convert(Class<?> paramType, String value) {
+        return null;
     }
 
+    private Handler getHandler(HttpServletRequest req) {
+        if (handlerMapping.isEmpty()) {
+            return null;
+        }
+        String url = req.getRequestURI();
+        String contextPath = req.getContextPath();
+        url = url.replace(contextPath, "").replaceAll("/+", "/");
+        for (Handler handler : handlerMappingList) {
+            try {
+                Matcher matcher = handler.pattern.matcher(url);
+                //如果没有匹配上则继续下一个
+                if (!matcher.matches()) {
+                    continue;
+                }
+                return handler;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 
     private void doLoadConfigurations(String contextConfigLocation) {
         InputStream configStream = this.getClass().getClassLoader().getResourceAsStream(contextConfigLocation);
@@ -200,10 +276,22 @@ public class DispatcherServlet extends HttpServlet {
                 if (!method.isAnnotationPresent(RequestMapping.class)) {
                     continue;
                 }
+
                 RequestMapping requestMapping = method.getAnnotation(RequestMapping.class);
-                String url = baseUrl + "/" + requestMapping.value().replaceAll("/+", "/");
+                /**
+                 * requestMapping Map写法
+                 */
+                String url = (baseUrl + "/" + requestMapping.value()).replaceAll("/+", "/");
                 handlerMapping.put(url, method);
-                System.out.println("Mapped " + url + "," + method);
+                System.out.println("[Map] handlerMapping Mapped " + url + "," + method);
+
+                /**
+                 * requestMapping List写法
+                 */
+                String regex = ("/" + baseUrl + requestMapping.value()).replaceAll("/+", "/");
+                Pattern pattern = Pattern.compile(regex);
+                handlerMappingList.add(new Handler(pattern, entry.getValue(), method));
+                System.out.println("[List] handlerMapping Mapped " + regex + "," + method);
 
             }
         }
@@ -215,4 +303,26 @@ public class DispatcherServlet extends HttpServlet {
         return String.valueOf(chars);
     }
 
+    private class Handler {
+        protected Object controller;
+        protected Method method;
+        protected Pattern pattern;
+        protected Map<String, Integer> paramIndexMapping;//参数序列
+
+        protected Handler(Pattern pattern, Object controller, Method method) {
+            this.controller = controller;
+            this.method = method;
+            this.pattern = pattern;
+
+            paramIndexMapping = new HashMap<>();
+            putParamIndexMapping(method);
+        }
+
+        private void putParamIndexMapping(Method method) {
+            Parameter[] params = method.getParameters();
+            for (int index = 0; index < params.length; index++) {
+                paramIndexMapping.put(params[index].getName(), index);
+            }
+        }
+    }
 }
