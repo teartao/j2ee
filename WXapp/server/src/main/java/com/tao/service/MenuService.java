@@ -1,6 +1,6 @@
 package com.tao.service;
 
-import com.tao.entity.Menu;
+import com.tao.entity.MenuList;
 
 /**
  * @Author neotao
@@ -12,16 +12,16 @@ public interface MenuService {
     /**
      * 发布菜单
      *
-     * @param menu
+     * @param menuList
      * @return
      */
-    Menu publishMenu(Menu menu);
+    MenuList publishMenu(MenuList menuList);
 
     /**
      * 获取最新菜单
      *
-     * @param menu
+     * @param menuList
      * @return
      */
-    Menu latestMenu(Menu menu);
+    MenuList latestMenu(MenuList menuList);
 }

@@ -1,8 +1,8 @@
 package com.tao.dao;
 
-import com.tao.entity.Menu;
+import com.tao.entity.MenuList;
 
-public interface MenuDao extends BaseDao<Menu> {
+public interface MenuDao extends BaseDao<MenuList> {
 
 
 }

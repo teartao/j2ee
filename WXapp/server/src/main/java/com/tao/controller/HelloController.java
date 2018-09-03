@@ -1,11 +1,12 @@
 package com.tao.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.tao.dto.UserDTO;
-import com.tao.entity.Menu;
-import com.tao.entity.User;
-import com.tao.entity.WxUser;
-import com.tao.service.UserService;
+import com.tao.entity.*;
+import com.tao.service.FileService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,10 +18,14 @@ import java.io.IOException;
 
 @RestController
 public class HelloController {
+    private static Logger logger = LoggerFactory.getLogger(HelloController.class);
     @Resource
     private MenuService menuService;
     @Resource
-    private UserService userService;
+    private FileService fileService;
+
+    @Value("fileUploadPath")
+    String fileUploadPath;
 
     @RequestMapping(value = "json", method = RequestMethod.GET)
     public JSONObject getJsonObj() throws IOException {
@@ -32,31 +37,29 @@ public class HelloController {
     }
 
     @RequestMapping(value = "menu", method = RequestMethod.POST)
-    public JSONObject addMenu(@RequestBody Menu menu) {
-        menuService.publishMenu(menu);
+    public JSONObject addMenu(@RequestBody MenuList menuList) {
+        menuService.publishMenu(menuList);
 
         return new JSONObject();
     }
-    @RequestMapping(value = "user", method = RequestMethod.POST)
-    public JSONObject addMenu(@RequestBody UserDTO userDTO) {
-        User user = new User();
-//        user.setId(userDTO.getId());
-        user.setName(userDTO.getNickName());
 
-        WxUser wxUser = new WxUser();
-        wxUser.setCity(userDTO.getCity());
-        wxUser.setCountry(userDTO.getCountry());
-        wxUser.setGender(userDTO.getGender());
-        wxUser.setLanguage(userDTO.getLanguage());
-        wxUser.setNickName(userDTO.getNickName());
-        wxUser.setLanguage(userDTO.getLanguage());
-        wxUser.setAvatarUrl(userDTO.getAvatarUrl());
-
-        user.setWxUser(wxUser);
-        userService.createUser(user);
-
-        JSONObject json = new JSONObject();
-        json.put("xxx","asd");
-        return json;
+    @RequestMapping(value = "menu", method = RequestMethod.POST)
+    public Result<String> addMenu(String menuString) {
+        try {
+            fileService.writeStringToFile(fileUploadPath, menuString);
+            logger.info("write string to file : [ {} ]\ncontent : \n{}");
+            Result<String> result = new Result<>();
+            result.setCode(ResultEnum.SUCCESS.getCode());
+            result.setMsg(ResultEnum.SUCCESS.getMsg());
+            result.setData(menuString);
+            return result;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+        Result<String> result = new Result<>();
+        result.setCode(ResultEnum.ERROR.getCode());
+        result.setMsg(ResultEnum.ERROR.getMsg());
+        return result;
     }
 }

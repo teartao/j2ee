@@ -1,14 +1,13 @@
 package com.tao.dao;
 
 import org.apache.ibatis.annotations.Param;
-import net.hehe.common.Page;
 
 import java.util.List;
 
 public interface BaseDao<T> {
     void add(@Param("entity") T param);
 
-    List<T> findList(@Param("entity") T param ,@Param("page") Page page);
+//    List<T> findList(@Param("entity") T param ,@Param("page") Page page);
 
     T find(@Param("entity") T param);
 

@@ -14,7 +14,7 @@ public class Order {
     private Date createTime;
 
     private User creater;
-    private MenuSelection selection;
+    private MenuItem selection;
 
     public Long getUserId() {
         return userId;
@@ -48,11 +48,11 @@ public class Order {
         this.creater = creater;
     }
 
-    public MenuSelection getSelection() {
+    public MenuItem getSelection() {
         return selection;
     }
 
-    public void setSelection(MenuSelection selection) {
+    public void setSelection(MenuItem selection) {
         this.selection = selection;
     }
 }

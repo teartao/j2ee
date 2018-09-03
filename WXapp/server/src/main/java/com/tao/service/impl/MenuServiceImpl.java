@@ -3,8 +3,8 @@ package com.tao.service.impl;
 import com.tao.dao.MenuDao;
 import com.tao.dao.MenuSelectionDao;
 import com.tao.dao.UserDao;
-import com.tao.entity.Menu;
-import com.tao.entity.MenuSelection;
+import com.tao.entity.MenuList;
+import com.tao.entity.MenuItem;
 import org.springframework.stereotype.Service;
 import com.tao.service.MenuService;
 
@@ -27,16 +27,16 @@ public class MenuServiceImpl implements MenuService {
     private MenuSelectionDao menuSelectionDao;
 
     @Override
-    public Menu publishMenu(Menu menu) {
-        menuDao.add(menu);
-        for (MenuSelection selection : menu.getSelectionList()) {
+    public MenuList publishMenu(MenuList menuList) {
+        menuDao.add(menuList);
+        for (MenuItem selection : menuList.getSelectionList()) {
             menuSelectionDao.add(selection);
         }
-        return menu;
+        return menuList;
     }
 
     @Override
-    public Menu latestMenu(Menu menu) {
+    public MenuList latestMenu(MenuList menuList) {
         return null;
     }
 }

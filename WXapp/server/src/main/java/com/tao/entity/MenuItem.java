@@ -6,7 +6,7 @@ package com.tao.entity;
  * @Version V0.0.1
  * @Desc 菜单项
  */
-public class MenuSelection {
+public class MenuItem {
     private Long id;
     private String name;
     private double price;

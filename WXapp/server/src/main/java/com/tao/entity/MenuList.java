@@ -9,14 +9,14 @@ import java.util.List;
  * @Version V0.0.1
  * @Desc 菜单
  */
-public class Menu {
+public class MenuList {
     private Long id;
     private String title;
     private Long createrId;
     private Date createTime;
 
     private User creater;
-    private List<MenuSelection> selectionList;
+    private List<MenuItem> selectionList;
 
 
     public Long getId() {
@@ -59,11 +59,11 @@ public class Menu {
         this.creater = creater;
     }
 
-    public List<MenuSelection> getSelectionList() {
+    public List<MenuItem> getSelectionList() {
         return selectionList;
     }
 
-    public void setSelectionList(List<MenuSelection> selectionList) {
+    public void setSelectionList(List<MenuItem> selectionList) {
         this.selectionList = selectionList;
     }
 }
