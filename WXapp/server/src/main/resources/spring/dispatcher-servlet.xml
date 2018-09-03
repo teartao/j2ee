@@ -16,7 +16,7 @@
     <!--<context:property-placeholder location="classpath:application.properties" ignore-unresolvable="true"/>-->
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:application.properties"/>
+        <property name="location" value="classpath:properties/application.properties"/>
     </bean>
     <!--mvc静态资源处理-->
     <mvc:default-servlet-handler/>

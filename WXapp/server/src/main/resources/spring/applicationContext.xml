@@ -12,7 +12,7 @@
     <context:component-scan base-package="com.tao" use-default-filters="false"/>
     <!-- 配置数据源第二种方式：引入配置文件-->
 
-    <context:property-placeholder location="classpath:*.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath:properties/*.properties" ignore-unresolvable="true"/>
 
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
           destroy-method="close">
@@ -31,7 +31,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!-- 自动扫描mapping.xml文件 -->
-        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="mapperLocations" value="classpath:mapper/menuSelectionMapper.xml"/>
         <property name="configLocation" value="classpath:/myBatisConfig.xml"/>
     </bean>
 

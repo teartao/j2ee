@@ -46,11 +46,12 @@ Page({
 
     var $this=this;
     wx.request({
-      url: 'https://prep-new-vms.htd.cn/xxx/test.json',
-      method: 'GET',
+      url: 'https://prep-new-vms.htd.cn/hcf/menu',
+      method: 'POST',
       header: {
         'Content-Type': 'json'
       },
+      data: JSON.stringify({menuTxt:""}),
       success: function (res) {
         $this.setData({ menus: res.data });
         console.log(res.data);
