@@ -1,5 +1,8 @@
 package com.tao.service;
 
+import com.tao.controller.HelloController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -14,90 +17,47 @@ import java.util.Date;
  */
 @Service
 public class FileService {
+    private static Logger logger = LoggerFactory.getLogger(FileService.class);
 
     /**
-     * 使用FileWriter类写文本文件
+     * write txt to file
+     * @param fileName 文件名
+     * @param content 字符内容
      */
     public void writeStringToFile(String fileName, String content) {
+
         try {
-            FileWriter writer = new FileWriter(fileName);
+            File f = new File(fileName);
+            OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(f), "UTF-8");
+            BufferedWriter writer = new BufferedWriter(write);
             writer.write(content);
             writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 使用FileWriter类往文本文件中追加信息
-     */
-    public void appendStringToFile(String fileName) {
-        try {
-            //使用这个构造函数时，如果存在kuka.txt文件，
-            //则直接往kuka.txt中追加字符串
-            FileWriter writer = new FileWriter(fileName, true);
-            SimpleDateFormat format = new SimpleDateFormat();
-            String time = format.format(new Date());
-            writer.write("\n\t" + time);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    //注意：上面的例子由于写入的文本很少，使用FileWrite类就可以了。但如果需要写入的
-    //内容很多，就应该使用更为高效的缓冲器流类BufferedWriter。
-
-    /**
-     * 使用BufferedWriter类写文本文件
-     */
-    public void writeLongTxtToFile(String fileName) {
-        try {
-            BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
-            out.write("Hello Kuka:");
-            out.newLine();  //注意\n不一定在各种计算机上都能产生换行的效果
-            out.write("  My name is coolszy!\n");
-            out.write("  I like you and miss you。");
-            out.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 使用FileReader类读文本文件
-     */
-    public void readFromFile(String fileName) {
-        int c = 0;
-        try {
-            FileReader reader = new FileReader(fileName);
-            c = reader.read();
-            while (c != -1) {
-                System.out.print((char) c);
-                c = reader.read();
-            }
-            reader.close();
         } catch (Exception e) {
+            System.out.println("写文件内容操作出错");
             e.printStackTrace();
         }
     }
 
     /**
-     * 使用BufferedReader类读文本文件
+     * 使用InputStreamReader类读文本文件
      */
-    public void readLongTxtFromFile() throws IOException {
-        String fileName = "c:/kuka.txt";
-        String line = "";
+    public String readLongTxtFromFile(String fileName) throws IOException {
+        StringBuilder fileContent = new StringBuilder();
         try {
-            BufferedReader in = new BufferedReader(new FileReader(fileName));
-            line = in.readLine();
-            while (line != null) {
-                System.out.println(line);
-                line = in.readLine();
+            File f = new File(fileName);
+            if (f.isFile() && f.exists()) {
+                InputStreamReader read = new InputStreamReader(new FileInputStream(f), "UTF-8");
+                BufferedReader reader = new BufferedReader(read);
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    fileContent.append(line);
+                }
+                read.close();
             }
-            in.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
+            System.out.println("读取文件内容操作出错");
             e.printStackTrace();
         }
+        return fileContent.toString();
     }
 }
