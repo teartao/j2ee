@@ -10,3 +10,4 @@ target/
 temp/
 *.class
 target/*
+lib/*
