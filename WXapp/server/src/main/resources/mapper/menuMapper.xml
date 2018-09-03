@@ -26,7 +26,7 @@
         </if>
     </select>
 
-    <select id="findList" parameterType="net.hehe.common.Page"
+    <select id="findList"
             resultType="com.tao.entity.MenuList">
         SELECT m.* FROM menuList m
         WHERE 1=1
