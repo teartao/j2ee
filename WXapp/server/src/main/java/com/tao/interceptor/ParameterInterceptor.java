@@ -26,11 +26,11 @@ public class ParameterInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object object, ModelAndView modelAndView) throws Exception {
 
-        logger.info("param string : \n{}", JSON.toJSONString(object));
+//        logger.info("param string : \n{}", JSON.toJSONString(object));
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object object, Exception e) throws Exception {
-        logger.info("result string : \n{}", JSON.toJSONString(object));
+//        logger.info("result string : \n{}", JSON.toJSONString(object));
     }
 }
