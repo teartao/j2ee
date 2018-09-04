@@ -2,7 +2,7 @@ package com.tao.service.impl;
 
 import com.tao.dao.UserDao;
 import com.tao.dao.UserWxDao;
-import com.tao.entity.User;
+import com.tao.entity.po.User;
 import com.tao.entity.WxUser;
 import com.tao.service.UserService;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.tao.service;
 
-import com.tao.entity.User;
+import com.tao.entity.po.User;
 
 /**
  * @Author neotao

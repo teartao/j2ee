@@ -1,4 +1,4 @@
-package com.tao.entity;
+package com.tao.entity.po;
 
 import java.util.Date;
 import java.util.List;

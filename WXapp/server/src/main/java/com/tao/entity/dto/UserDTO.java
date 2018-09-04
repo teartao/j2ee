@@ -1,4 +1,4 @@
-package com.tao.dto;
+package com.tao.entity.dto;
 
 import java.io.Serializable;
 

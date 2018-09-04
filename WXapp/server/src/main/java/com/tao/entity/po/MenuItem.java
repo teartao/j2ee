@@ -1,15 +1,15 @@
-package com.tao.entity;
+package com.tao.entity.po;
 
 /**
  * @Author neotao
  * @Date 2018/5/18
  * @Version V0.0.1
- * @Desc
+ * @Desc 菜单项
  */
-public class User {
+public class MenuItem {
     private Long id;
     private String name;
-    private WxUser wxUser;
+    private double price;
 
     public Long getId() {
         return id;
@@ -27,11 +27,11 @@ public class User {
         this.name = name;
     }
 
-    public WxUser getWxUser() {
-        return wxUser;
+    public double getPrice() {
+        return price;
     }
 
-    public void setWxUser(WxUser wxUser) {
-        this.wxUser = wxUser;
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

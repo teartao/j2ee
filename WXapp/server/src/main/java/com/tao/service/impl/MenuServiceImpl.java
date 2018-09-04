@@ -3,8 +3,8 @@ package com.tao.service.impl;
 import com.tao.dao.MenuDao;
 import com.tao.dao.MenuSelectionDao;
 import com.tao.dao.UserDao;
-import com.tao.entity.MenuList;
-import com.tao.entity.MenuItem;
+import com.tao.entity.po.MenuList;
+import com.tao.entity.po.MenuItem;
 import org.springframework.stereotype.Service;
 import com.tao.service.MenuService;
 
