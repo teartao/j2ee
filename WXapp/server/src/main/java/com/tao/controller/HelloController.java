@@ -1,5 +1,6 @@
 package com.tao.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.tao.annotation.Log;
 import com.tao.common.Result;
@@ -120,8 +121,24 @@ public class HelloController {
      */
     @Log(description = "保存用户点餐选项")
     @RequestMapping(value = "saveOrder", method = RequestMethod.POST)
-    public Result<String> saveOrder() {
-        return null;
+    public Result<List<JSONObject>> saveOrder(@RequestBody List<JSONObject> selectionList) {
+        try {
+            String absoluteFilePath = filePath + "menu.data";
+            FileUtils.writeStringToFile(new File(absoluteFilePath), JSON.toJSONString(selectionList), "utf-8");
+            logger.info("write to file : [ {} ]\n[File Content]  : {}", absoluteFilePath, JSON.toJSONString(selectionList));
+            Result<List<JSONObject>> result = new Result<>();
+            result.setCode(ResultEnum.SUCCESS.getCode());
+            result.setMsg(ResultEnum.SUCCESS.getMsg());
+            result.setData(selectionList);
+            return result;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+        Result<List<JSONObject>> result = new Result<>();
+        result.setCode(ResultEnum.ERROR.getCode());
+        result.setMsg(ResultEnum.ERROR.getMsg());
+        return result;
     }
 
     /**

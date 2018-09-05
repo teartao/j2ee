@@ -31,14 +31,9 @@ function getMenu(menuTxt) {
   var menuTitle = '';
   if (menuTxt != null && menuTxt !== '') {
     var menus = menuTxt.split('\n');
-    for (var i = 0; i < menus.length; i++) {
+    for (var i = 1; i < menus.length; i++) {
       var aMenu = menus[i];
       if (aMenu != null && aMenu.trim() != '') {
-        if (aMenu.indexOf('月') > 0 && aMenu.indexOf('日') > 0){
-          menuTitle = aMenu;
-          continue;
-        }
-
         var price = getNumber(aMenu);
         menu.push({
           name: getCNWord(aMenu),
@@ -51,6 +46,20 @@ function getMenu(menuTxt) {
     title:menuTitle,
     selectionList:menu
   };
+}
+function saveMenu($this){
+  wx.request({
+    url: 'https://prep-new-vms.htd.cn/hcf/saveMenu',
+    method: 'POST',
+    header: {
+      'Content-Type': 'json'
+    },
+    data: JSON.stringify($this.data.menus),
+    success: function (res) {
+      console.log('save menus success ');
+      console.log(res);
+    }
+  })
 }
 Page({
 
@@ -104,7 +113,7 @@ Page({
       },
       data: JSON.stringify(app.globalData.userInfo),
       success: function (res) {
-        this.setData({
+        $this.setData({
           loginUser: res
         })
       }
@@ -161,24 +170,20 @@ Page({
   
   },
   bindTextAreaBlur: function (e) {
-    getCNWord(e.detail.value);
+    this.setData({ menuTxt: e.detail.value });
+    console.log("menuTxt:\n" + this.data.menuTxt)
+    
+    // getCNWord(e.detail.value);
     var menus = getMenu(e.detail.value);
-    this.setData({ menus: menus});
-    console.log(menus)
+    
+    this.setData({ menus: menus });
+    console.log("menu: \n")
+    console.log(menus);
+
+    saveMenu(this);
   },
   submitMenu:function(e){
-    var $this = this;
-    wx.request({
-      url: 'https://prep-new-vms.htd.cn/hcf/user',
-      method: 'POST',
-      header: {
-        'Content-Type': 'json'
-      },
-      data: JSON.stringify(app.globalData.userInfo),
-      success: function (res) {
-        console.log('create user success ');
-      }
-    })
+    saveMenu(this);
   }
 })
 
