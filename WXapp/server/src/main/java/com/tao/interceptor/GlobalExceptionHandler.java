@@ -1,6 +1,8 @@
 package com.tao.interceptor;
 
 import com.tao.common.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,15 +13,17 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @ControllerAdvice
 public class GlobalExceptionHandler {
+    private static Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(Exception.class)
     public Result<String> requestError(Exception ex) {
         Result<String> resultInfo = new Result<>();
-        resultInfo.setData("参数或格式错误");
+        resultInfo.setMsg("参数或格式错误");
         resultInfo.setCode("400");
-        resultInfo.setMsg("异常信息：" + ex.getMessage());
+        logger.warn("400-参数或格式错误:{}",ex.getMessage());
+        ex.printStackTrace();
         return resultInfo;
     }
 
@@ -28,9 +32,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public Result<String> responseError(Exception ex) {
         Result<String> resultInfo = new Result<>();
-        resultInfo.setData("系统错误");
+        resultInfo.setMsg("系统错误");
         resultInfo.setCode("500");
-        resultInfo.setMsg("异常信息：" + ex.getMessage());
+        logger.warn("500-系统错误:{}",ex.getMessage());
+        ex.printStackTrace();
         return resultInfo;
     }
 }
