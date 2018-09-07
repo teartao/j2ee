@@ -1,13 +1,14 @@
 package com.tao.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.tao.annotation.Log;
 import com.tao.common.Result;
 import com.tao.common.ResultEnum;
 import com.tao.entity.po.MenuList;
 import com.tao.entity.po.Order;
-import com.tao.service.MenuService;
+import com.tao.business.MenuService;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,24 +40,6 @@ public class HelloController {
         }
     }
 
-
-    @RequestMapping(value = "json", method = RequestMethod.GET)
-    public JSONObject getJsonObj() throws IOException {
-        JSONObject result = new JSONObject();
-        result.put("aaa", "呵呵额");
-        result.put("bbb", "222");
-        result.put("ccc", "333");
-        return result;
-    }
-
-
-    @RequestMapping(value = "menuList", method = RequestMethod.POST)
-    public JSONObject addMenuList(@RequestBody MenuList menuList) {
-        menuService.publishMenu(menuList);
-
-        return new JSONObject();
-    }
-
     /**
      * 保存菜单文本
      *
@@ -67,22 +50,24 @@ public class HelloController {
      */
     @Log(description = "保存菜单")
     @RequestMapping(value = "saveMenu", method = RequestMethod.POST)
-    public Result<String> writeMenuToFile(@RequestParam("menuTxt") String menuString, HttpServletRequest request) throws UnsupportedEncodingException {
+    public Result<JSONArray> writeMenuToFile(@RequestParam("menuTxt") String menuString, HttpServletRequest request) throws UnsupportedEncodingException {
         menuString = new String(menuString.getBytes("iso8859-1"), "utf-8");
         try {
             String absoluteFilePath = filePath + "menu.data";
+            // todo parse menuString to menu list
+
             FileUtils.writeStringToFile(new File(absoluteFilePath), menuString, "utf-8");
             logger.info("write to file : [ {} ]\n[File Content]  : {}", absoluteFilePath, menuString);
-            Result<String> result = new Result<>();
+            Result<JSONArray> result = new Result<>();
             result.setCode(ResultEnum.SUCCESS.getCode());
             result.setMsg(ResultEnum.SUCCESS.getMsg());
-            result.setData(menuString);
+            result.setData(JSON.parseArray(menuString));
             return result;
         } catch (Exception e) {
             logger.error(e.getMessage());
             e.printStackTrace();
         }
-        Result<String> result = new Result<>();
+        Result<JSONArray> result = new Result<>();
         result.setCode(ResultEnum.ERROR.getCode());
         result.setMsg(ResultEnum.ERROR.getMsg());
         return result;
@@ -96,21 +81,21 @@ public class HelloController {
      */
     @Log(description = "获取菜单文本")
     @RequestMapping(value = "menuTxt", method = RequestMethod.GET)
-    public Result<String> getMenuFromFile() {
+    public Result<JSONArray> getMenuFromFile() {
         try {
             String absoluteFilePath = filePath + "menu.data";
             String menuString = FileUtils.readFileToString(new File(absoluteFilePath), "utf-8");
             logger.info("read from file : [ {} ]\n [File Content] : {}", absoluteFilePath, menuString);
-            Result<String> result = new Result<>();
+            Result<JSONArray> result = new Result<>();
             result.setCode(ResultEnum.SUCCESS.getCode());
             result.setMsg(ResultEnum.SUCCESS.getMsg());
-            result.setData(menuString);
+            result.setData(JSON.parseArray(menuString));
             return result;
         } catch (Exception e) {
             logger.error(e.getMessage());
             e.printStackTrace();
         }
-        Result<String> result = new Result<>();
+        Result<JSONArray> result = new Result<>();
         result.setCode(ResultEnum.ERROR.getCode());
         result.setMsg(ResultEnum.ERROR.getMsg());
         return result;

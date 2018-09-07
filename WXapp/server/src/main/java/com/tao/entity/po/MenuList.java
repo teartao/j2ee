@@ -16,7 +16,7 @@ public class MenuList {
     private Date createTime;
 
     private User creater;
-    private List<MenuItem> selectionList;
+    private List<MenuItemPO> selectionList;
 
 
     public Long getId() {
@@ -59,11 +59,11 @@ public class MenuList {
         this.creater = creater;
     }
 
-    public List<MenuItem> getSelectionList() {
+    public List<MenuItemPO> getSelectionList() {
         return selectionList;
     }
 
-    public void setSelectionList(List<MenuItem> selectionList) {
+    public void setSelectionList(List<MenuItemPO> selectionList) {
         this.selectionList = selectionList;
     }
 }

@@ -1,6 +1,9 @@
-package com.tao.service;
+package com.tao.business;
 
+import com.tao.entity.dto.MenuItemDTO;
 import com.tao.entity.po.MenuList;
+
+import java.util.List;
 
 /**
  * @Author neotao
@@ -12,10 +15,10 @@ public interface MenuService {
     /**
      * 发布菜单
      *
-     * @param menuList
+     * @param menuTxt
      * @return
      */
-    MenuList publishMenu(MenuList menuList);
+    List<MenuItemDTO> publishMenu(String menuTxt);
 
     /**
      * 获取最新菜单

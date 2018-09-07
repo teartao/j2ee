@@ -1,6 +1,7 @@
 package com.tao.dao;
 
-import com.tao.entity.po.MenuItem;
 
-public interface MenuSelectionDao extends BaseDao<MenuItem> {
+import com.tao.entity.po.MenuItemPO;
+
+public interface MenuSelectionDao extends BaseDao<MenuItemPO> {
 }

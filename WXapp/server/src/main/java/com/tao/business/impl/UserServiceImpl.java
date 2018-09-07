@@ -1,10 +1,10 @@
-package com.tao.service.impl;
+package com.tao.business.impl;
 
 import com.tao.dao.UserDao;
 import com.tao.dao.UserWxDao;
 import com.tao.entity.po.User;
 import com.tao.entity.WxUser;
-import com.tao.service.UserService;
+import com.tao.business.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
