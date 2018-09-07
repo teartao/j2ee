@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.tao.annotation.Log;
-import com.tao.biz.MenuService;
+import com.tao.business.MenuService;
 import com.tao.common.Result;
 import com.tao.common.ResultEnum;
 import com.tao.entity.po.Order;
@@ -85,9 +85,6 @@ public class HelloController {
     @RequestMapping(value = "saveOrder", method = RequestMethod.POST)
     public Result<List<JSONObject>> saveOrder(@RequestBody List<JSONObject> selectionList) {
         try {
-            String absoluteFilePath = filePath + "menu.data";
-            FileUtils.writeStringToFile(new File(absoluteFilePath), JSON.toJSONString(selectionList), "utf-8");
-            logger.info("write to file : [ {} ]\n[File Content]  : {}", absoluteFilePath, JSON.toJSONString(selectionList));
             Result<List<JSONObject>> result = new Result<>();
             result.setCode(ResultEnum.SUCCESS.getCode());
             result.setMsg(ResultEnum.SUCCESS.getMsg());
