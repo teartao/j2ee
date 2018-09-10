@@ -82,13 +82,18 @@ public class HelloController {
      * 保存用户点餐选项
      */
     @Log(description = "保存用户点餐选项")
-    @RequestMapping(value = "order/${userId}/${orderId}", method = RequestMethod.POST)
+    @RequestMapping(value = "order/{userId}/{orderId}", method = RequestMethod.POST)
     public Result<MenuItemDTO> saveOrder(@PathVariable String userId, @PathVariable String orderId) {
         try {
             Result<MenuItemDTO> result = new Result<>();
             result.setCode(ResultEnum.SUCCESS.getCode());
             result.setMsg(ResultEnum.SUCCESS.getMsg());
             result.setData(orderBizService.addOrder(userId, orderId));
+            return result;
+        } catch (IllegalArgumentException e) {
+            Result<MenuItemDTO> result = new Result<>();
+            result.setCode(ResultEnum.ERROR.getCode());
+            result.setMsg(e.getMessage());
             return result;
         } catch (Exception e) {
             logger.error(e.getMessage());

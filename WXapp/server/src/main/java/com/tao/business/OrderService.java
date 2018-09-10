@@ -4,6 +4,8 @@ import com.tao.entity.dto.MenuItemDTO;
 import com.tao.entity.po.Order;
 import com.tao.entity.po.User;
 
+import java.io.IOException;
+
 /**
  * @Author neotao
  * @Date 2018/5/18
@@ -13,5 +15,5 @@ import com.tao.entity.po.User;
 public interface OrderService {
     MenuItemDTO findMyOrder(String userId);
 
-    MenuItemDTO addOrder(String userId, String orderId);
+    MenuItemDTO addOrder(String userId, String orderId) throws IOException;
 }

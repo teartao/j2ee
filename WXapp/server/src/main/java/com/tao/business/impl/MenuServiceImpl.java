@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.tao.business.MenuService;
+import com.tao.controller.HelloController;
 import com.tao.dao.MenuDao;
 import com.tao.dao.MenuSelectionDao;
 import com.tao.dao.UserDao;
@@ -12,6 +13,8 @@ import com.tao.entity.po.MenuItemPO;
 import com.tao.entity.po.MenuList;
 import com.tao.service.MenuFactory;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +33,7 @@ import java.util.UUID;
  */
 @Service("menuBizService")
 public class MenuServiceImpl implements MenuService {
+    private static Logger logger = LoggerFactory.getLogger(MenuServiceImpl.class);
 
     @Resource
     private UserDao userDao;
@@ -52,13 +56,13 @@ public class MenuServiceImpl implements MenuService {
         for (int i = 0; i < menuItemsList.size(); i++) {
             MenuItemDTO menuItem = menuItemsList.get(i);
             MenuItemPO menuPOItem = new MenuItemPO();
-            menuPOItem.setId(i + 1L);
+            menuPOItem.setId((long) i);
             menuPOItem.setName(menuItem.getName());
             menuPOItem.setPrice(menuItem.getPrice());
             menuPOList.add(menuPOItem);
         }
         FileUtils.writeStringToFile(new File(filePath + "menu.json"), JSON.toJSONString(menuPOList), "utf-8");
-
+        logger.info("save menu json string to file [{}],content:\n{}", filePath + "menu.json", JSON.toJSONString(menuPOList));
         return menuPOList;
     }
 
