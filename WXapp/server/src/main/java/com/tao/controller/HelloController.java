@@ -1,9 +1,8 @@
 package com.tao.controller;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.tao.annotation.Log;
 import com.tao.business.MenuService;
+import com.tao.business.OrderService;
 import com.tao.common.Result;
 import com.tao.common.ResultEnum;
 import com.tao.entity.dto.MenuItemDTO;
@@ -22,6 +21,9 @@ public class HelloController {
     private static Logger logger = LoggerFactory.getLogger(HelloController.class);
     @Resource
     private MenuService menuBizService;
+
+    @Resource
+    private OrderService orderBizService;
 
     /**
      * 保存菜单文本
@@ -59,9 +61,9 @@ public class HelloController {
      */
     @Log(description = "获取菜单文本")
     @RequestMapping(value = "menuTxt", method = RequestMethod.GET)
-    public Result<List<MenuItemDTO> > getMenuFromFile() {
+    public Result<List<MenuItemDTO>> getMenuFromFile() {
         try {
-            Result<List<MenuItemDTO> > result = new Result<>();
+            Result<List<MenuItemDTO>> result = new Result<>();
             result.setCode(ResultEnum.SUCCESS.getCode());
             result.setMsg(ResultEnum.SUCCESS.getMsg());
             result.setData(menuBizService.latestMenu());
@@ -70,7 +72,7 @@ public class HelloController {
             logger.error(e.getMessage());
             e.printStackTrace();
         }
-        Result<List<MenuItemDTO> > result = new Result<>();
+        Result<List<MenuItemDTO>> result = new Result<>();
         result.setCode(ResultEnum.ERROR.getCode());
         result.setMsg(ResultEnum.ERROR.getMsg());
         return result;
@@ -80,19 +82,19 @@ public class HelloController {
      * 保存用户点餐选项
      */
     @Log(description = "保存用户点餐选项")
-    @RequestMapping(value = "saveOrder", method = RequestMethod.POST)
-    public Result<List<JSONObject>> saveOrder(@RequestBody List<JSONObject> selectionList) {
+    @RequestMapping(value = "order/${userId}/${orderId}", method = RequestMethod.POST)
+    public Result<MenuItemDTO> saveOrder(@PathVariable String userId, @PathVariable String orderId) {
         try {
-            Result<List<JSONObject>> result = new Result<>();
+            Result<MenuItemDTO> result = new Result<>();
             result.setCode(ResultEnum.SUCCESS.getCode());
             result.setMsg(ResultEnum.SUCCESS.getMsg());
-            result.setData(selectionList);
+            result.setData(orderBizService.addOrder(userId, orderId));
             return result;
         } catch (Exception e) {
             logger.error(e.getMessage());
             e.printStackTrace();
         }
-        Result<List<JSONObject>> result = new Result<>();
+        Result<MenuItemDTO> result = new Result<>();
         result.setCode(ResultEnum.ERROR.getCode());
         result.setMsg(ResultEnum.ERROR.getMsg());
         return result;

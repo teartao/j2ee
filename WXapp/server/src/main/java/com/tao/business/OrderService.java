@@ -1,5 +1,6 @@
 package com.tao.business;
 
+import com.tao.entity.dto.MenuItemDTO;
 import com.tao.entity.po.Order;
 import com.tao.entity.po.User;
 
@@ -10,5 +11,7 @@ import com.tao.entity.po.User;
  * @Desc
  */
 public interface OrderService {
-    Order findMyOrder(User user);
+    MenuItemDTO findMyOrder(String userId);
+
+    MenuItemDTO addOrder(String userId, String orderId);
 }

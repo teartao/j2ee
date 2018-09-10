@@ -16,6 +16,7 @@ public class StringUtils {
         String reg = "[^\u4e00-\u9fa5]";
         return words.replaceAll(reg, "");
     }
+
     public static String getNumbers(String words) {
         String reg = "[^0-9]";
         return words.replaceAll(reg, "");

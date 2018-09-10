@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Author neotao
@@ -48,20 +49,23 @@ public class MenuServiceImpl implements MenuService {
     public List<MenuItemPO> publishMenu(String menuTxt) throws IOException {
         List<MenuItemDTO> menuItemsList = menuFactory.parseToMenu(menuTxt);
         List<MenuItemPO> menuPOList = new ArrayList<>();
-        for (MenuItemDTO menuItem : menuItemsList) {
+        for (int i = 0; i < menuItemsList.size(); i++) {
+            MenuItemDTO menuItem = menuItemsList.get(i);
             MenuItemPO menuPOItem = new MenuItemPO();
+            menuPOItem.setId(i + 1L);
             menuPOItem.setName(menuItem.getName());
             menuPOItem.setPrice(menuItem.getPrice());
             menuPOList.add(menuPOItem);
         }
-        FileUtils.writeStringToFile(new File(filePath),JSON.toJSONString(menuPOList),"utf-8");
+        FileUtils.writeStringToFile(new File(filePath + "menu.json"), JSON.toJSONString(menuPOList), "utf-8");
 
         return menuPOList;
     }
 
     @Override
     public List<MenuItemDTO> latestMenu() throws IOException {
-        String menuJSON = FileUtils.readFileToString(new File(filePath), "utf-8");
-        return JSONObject.parseObject(menuJSON, new TypeReference<List<MenuItemDTO>>() {});
+        String menuJSON = FileUtils.readFileToString(new File(filePath + "menu.json"), "utf-8");
+        return JSONObject.parseObject(menuJSON, new TypeReference<List<MenuItemDTO>>() {
+        });
     }
 }
