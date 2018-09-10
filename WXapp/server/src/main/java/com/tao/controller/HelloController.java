@@ -6,6 +6,7 @@ import com.tao.annotation.Log;
 import com.tao.business.MenuService;
 import com.tao.common.Result;
 import com.tao.common.ResultEnum;
+import com.tao.entity.dto.MenuItemDTO;
 import com.tao.entity.po.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,18 +59,18 @@ public class HelloController {
      */
     @Log(description = "获取菜单文本")
     @RequestMapping(value = "menuTxt", method = RequestMethod.GET)
-    public Result<JSONArray> getMenuFromFile() {
+    public Result<List<MenuItemDTO> > getMenuFromFile() {
         try {
-            Result<JSONArray> result = new Result<>();
+            Result<List<MenuItemDTO> > result = new Result<>();
             result.setCode(ResultEnum.SUCCESS.getCode());
             result.setMsg(ResultEnum.SUCCESS.getMsg());
-//            result.setData();
+            result.setData(menuBizService.latestMenu());
             return result;
         } catch (Exception e) {
             logger.error(e.getMessage());
             e.printStackTrace();
         }
-        Result<JSONArray> result = new Result<>();
+        Result<List<MenuItemDTO> > result = new Result<>();
         result.setCode(ResultEnum.ERROR.getCode());
         result.setMsg(ResultEnum.ERROR.getMsg());
         return result;

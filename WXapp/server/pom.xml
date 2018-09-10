@@ -203,6 +203,7 @@
     </profiles>
 
     <build>
+        <finalName>hcf</finalName>
         <resources>
             <resource>
                 <!-- 排除 resources.path 路径下 properties/*规则的文件 -->

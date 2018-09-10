@@ -1,8 +1,10 @@
 package com.tao.business;
 
+import com.tao.entity.dto.MenuItemDTO;
 import com.tao.entity.po.MenuItemPO;
 import com.tao.entity.po.MenuList;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -18,13 +20,12 @@ public interface MenuService {
      * @param menuTxt
      * @return
      */
-    List<MenuItemPO> publishMenu(String menuTxt);
+    List<MenuItemPO> publishMenu(String menuTxt) throws IOException;
 
     /**
      * 获取最新菜单
      *
-     * @param menuList
      * @return
      */
-    MenuList latestMenu(MenuList menuList);
+    List<MenuItemDTO> latestMenu() throws IOException;
 }
