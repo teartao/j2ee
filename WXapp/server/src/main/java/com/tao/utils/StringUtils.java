@@ -9,9 +9,6 @@ package com.tao.utils;
 public class StringUtils {
     public static void main(String[] args) {
         String str = "java怎么把asdasd字2233符44串中的asdasd的111汉字取出来";
-
-
-
         System.out.println(getNumbers(str));
     }
 
@@ -20,7 +17,7 @@ public class StringUtils {
         return words.replaceAll(reg, "");
     }
     public static String getNumbers(String words) {
-        String reg = "[^\\d]";
+        String reg = "[^0-9]";
         return words.replaceAll(reg, "");
     }
 }
