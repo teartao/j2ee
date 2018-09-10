@@ -20,7 +20,7 @@ import java.util.List;
 public class HelloController {
     private static Logger logger = LoggerFactory.getLogger(HelloController.class);
     @Resource
-    private MenuService menuService;
+    private MenuService menuBizService;
 
     /**
      * 保存菜单文本
@@ -38,7 +38,7 @@ public class HelloController {
             Result<Object> result = new Result<>();
             result.setCode(ResultEnum.SUCCESS.getCode());
             result.setMsg(ResultEnum.SUCCESS.getMsg());
-            result.setData(menuService.publishMenu(menuTxt));
+            result.setData(menuBizService.publishMenu(menuTxt));
             return result;
         } catch (Exception e) {
             logger.error(e.getMessage());

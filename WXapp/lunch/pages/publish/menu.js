@@ -49,7 +49,7 @@ function getMenu(menuTxt) {
 }
 function saveMenu($this){
   wx.request({
-    url: 'https://prep-new-vms.htd.cn/hcf/saveMenu',
+    url: 'https://47.96.160.85:8080/hcf/saveMenu',
     method: 'POST',
     header: {
       'Content-Type': 'json'
@@ -106,7 +106,7 @@ Page({
 
     var $this = this;
     wx.request({
-      url: 'https://prep-new-vms.htd.cn/hcf/user',
+      url: 'https://47.96.160.85:8080/hcf/user',
       method: 'POST',
       header: {
         'Content-Type': 'json'

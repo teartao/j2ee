@@ -48,14 +48,14 @@ public class HTDMenuService implements MenuFactory {
 
     public static void main(String[] args) {
         HTDMenuService xx= new HTDMenuService();
-        List<MenuItemDTO> menu=xx.parseToMenu("9月7日\n" +
-                "千张卷肉\n" +
-                "剁椒蒸鱼块\n" +
-                "盐水鸭（12）\n" +
-                "瓠子烧鸡（12）\n" +
-                "咖喱猪排（12）\n" +
-                "酸菜粉条烧肉（12）\n" +
-                "冒菜冒肉片（12）");
+        List<MenuItemDTO> menu=xx.parseToMenu("周一\n" +
+                "苏式熏鱼\n" +
+                "酸汤萝卜鸭\n" +
+                "海鲜菇鸡丁\n" +
+                "椒盐土豆猪肉条（12）\n" +
+                "红烧大排（12）\n" +
+                "老干妈土豆烧鸡（12）\n" +
+                "木须肉盖浇饭加芝心鸡排（15");
         System.out.println(JSON.toJSONString(menu));
     }
 }

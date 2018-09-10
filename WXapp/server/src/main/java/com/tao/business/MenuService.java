@@ -1,6 +1,6 @@
 package com.tao.business;
 
-import com.tao.entity.dto.MenuItemDTO;
+import com.tao.entity.po.MenuItemPO;
 import com.tao.entity.po.MenuList;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public interface MenuService {
      * @param menuTxt
      * @return
      */
-    List<MenuItemDTO> publishMenu(String menuTxt);
+    List<MenuItemPO> publishMenu(String menuTxt);
 
     /**
      * 获取最新菜单

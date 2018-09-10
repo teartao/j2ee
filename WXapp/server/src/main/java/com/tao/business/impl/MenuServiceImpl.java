@@ -20,7 +20,7 @@ import java.util.List;
  * @Version V0.0.1
  * @Desc
  */
-@Service("menuService")
+@Service("menuBizService")
 public class MenuServiceImpl implements MenuService {
 
     @Resource
@@ -35,7 +35,7 @@ public class MenuServiceImpl implements MenuService {
 
 
     @Override
-    public List<MenuItemDTO> publishMenu(String menuTxt) {
+    public List<MenuItemPO> publishMenu(String menuTxt) {
         List<MenuItemDTO> menuItemsList = menuFactory.parseToMenu(menuTxt);
         List<MenuItemPO> menuPOList = new ArrayList<>();
         for (MenuItemDTO menuItem : menuItemsList) {
@@ -45,7 +45,7 @@ public class MenuServiceImpl implements MenuService {
             menuPOList.add(menuPOItem);
         }
 
-        return menuItemsList;
+        return menuPOList;
     }
 
     @Override

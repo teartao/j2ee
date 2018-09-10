@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * @Version V0.0.1
  * @Desc
  */
-@Service
+@Service("userBizService")
 public class UserServiceImpl implements UserService {
 
     @Resource
