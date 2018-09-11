@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.tao.business.MenuService;
 import com.tao.business.OrderService;
 import com.tao.entity.dto.MenuItemDTO;
-import com.tao.manager.OrderFactory;
+import com.tao.manager.OrderManager;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
     private MenuService menuBizService;
 
     @Resource
-    private OrderFactory orderFactory;
+    private OrderManager orderFactory;
 
     @Override
     public MenuItemDTO findMyOrder(String userId) throws IOException {

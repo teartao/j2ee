@@ -9,7 +9,7 @@ import java.io.IOException;
  * @Version V0.0.1
  * @Desc
  */
-public interface OrderFactory {
+public interface OrderManager {
     File getTodayOrderFile() throws IOException;
     void saveOrder(String content)throws IOException;
 }

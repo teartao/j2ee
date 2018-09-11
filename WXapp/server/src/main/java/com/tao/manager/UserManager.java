@@ -6,5 +6,5 @@ package com.tao.manager;
  * @Version V0.0.1
  * @Desc
  */
-public class UserFactory {
+public class UserManager {
 }

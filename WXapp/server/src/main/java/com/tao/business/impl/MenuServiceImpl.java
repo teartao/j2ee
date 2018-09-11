@@ -6,8 +6,8 @@ import com.tao.dao.MenuSelectionDao;
 import com.tao.dao.UserDao;
 import com.tao.entity.dto.MenuItemDTO;
 import com.tao.entity.po.MenuItemPO;
-import com.tao.manager.MenuFactory;
-import com.tao.manager.OrderFactory;
+import com.tao.manager.MenuManager;
+import com.tao.manager.OrderManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -35,14 +35,14 @@ public class MenuServiceImpl implements MenuService {
     private MenuSelectionDao menuSelectionDao;
 
     @Resource
-    private MenuFactory menuFactory;
+    private MenuManager menuManager;
     @Resource
-    private OrderFactory orderFactory;
+    private OrderManager orderManager;
 
 
     @Override
     public List<MenuItemPO> publishMenu(String menuTxt) throws IOException {
-        List<MenuItemDTO> menuItemsList = menuFactory.parseToMenu(menuTxt);
+        List<MenuItemDTO> menuItemsList = menuManager.parseToMenu(menuTxt);
         List<MenuItemPO> menuPOList = new ArrayList<>();
         for (int i = 0; i < menuItemsList.size(); i++) {
             MenuItemDTO menuItem = menuItemsList.get(i);
@@ -53,13 +53,13 @@ public class MenuServiceImpl implements MenuService {
             menuPOList.add(menuPOItem);
         }
 
-        menuFactory.saveMenu(menuPOList);
-        orderFactory.saveOrder("");
+        menuManager.saveMenu(menuPOList);
+        orderManager.saveOrder("");
         return menuPOList;
     }
 
     @Override
     public List<MenuItemDTO> latestMenu() throws IOException {
-        return menuFactory.getMenu();
+        return menuManager.getMenu();
     }
 }

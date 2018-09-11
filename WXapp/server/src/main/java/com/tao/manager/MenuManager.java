@@ -12,7 +12,7 @@ import java.util.List;
  * @Version V0.0.1
  * @Desc
  */
-public interface MenuFactory {
+public interface MenuManager {
     List<MenuItemDTO> parseToMenu(String menuTxt);
     List<MenuItemDTO> parseToMenu(String menuTxt,int startRow);
     List<MenuItemDTO> getMenu() throws IOException;

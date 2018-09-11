@@ -1,6 +1,6 @@
 package com.tao.manager.impl;
 
-import com.tao.manager.OrderFactory;
+import com.tao.manager.OrderManager;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Component
-public class HTDOrderManager implements OrderFactory {
+public class HTDOrderManager implements OrderManager {
 
     @Value("${fileUploadPath}")
     private String filePath;
