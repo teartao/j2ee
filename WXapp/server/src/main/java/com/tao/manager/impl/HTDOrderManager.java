@@ -33,7 +33,7 @@ public class HTDOrderManager implements OrderManager {
 
     @Override
     public void saveOrder(String content) throws IOException {
-        File todayOrderFile=getTodayOrderFile();
+        File todayOrderFile = getTodayOrderFile();
         FileUtils.writeStringToFile(todayOrderFile, content, "utf-8");
     }
 }
