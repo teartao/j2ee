@@ -14,9 +14,14 @@
   </view>
 
   <view class="operations" wx:if="{{orderedList!=null}}">
-     已点列表
-     <view wx:for="{{orderedList}}" wx:for-item="menuItem">
-      {{JSON.stringify(menuItem)}}[￥{{menuItem.price}}]:
-      <view wx:for="{{menuItem.userList}}" wx:for-item="user">{{user.name}}、</view>
+     已点列表【总价{{totalPrice}}】
+     <view wx:for="{{orderedList}}" wx:for-item="menuItem" wx:for-index="key">
     </view>
+
+  <label class="weui-cell weui-check__label" wx:for="{{orderedList}}" wx:for-item="menuItem" wx:for-index="key">
+    {{key}} ￥{{menuItem.price}} [{{menuItem.userList.length}}人] : 
+    <view wx:for="{{menuItem.userList}}" wx:for-item="user"
+    style="flex-direction:row;">{{user}}、</view>
+  </label>
+
   </view>

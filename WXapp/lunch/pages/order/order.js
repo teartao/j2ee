@@ -57,6 +57,9 @@ const HTTP_SERVER_URL = 'https://prep-new-vms.htd.cn/hcf/';
       success: function (res) {
         const orderedList = convertToList(res.data.data);
         $this.setData({orderedList: orderedList});
+
+        const totalPrice = calcTotalPrice(orderedList);
+        $this.setData({ totalPrice: totalPrice });
       }
     })
   }
@@ -78,6 +81,19 @@ function submitOrderChoice($this, user, choice){
       }
     })
   }
+
+function calcTotalPrice(orderedList){
+  let totalPrice = 0;
+  for (let key in orderedList){
+    let menuItem = orderedList[key];
+    let price = menuItem.price;
+    let userList = menuItem.userList;
+    for(let i=0;i<userList.length;i++){
+      totalPrice += price;
+    }
+  }
+  return totalPrice;
+}
 /* 业务功能js end */
 const app = getApp()
 Page({

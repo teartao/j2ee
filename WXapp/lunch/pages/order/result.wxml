@@ -5,6 +5,7 @@
 
       <view wx:for="{{imgalist}}" wx:for-item="image" >  
         <image src="{{image}}" data-src="{{image}}" bindtap="previewImage" ></image>  
+        <!-- <web-view src="{{image}}"></web-view> -->
       </view>  
       <view class="textarea-wrp">复制口令去支付宝付款:【{{alipayCode}}】</view>      
       <button type="primary" class="operation-btn"
