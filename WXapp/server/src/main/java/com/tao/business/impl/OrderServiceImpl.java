@@ -65,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
         List<MenuItemDTO> menuList = menuBizService.latestMenu();
         //判断用户点餐选项，将用户点餐选项存入
         int orderIndex = Integer.valueOf(orderId);
-        if (0 < orderIndex && orderIndex < menuList.size()) {
+        if (0 <= orderIndex && orderIndex < menuList.size()) {
             //{userId:menuItem}
             todayOrderJSON.put(userId, menuList.get(orderIndex));
         }else{
