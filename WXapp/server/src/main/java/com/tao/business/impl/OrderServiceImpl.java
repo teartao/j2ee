@@ -2,6 +2,7 @@ package com.tao.business.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.tao.business.MenuService;
 import com.tao.business.OrderService;
 import com.tao.entity.dto.MenuItemDTO;
@@ -36,12 +37,47 @@ public class OrderServiceImpl implements OrderService {
     private MenuService menuBizService;
 
     @Override
-    public MenuItemDTO findMyOrder(String userId) {
-        return null;
+    public MenuItemDTO findMyOrder(String userId) throws IOException {
+        JSONObject orders = findOrders();
+        String myOrder=orders.getString(userId);
+        return JSONObject.parseObject(myOrder, MenuItemDTO.class);
     }
 
     @Override
-    public MenuItemDTO addOrder(String userId, String orderId) throws IOException {
+    public JSONObject findOrders() throws IOException {
+        File todayOrderFile = getTodayOrderFile();
+        //读取文件内容，校验是否为空
+        String ordersContent = FileUtils.readFileToString(todayOrderFile, "utf-8");
+        JSONObject todayOrderJSON = null;
+        if (!StringUtils.isEmpty(ordersContent)) {
+            todayOrderJSON = JSON.parseObject(ordersContent);
+        } else {
+            todayOrderJSON = new JSONObject();
+        }
+        return todayOrderJSON;
+
+    }
+
+    @Override
+    public MenuItemDTO addOrder(String userId, String menuId) throws IOException {
+        File todayOrderFile = getTodayOrderFile();
+        JSONObject todayOrderJSON = findOrders();
+        List<MenuItemDTO> menuList = menuBizService.latestMenu();
+        //判断用户点餐选项，将用户点餐选项存入
+        int menuIndex = Integer.valueOf(menuId);
+        if (0 <= menuIndex && menuIndex < menuList.size()) {
+            //{userId:menuItem}
+            todayOrderJSON.put(userId, menuList.get(menuIndex));
+        } else {
+            logger.error("点餐失败，菜单号{}不存在", menuId);
+            throw new IllegalArgumentException("菜单编号不存在");
+        }
+        FileUtils.writeStringToFile(todayOrderFile, todayOrderJSON.toJSONString(), "utf-8");
+        logger.info("write/update order to [{}],content :\n{} ", todayOrderFile.getAbsolutePath(), todayOrderJSON.toJSONString());
+        return menuList.get(menuIndex);
+    }
+
+    private File getTodayOrderFile() throws IOException {
         //根据日期创建对应日期的点餐记录文件 order.YYYY-MM-dd.json
         SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
         String dateString = formatter.format(new Date());
@@ -53,27 +89,6 @@ public class OrderServiceImpl implements OrderService {
             boolean isSuccess = todayOrderFile.createNewFile();
             logger.info("create file [{}] success:{}", orderFileFullName, isSuccess);
         }
-
-        //读取文件内容，校验是否为空
-        String ordersContent = FileUtils.readFileToString(todayOrderFile, "utf-8");
-        JSONObject todayOrderJSON = null;
-        if (!StringUtils.isEmpty(ordersContent)) {
-            todayOrderJSON = JSON.parseObject(ordersContent);
-        } else {
-            todayOrderJSON = new JSONObject();
-        }
-        List<MenuItemDTO> menuList = menuBizService.latestMenu();
-        //判断用户点餐选项，将用户点餐选项存入
-        int orderIndex = Integer.valueOf(orderId);
-        if (0 <= orderIndex && orderIndex < menuList.size()) {
-            //{userId:menuItem}
-            todayOrderJSON.put(userId, menuList.get(orderIndex));
-        }else{
-            logger.error("点餐失败，菜单号{}不存在", orderId);
-            throw  new IllegalArgumentException("菜单编号不存在");
-        }
-        FileUtils.writeStringToFile(todayOrderFile, todayOrderJSON.toJSONString(), "utf-8");
-        logger.info("write/update order to [{}],content :\n{} ", orderFileFullName, todayOrderJSON.toJSONString());
-        return menuList.get(orderIndex);
+        return todayOrderFile;
     }
 }

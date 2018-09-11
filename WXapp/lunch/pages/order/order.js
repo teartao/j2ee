@@ -1,4 +1,5 @@
 // pages/order/order.js
+const HTTP_SERVER_URL = 'https://prep-new-vms.htd.cn/hcf/';
 /* 业务功能js begin */
   /**
    * 初始化加载菜单
@@ -14,7 +15,7 @@
   }
   function loadMenus($this){
     wx.request({
-      url: 'https://prep-new-vms.htd.cn/hcf/menuTxt',
+      url: HTTP_SERVER_URL+'menus',
       method: 'GET',
       header: {
         'Content-Type': 'json'
@@ -26,7 +27,7 @@
   }
 function submitOrderChoice($this, user, choice){
     wx.request({
-      url: 'https://prep-new-vms.htd.cn/hcf/order/' + user.nickName + '/' + choice.id,
+      url: HTTP_SERVER_URL + 'order/' + user.nickName + '/' + choice.id,
       method: 'POST',
       header: {
         'Content-Type': 'json'

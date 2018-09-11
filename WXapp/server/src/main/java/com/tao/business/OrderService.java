@@ -1,8 +1,7 @@
 package com.tao.business;
 
+import com.alibaba.fastjson.JSONObject;
 import com.tao.entity.dto.MenuItemDTO;
-import com.tao.entity.po.Order;
-import com.tao.entity.po.User;
 
 import java.io.IOException;
 
@@ -13,7 +12,8 @@ import java.io.IOException;
  * @Desc
  */
 public interface OrderService {
-    MenuItemDTO findMyOrder(String userId);
+    MenuItemDTO findMyOrder(String userId) throws IOException;
+    JSONObject findOrders() throws IOException;
 
-    MenuItemDTO addOrder(String userId, String orderId) throws IOException;
+    MenuItemDTO addOrder(String userId, String menuId) throws IOException;
 }

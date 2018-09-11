@@ -15,13 +15,13 @@ public class UserDTO implements Serializable {
     private String language;
     private String city;
     private String country;
-    private String avatarUrl;;
+    private String avatarUrl;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

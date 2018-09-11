@@ -1,3 +1,5 @@
+const HTTP_SERVER_URL = 'https://prep-new-vms.htd.cn/hcf/';
+
 String.prototype.replaceAll = function (s1, s2) {
   return this.replace(new RegExp(s1, "gm"), s2);
 };
@@ -49,7 +51,7 @@ function getMenu(menuTxt) {
 }
 function saveMenu($this){
   wx.request({
-    url: 'https://prep-new-vms.htd.cn/hcf/saveMenu',
+    url: HTTP_SERVER_URL + 'menu/save',
     method: 'POST',
     header: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -107,12 +109,12 @@ Page({
 
     var $this = this;
     wx.request({
-      url: 'https://prep-new-vms.htd.cn/hcf/user',
+      url: HTTP_SERVER_URL + 'user/login',
       method: 'POST',
       header: {
         'Content-Type': 'json'
       },
-      data: {user: app.globalData.userInfo},
+      data: JSON.stringify(app.globalData.userInfo),
       success: function (res) {
         $this.setData({
           loginUser: res
