@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public MenuItemDTO findMyOrder(String userId) throws IOException {
         JSONObject orders = findOrders();
-        String myOrder=orders.getString(userId);
+        String myOrder = orders.getString(userId);
         return JSONObject.parseObject(myOrder, MenuItemDTO.class);
     }
 
@@ -55,6 +55,24 @@ public class OrderServiceImpl implements OrderService {
         }
         return todayOrderJSON;
 
+    }
+
+    @Override
+    public JSONObject getOrderList() throws IOException {
+//        JSONObject orders = findOrders();
+//        List<JSONObject> orderedMenuList = new ArrayList<>();
+//        List<String> orderedMenuKey = new ArrayList<>();
+//        for (String key : orders.keySet()) {
+//            if (!orderedMenuKey.contains(key)) {
+//                orderedMenuKey.add(key);
+//                JSONObject orderMenuItem = orders.getJSONObject(key);
+//                orderMenuItem.put("");
+//                orderedMenuList.add(orderMenuItem);
+//            } else {
+//
+//            }
+//        }
+        return null;
     }
 
     @Override

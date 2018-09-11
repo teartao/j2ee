@@ -25,6 +25,20 @@ const HTTP_SERVER_URL = 'https://prep-new-vms.htd.cn/hcf/';
       }
     })
   }
+
+  function loadOrderedList($this){
+    wx.request({
+      url: HTTP_SERVER_URL + 'orders',
+      method: 'GET',
+      header: {
+        'Content-Type': 'json'
+      },
+      success: function (res) {
+        $this.setData({ orderedList: res.data.data });
+      }
+    })
+  }
+
 function submitOrderChoice($this, user, choice){
     wx.request({
       url: HTTP_SERVER_URL + 'order/' + user.nickName + '/' + choice.id,
@@ -34,6 +48,11 @@ function submitOrderChoice($this, user, choice){
       },
       success: function (res) {
         // $this.setData({ orderInfo: res.data.data });
+        wx.navigateTo({
+          url: './result?name=' + user.nickName,  //跳转页面的路径，可带参数 ？隔开，不同参数用 & 分隔；相对路径，不需要.wxml后缀
+          success: function () { }
+        })
+
       }
     })
   }
@@ -84,6 +103,8 @@ Page({
 
     initTodayDate(this);
     loadMenus(this);
+
+    loadOrderedList(this);
     
   },
 

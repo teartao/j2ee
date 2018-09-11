@@ -13,7 +13,10 @@ import java.io.IOException;
  */
 public interface OrderService {
     MenuItemDTO findMyOrder(String userId) throws IOException;
+
     JSONObject findOrders() throws IOException;
+
+    JSONObject getOrderList() throws IOException;
 
     MenuItemDTO addOrder(String userId, String menuId) throws IOException;
 }

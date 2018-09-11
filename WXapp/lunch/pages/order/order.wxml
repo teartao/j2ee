@@ -12,3 +12,11 @@
       <button type="primary" class="operation-btn"
       bindtap="submitChoice" >下单</button>
   </view>
+
+  <view class="operations" wx:if="{{orderedList!=null && orderedList.length>0}}">
+     已点列表
+     <view wx:for="{{orderedList}}" wx:for-item="menuItem">
+      {{menuItem.name}}[￥{{menuItem.price}}]:
+      <view wx:for="{{menuItem.userList}}" wx:for-item="userItem">{{userItem.name}}、</view>
+    </view>
+  </view>

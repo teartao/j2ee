@@ -8,6 +8,7 @@ import com.tao.business.OrderService;
 import com.tao.common.Result;
 import com.tao.common.ResultEnum;
 import com.tao.entity.dto.MenuItemDTO;
+import com.tao.entity.dto.MenuOrderDetailDTO;
 import com.tao.entity.dto.UserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -45,6 +47,7 @@ public class HelloController {
         result.setData(wxUser);
         return result;
     }
+
     /**
      * 保存菜单文本
      *
@@ -146,6 +149,7 @@ public class HelloController {
         result.setMsg(ResultEnum.ERROR.getMsg());
         return result;
     }
+
     /**
      * 读取点餐选项
      */
