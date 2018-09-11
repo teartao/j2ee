@@ -26,6 +26,27 @@ const HTTP_SERVER_URL = 'https://prep-new-vms.htd.cn/hcf/';
     })
   }
 
+  function convertToList(ordersData){
+      let displayOrderObj = {};
+      console.log("before convert [ordersData]:");
+      console.log(ordersData);
+      for (let userName in ordersData) {
+          const orderedMenuItem = ordersData[userName];
+          let userList = displayOrderObj[orderedMenuItem.name];
+          if (userList == null) {
+              displayOrderObj[orderedMenuItem.name] = {
+                userList:[userName],
+                price:orderedMenuItem.price
+              };
+          }else{
+              userList.userList.push(userName);
+          }
+      }
+      console.log("after convert [displayOrderObj]: ");
+      console.log(JSON.stringify(displayOrderObj));
+      return displayOrderObj;
+  }
+
   function loadOrderedList($this){
     wx.request({
       url: HTTP_SERVER_URL + 'orders',
@@ -34,7 +55,8 @@ const HTTP_SERVER_URL = 'https://prep-new-vms.htd.cn/hcf/';
         'Content-Type': 'json'
       },
       success: function (res) {
-        $this.setData({ orderedList: res.data.data });
+        const orderedList = convertToList(res.data.data);
+        $this.setData({orderedList: orderedList});
       }
     })
   }
