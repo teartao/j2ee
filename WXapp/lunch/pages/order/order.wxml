@@ -1,5 +1,6 @@
  <radio-group bindchange="selectRecipt">
-    <view class="danger">下面是今日菜单</view>
+    <view class="danger">{{todayInfo}}</view>
+    <view>下面是今日菜单</view>
     <label class="weui-cell weui-check__label" wx:for="{{menus}}" wx:key="{{item.name}}">
       <view class="weui-cell__hd">
         <radio value="{{index}}"/>{{item.name}} [￥{{item.price}}]
@@ -9,6 +10,5 @@
   
   <view class="operations" wx:if="{{menus!=null && menus.length>0}}">
       <button type="primary" class="operation-btn"
-      bindtap="submitMenu"
-      >下单</button>
+      bindtap="submitChoice" >下单</button>
   </view>

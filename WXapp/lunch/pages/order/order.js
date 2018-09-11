@@ -1,4 +1,42 @@
 // pages/order/order.js
+/* 业务功能js begin */
+  /**
+   * 初始化加载菜单
+   */
+  function initTodayDate($this){
+    const DAY_ARR = ['星期日','星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+    const today = new Date();
+    var year = today.getFullYear();
+    var month = today.getMonth()+1;
+    var date = today.getDate();
+    var day = today.getDay();
+    $this.setData({ todayInfo: ('今天是:' + year + '年' + month + '月' + date+'日 ' + DAY_ARR[day])});
+  }
+  function loadMenus($this){
+    wx.request({
+      url: 'https://prep-new-vms.htd.cn/hcf/menuTxt',
+      method: 'GET',
+      header: {
+        'Content-Type': 'json'
+      },
+      success: function (res) {
+        $this.setData({ menus: res.data.data });
+      }
+    })
+  }
+function submitOrderChoice($this, user, choice){
+    wx.request({
+      url: 'https://prep-new-vms.htd.cn/hcf/order/' + user.nickName + '/' + choice.id,
+      method: 'POST',
+      header: {
+        'Content-Type': 'json'
+      },
+      success: function (res) {
+        // $this.setData({ orderInfo: res.data.data });
+      }
+    })
+  }
+/* 业务功能js end */
 const app = getApp()
 Page({
 
@@ -6,7 +44,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    
   },
 
   /**
@@ -43,20 +81,9 @@ Page({
       })
     }
 
-
-    var $this=this;
-    wx.request({
-      url: 'https://prep-new-vms.htd.cn/hcf/menu',
-      method: 'POST',
-      header: {
-        'Content-Type': 'json'
-      },
-      data: JSON.stringify({menuTxt:""}),
-      success: function (res) {
-        $this.setData({ menus: res.data });
-        console.log(res.data);
-      }
-    })
+    initTodayDate(this);
+    loadMenus(this);
+    
   },
 
   /**
@@ -108,29 +135,19 @@ Page({
   
   },
   selectRecipt: function (e) {
-    var that = this;
+    let that = this;
     const menus = that.data.menus;
     const choice = menus[e.detail.value];
-    // that.data.userInfo 
-    // var xxx= { 
-    //   "nickName":"陶呵呵",
-    //  "gender":1, 
-    //  "language":"zh_CN", 
-    //  "city":"",
-    // "province":"Firenze",
-    //  "country":"Italy", 
-    //  "avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/PiajxSqBRaEJrjrX8xptUibYibicn4dvplVIWBrRhTyDIIPTar7uHl86KMjX92HMIxIGZV92PCcTiaqy0gTP4jKxOWQ/132" 
-    //  }
-    
-    console.log(that.data.userInfo.nickName+'选择了：');
-    console.log(choice.name + ' ￥' + choice.price);
+    that.setData({ choosedOrder: choice});
   },
   getUserInfo: function (e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  submitChoice:function(e){
+    submitOrderChoice(this, this.data.userInfo, this.data.choosedOrder);    
   }
 })

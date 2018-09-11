@@ -49,15 +49,16 @@ function getMenu(menuTxt) {
 }
 function saveMenu($this){
   wx.request({
-    url: 'https://47.96.160.85:8080/hcf/saveMenu',
+    url: 'https://prep-new-vms.htd.cn/hcf/saveMenu',
     method: 'POST',
     header: {
-      'Content-Type': 'json'
+      'Content-Type': 'application/x-www-form-urlencoded'
     },
-    data: JSON.stringify($this.data.menus),
+    data: {
+      menuTxt: $this.data.menuTxt
+    },
     success: function (res) {
-      console.log('save menus success ');
-      console.log(res);
+      $this.setData({ menus:res.data.data});
     }
   })
 }
@@ -106,12 +107,12 @@ Page({
 
     var $this = this;
     wx.request({
-      url: 'https://47.96.160.85:8080/hcf/user',
+      url: 'https://prep-new-vms.htd.cn/hcf/user',
       method: 'POST',
       header: {
         'Content-Type': 'json'
       },
-      data: JSON.stringify(app.globalData.userInfo),
+      data: {user: app.globalData.userInfo},
       success: function (res) {
         $this.setData({
           loginUser: res
@@ -171,15 +172,6 @@ Page({
   },
   bindTextAreaBlur: function (e) {
     this.setData({ menuTxt: e.detail.value });
-    console.log("menuTxt:\n" + this.data.menuTxt)
-    
-    // getCNWord(e.detail.value);
-    var menus = getMenu(e.detail.value);
-    
-    this.setData({ menus: menus });
-    console.log("menu: \n")
-    console.log(menus);
-
     saveMenu(this);
   },
   submitMenu:function(e){
