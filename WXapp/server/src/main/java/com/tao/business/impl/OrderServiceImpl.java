@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.tao.business.MenuService;
 import com.tao.business.OrderService;
 import com.tao.entity.dto.MenuItemDTO;
+import com.tao.service.OrderFactory;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,11 +30,11 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     private static Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
-    @Value("${fileUploadPath}")
-    private String filePath;
-
     @Resource
     private MenuService menuBizService;
+
+    @Resource
+    private OrderFactory orderFactory;
 
     @Override
     public MenuItemDTO findMyOrder(String userId) throws IOException {
@@ -44,7 +45,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public JSONObject findOrders() throws IOException {
-        File todayOrderFile = getTodayOrderFile();
+        File todayOrderFile = orderFactory.getTodayOrderFile();
         //读取文件内容，校验是否为空
         String ordersContent = FileUtils.readFileToString(todayOrderFile, "utf-8");
         JSONObject todayOrderJSON = null;
@@ -77,7 +78,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public MenuItemDTO addOrder(String userId, String menuId) throws IOException {
-        File todayOrderFile = getTodayOrderFile();
+        File todayOrderFile = orderFactory.getTodayOrderFile();
         JSONObject todayOrderJSON = findOrders();
         List<MenuItemDTO> menuList = menuBizService.latestMenu();
         //判断用户点餐选项，将用户点餐选项存入
@@ -89,23 +90,8 @@ public class OrderServiceImpl implements OrderService {
             logger.error("点餐失败，菜单号{}不存在", menuId);
             throw new IllegalArgumentException("菜单编号不存在");
         }
-        FileUtils.writeStringToFile(todayOrderFile, todayOrderJSON.toJSONString(), "utf-8");
+        orderFactory.saveOrder(todayOrderJSON.toJSONString());
         logger.info("write/update order to [{}],content :\n{} ", todayOrderFile.getAbsolutePath(), todayOrderJSON.toJSONString());
         return menuList.get(menuIndex);
-    }
-
-    private File getTodayOrderFile() throws IOException {
-        //根据日期创建对应日期的点餐记录文件 order.YYYY-MM-dd.json
-        SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
-        String dateString = formatter.format(new Date());
-
-        String orderFileFullName = filePath + "order." + dateString + ".json";
-        File todayOrderFile = new File(orderFileFullName);
-        //判断文件是否存在，存在则读取，否则创建
-        if (!todayOrderFile.exists()) {
-            boolean isSuccess = todayOrderFile.createNewFile();
-            logger.info("create file [{}] success:{}", orderFileFullName, isSuccess);
-        }
-        return todayOrderFile;
     }
 }

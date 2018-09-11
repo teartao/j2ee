@@ -1,11 +1,18 @@
 package com.tao.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.tao.entity.dto.MenuItemDTO;
+import com.tao.entity.po.MenuItemPO;
 import com.tao.service.MenuFactory;
 import com.tao.utils.StringUtils;
+import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +24,9 @@ import java.util.List;
  */
 @Component
 public class HTDMenuService implements MenuFactory {
+
+    @Value("${fileUploadPath}")
+    private String filePath;
     @Override
     public List<MenuItemDTO> parseToMenu(String menuTxt) {
         return parseToMenu(menuTxt, 1);
@@ -44,6 +54,18 @@ public class HTDMenuService implements MenuFactory {
             menus.add(menu);
         }
         return menus;
+    }
+
+    @Override
+    public List<MenuItemDTO> getMenu() throws IOException {
+        String menuJSON = FileUtils.readFileToString(new File(filePath + "menu.json"), "utf-8");
+        return JSONObject.parseObject(menuJSON, new TypeReference<List<MenuItemDTO>>() {
+        });
+    }
+
+    @Override
+    public void saveMenu(List<MenuItemPO> menuPOList) throws IOException {
+        FileUtils.writeStringToFile(new File(filePath + "menu.json"), JSON.toJSONString(menuPOList), "utf-8");
     }
 
     public static void main(String[] args) {
