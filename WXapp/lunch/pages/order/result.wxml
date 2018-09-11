@@ -1,0 +1,12 @@
+  
+  <view class="operations" wx:if="{{menu!=null}}">
+    <view>您的点餐结果:</view>
+    <view>{{menu.name}}  ￥{{menu.price}}</view> 
+
+      <view wx:for="{{imgalist}}" wx:for-item="image" >  
+        <image src="{{image}}" data-src="{{image}}" bindtap="previewImage" ></image>  
+      </view>  
+      <view class="textarea-wrp">复制口令去支付宝付款:【{{alipayCode}}】</view>      
+      <button type="primary" class="operation-btn"
+      bindtap="copyToClipBoard" >复制口令</button>
+  </view>

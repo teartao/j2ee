@@ -1,0 +1,6 @@
+/* pages/order/result.wxss */
+
+image {
+    width: 200rpx;
+    height: 240rpx
+}
