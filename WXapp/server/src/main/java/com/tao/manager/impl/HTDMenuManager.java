@@ -1,11 +1,11 @@
-package com.tao.service.impl;
+package com.tao.manager.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.tao.entity.dto.MenuItemDTO;
 import com.tao.entity.po.MenuItemPO;
-import com.tao.service.MenuFactory;
+import com.tao.manager.MenuFactory;
 import com.tao.utils.StringUtils;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +23,7 @@ import java.util.List;
  * @Desc
  */
 @Component
-public class HTDMenuService implements MenuFactory {
+public class HTDMenuManager implements MenuFactory {
 
     @Value("${fileUploadPath}")
     private String filePath;
@@ -69,7 +69,7 @@ public class HTDMenuService implements MenuFactory {
     }
 
     public static void main(String[] args) {
-        HTDMenuService xx= new HTDMenuService();
+        HTDMenuManager xx= new HTDMenuManager();
         List<MenuItemDTO> menu=xx.parseToMenu("周一\n" +
                 "苏式熏鱼\n" +
                 "酸汤萝卜鸭\n" +

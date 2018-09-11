@@ -1,4 +1,4 @@
-package com.tao.service;
+package com.tao.manager;
 
 import com.tao.entity.dto.MenuItemDTO;
 import com.tao.entity.po.MenuItemPO;
