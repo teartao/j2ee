@@ -47,6 +47,17 @@ const HTTP_SERVER_URL = 'https://prep-new-vms.htd.cn/hcf/';
       return displayOrderObj;
   }
 
+function getFinalOrderTxt(displayOrderList,$this) {
+  let totalAmount = 0;
+  let finalString = '';
+  for (let menuName in displayOrderList) {
+    finalString += (menuName +' '+ displayOrderList[menuName].userList.length+'\n');
+    totalAmount += displayOrderList[menuName].userList.length;
+  }
+  $this.setData({ totalAmount: totalAmount });
+  return finalString;
+}
+
   function loadOrderedList($this){
     wx.request({
       url: HTTP_SERVER_URL + 'orders',
@@ -60,6 +71,10 @@ const HTTP_SERVER_URL = 'https://prep-new-vms.htd.cn/hcf/';
 
         const totalPrice = calcTotalPrice(orderedList);
         $this.setData({ totalPrice: totalPrice });
+
+        const finalOrderTxt = getFinalOrderTxt(orderedList, $this);
+        $this.setData({finalOrderTxt: finalOrderTxt});
+        console.log(finalOrderTxt);
       }
     })
   }
@@ -209,5 +224,16 @@ Page({
   },
   submitChoice:function(e){
     submitOrderChoice(this, this.data.userInfo, this.data.choosedOrder);    
+  },
+  copyOrderResult:function(e){
+      wx.setClipboardData({
+          data: this.data.finalOrderTxt,
+          success: function (res) {
+              wx.showToast({title: '复制成功'});
+              wx.getClipboardData({
+                  success: function (res) {}
+              })
+          }
+      })
   }
 })

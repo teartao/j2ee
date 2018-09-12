@@ -14,14 +14,16 @@
   </view>
 
   <view class="operations" wx:if="{{orderedList!=null}}">
-     已点列表【总价{{totalPrice}}】
-     <view wx:for="{{orderedList}}" wx:for-item="menuItem" wx:for-index="key">
+    已点列表【总价：{{totalPrice}}；总人数：{{totalAmount}}】
+    ======================================
+    <view class="weui-cell weui-check__label" wx:for="{{orderedList}}" wx:for-item="menuItem" wx:for-index="key">
+      {{key}} ￥{{menuItem.price}} [{{menuItem.userList.length}}人] :
+      <view wx:for="{{menuItem.userList}}" wx:for-item="user"
+        style="display:inline-block;">【{{user}}】</view>
     </view>
-
-  <label class="weui-cell weui-check__label" wx:for="{{orderedList}}" wx:for-item="menuItem" wx:for-index="key">
-    {{key}} ￥{{menuItem.price}} [{{menuItem.userList.length}}人] : 
-    <view wx:for="{{menuItem.userList}}" wx:for-item="user"
-    style="flex-direction:row;">{{user}}、</view>
-  </label>
-
+    ======================================
+  </view>
+  <view class="operations" wx:if="{{finalOrderTxt!=null && finalOrderTxt!=''}}">
+    <button type="primary" class="operation-btn"
+      bindtap="copyOrderResult" >复制下单结果</button>
   </view>
