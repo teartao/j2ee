@@ -3,7 +3,7 @@
     <view>您的点餐结果:</view>
     <view>{{menu.name}}  ￥{{menu.price}}</view> 
 
-      <view wx:for="{{imgalist}}" wx:for-item="image" >  
+      <view wx:for="{{imgalist}}" wx:for-item="image" wx:key="imgKey">  
         <image src="{{image}}" data-src="{{image}}" bindtap="previewImage" ></image>  
         <!-- <web-view src="{{image}}"></web-view> -->
       </view>  
