@@ -223,7 +223,11 @@ Page({
     })
   },
   submitChoice:function(e){
-    submitOrderChoice(this, this.data.userInfo, this.data.choosedOrder);    
+      if(this.data.choosedOrder){
+          submitOrderChoice(this, this.data.userInfo, this.data.choosedOrder);
+      }else{
+          wx.showToast({title: '不点菜吃个鬼噢？'});
+      }
   },
   copyOrderResult:function(e){
       wx.setClipboardData({
