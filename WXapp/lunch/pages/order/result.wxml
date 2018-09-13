@@ -1,7 +1,13 @@
   
   <view class="operations" wx:if="{{menu!=null}}">
     <view>您的点餐结果:</view>
-    <view style="color:red"> {{menu.name}}  ￥{{menu.price}}</view> 
+    <view style="color:red;font-weight:bold;"> 【{{menu.name}}  ￥{{menu.price}}】</view>
+    
+    <view style="color:#1e43e4">如果点错菜单可返回重新点餐</view>
+    <view style="color:#1e43e4">重复点餐以最后一次为准</view>
+    <view style="color:#1e43e4">同一微信名[昵称]只能点一次</view>
+    
+     
         <image wx:for="{{imgalist}}" wx:for-item="image" wx:key="imgKey"
         src="{{image}}" data-src="{{image}}" bindtap="previewImage" />  
       <view class="textarea-wrp" style="color:#1e43e4">IOS小程序不能识别二维码，</view>

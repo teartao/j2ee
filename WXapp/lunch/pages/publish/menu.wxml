@@ -1,6 +1,7 @@
 
   <view class="page-body">
     <view class="page-section">
+      <view class="page-section-title" style="color:red;font-weight:bold;">发布菜单会清空当日点餐信息，请谨慎操作</view>
       <view class="page-section-title">下方输入菜单</view>
       <view class="textarea-wrp">
         <textarea bindblur="bindTextAreaBlur" style="height: 15em"/>
