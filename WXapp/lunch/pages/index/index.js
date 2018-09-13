@@ -48,5 +48,14 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  navToOrder:function (e) {
+    if(!app.globalData.userInfo){
+      wx.showToast({title: '获取下昵称呀！'});
+    }else{
+      wx.navigateTo({
+          url: '../order/order'
+      })
+    }
   }
 })
