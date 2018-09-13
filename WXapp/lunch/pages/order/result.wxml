@@ -4,7 +4,10 @@
     <view style="color:red"> {{menu.name}}  ￥{{menu.price}}</view> 
         <image wx:for="{{imgalist}}" wx:for-item="image" wx:key="imgKey"
         src="{{image}}" data-src="{{image}}" bindtap="previewImage" />  
-      <view class="textarea-wrp">复制口令去支付宝付款:【{{alipayCode}}】</view>      
+      <view class="textarea-wrp" style="color:#1e43e4">IOS小程序不能识别二维码，</view>
+      <view class="textarea-wrp" style="color:red;font-weight:bold">【把图片分享到群里识别一下把】</view>
+      <view class="textarea-wrp" style="color:green;font-weight:bold">也可以【复制口令】去支付宝付款:</view>
+      <view class="textarea-wrp" style="color:orange">【{{alipayCode}}】</view>
       <button type="primary" class="operation-btn"
       bindtap="copyToClipBoard" >复制口令</button>
   </view>
