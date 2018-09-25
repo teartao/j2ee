@@ -1,5 +1,5 @@
 // pages/order/order.js
-const HTTP_SERVER_URL = 'https://prep-new-vms.htd.cn/hcf/';
+const HTTP_SERVER_URL = 'https://prep-new-vms.neotao.cn/hcf/';
 /* 业务功能js begin */
   /**
    * 初始化加载菜单
