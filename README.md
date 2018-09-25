@@ -32,7 +32,7 @@
  */ 
 ```
 
-HTD食堂点餐demo
- [demo](http://teartao.github.io/universe/htd-lunch-calc/lcal.html) 
+食堂点餐demo
+ [demo](http://teartao.github.io/universe/lunch-calc/lcal.html) 
 
 

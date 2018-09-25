@@ -4,7 +4,7 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50560
 Source Host           : localhost:3306
-Source Database       : htd_lunch
+Source Database       : lunch
 
 Target Server Type    : MYSQL
 Target Server Version : 50560
@@ -12,10 +12,10 @@ File Encoding         : 65001
 
 Date: 2018-05-18 23:38:29
 */
-DROP SCHEMA IF EXISTS `htd_lunch`;
-create database `htd_lunch`;
+DROP SCHEMA IF EXISTS `lunch`;
+create database `lunch`;
 
-use htd_lunch;
+use lunch;
 
 SET FOREIGN_KEY_CHECKS=0;
 
