@@ -6,8 +6,8 @@
 .projects
 *.iml
 target/
+target/*
 .gitignore
 temp/
 *.class
-target/*
 lib/*

@@ -1,5 +1,5 @@
 // pages/order/order.js
-const HTTP_SERVER_URL = 'https://prep-new-vms.htd.cn/hcf/';
+const HTTP_SERVER_URL = 'https://prep-new-vms.neotao.cn/hcf/';
 /* 业务功能js begin */
 function loadMyOrder($this,userName) {
   wx.request({
@@ -31,8 +31,8 @@ Page({
   onLoad: function (options) {
     this.setData({
       imgalist: [
-        'http://static-cdn.htd.cn/prep/2018911/image/jpeg/de97a4284ad74139bb7211082135db91.jpeg',
-        'http://static-cdn.htd.cn/prep/2018911/image/jpeg/7b92c0e5e242442898d70fa1faa44c55.jpeg'
+        'http://static-cdn.neotao.cn/prep/2018911/image/jpeg/de97a4284ad74139bb7211082135db91.jpeg',
+        'http://static-cdn.neotao.cn/prep/2018911/image/jpeg/7b92c0e5e242442898d70fa1faa44c55.jpeg'
       ]
     });
     this.setData({
