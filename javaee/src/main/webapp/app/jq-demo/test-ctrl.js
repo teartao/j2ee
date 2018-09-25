@@ -1,7 +1,7 @@
 /**
  * Created by taolei on 2015/12/25.
  */
-var taoModule = angular.module('htd', []);
+var taoModule = angular.module('tao', []);
 taoModule.controller('taoCtrl', function ($scope, $http, $log) {
     $scope.showDetail=0;
     $scope.menus = [];
