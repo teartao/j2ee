@@ -1,8 +1,8 @@
-package com.tao.controller;
+package neo.tao.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.tao.entity.Result;
-import com.tao.utils.VerifyCodeUtil;
+import neo.tao.entity.Result;
+import neo.tao.utils.VerifyCodeUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.FileCopyUtils;

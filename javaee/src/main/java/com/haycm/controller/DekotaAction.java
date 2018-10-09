@@ -2,7 +2,8 @@ package com.haycm.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.haycm.entity.Person;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class DekotaAction {
     /**
      * 日志实例
      */
-    private static final Logger logger = Logger.getLogger(DekotaAction.class);
+    private static final Logger logger = LoggerFactory.getLogger(DekotaAction.class);
 
     @RequestMapping(value = "/hello", produces = "text/plain;charset=UTF-8")
     public String hello() {

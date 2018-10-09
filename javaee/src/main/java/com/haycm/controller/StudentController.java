@@ -2,7 +2,8 @@ package com.haycm.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.haycm.entity.Person;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "student")
 public class StudentController {
-    private static final Logger logger = Logger.getLogger(StudentController.class);
+    private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
 
     @RequestMapping(value = "view/{studentId}", method = RequestMethod.GET)
     public Person getStudent(@PathVariable("studentId") int studentId) {

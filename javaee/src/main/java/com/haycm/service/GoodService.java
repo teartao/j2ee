@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.haycm.dao.GoodDao;
@@ -14,7 +15,7 @@ import com.haycm.entity.Page;
 @Service(value = "goodService")
 public class GoodService {
 
-    private static final Logger logger = Logger.getLogger(GoodService.class);
+    private static final Logger logger = LoggerFactory.getLogger(GoodService.class);
 
     @Resource(name = "goodDao")
     private GoodDao goodDao;
