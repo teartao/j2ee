@@ -11,4 +11,4 @@ target/*
 temp/
 *.class
 lib/*
-WXapp
+WXapp/

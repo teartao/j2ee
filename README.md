@@ -35,38 +35,40 @@
 ##  lunch-calc
 食堂点餐demo
  [demo](http://teartao.github.io/universe/lunch-calc/lcal.html) 
- 
+
  ## scripts 
  a windows bat script to hide files in specific path
- 
+
  ## thinking-os
+[go](https://github.com/teartao/universe/tree/master/thinking-os)
+
  thinking of New Generation OS with speech 
+
  
+
  
+
  
+
  
+
  
+
  
+
  
+
  
+
  
+
  
+
  
+
  
+
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
 
 
