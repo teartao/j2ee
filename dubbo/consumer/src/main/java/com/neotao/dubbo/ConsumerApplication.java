@@ -26,7 +26,7 @@ public class ConsumerApplication {
     private AnnotationStudentService studentService;
     @Reference(check = false)
     private BeanConfigCourseService courseService;
-    @Reference(check = false)
+    @Reference(check = false,version = "1.1")
     private XmlTeacherService teacherService;
 
     @GetMapping("stu")

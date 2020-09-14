@@ -7,7 +7,7 @@ import org.apache.dubbo.config.annotation.Service;
 import java.util.Arrays;
 import java.util.List;
 
-@Service
+@Service(timeout = 5000)
 public class AnnotationStudentServiceImpl implements AnnotationStudentService {
     @Override
     public List<Student> findStudent(Student student) {
